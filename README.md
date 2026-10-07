@@ -5,6 +5,12 @@ Live site: https://flashlockhub.github.io/Flashlock-website/
 The FlashLock Android landing page: short product copy, interactive flashcard demo,
 Google Play beta link, privacy page, and the existing medical-student page.
 
+The interactive demo follows the Android study screen: tap or swipe sideways to
+reveal, choose a rating, then explicitly open the example app. It is a sample
+deck, not a connection to the installed app. Pencil/trash artwork is illustrative;
+speech uses browser support, and feedback sound starts muted. Roboto is bundled
+locally under the Apache 2.0 license in `public/fonts/ROBOTO-LICENSE.txt`.
+
 ## Local development
 
 Requires Node.js 20.9+ and npm.

@@ -42,23 +42,6 @@
 .phoneStatus{height:33px;display:flex;align-items:center;justify-content:space-between;padding:2px 18px 0;font-size:9px;font-weight:700}
 .phoneStatus i{width:63px;height:16px;background:#222541;border-radius:20px;position:absolute;top:6px;left:50%;transform:translateX(-50%)}
 .phoneBody{padding:7px 11px 0;position:relative}
-.scene{min-height:321px}
-.studyBrand{display:flex;align-items:center;gap:5px;font-size:10px;padding:0 2px}
-.studyBrand>span{margin-left:auto;font-size:7px;color:#68637e}
-.studyBrand img{border-radius:6px}
-.studyProgress{height:3px;background:#e5e1f2;margin:14px 1px 12px;border-radius:4px}
-.studyProgress span{display:block;width:60%;height:100%;background:#8073de;border-radius:4px}
-.flashcard{display:flex;flex-direction:column;min-height:258px;border:1px solid #d9d3ed;background:#eeebff;border-radius:13px;padding:16px 13px;color:#292048;transition:background .2s}
-.flashcard.revealed{background:#f7edcd;border-color:#e7d7ab}
-.cardTop{display:flex;justify-content:space-between;font-size:7px;letter-spacing:.9px;font-weight:700;color:#69607e}
-.cardContent{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px 0}
-.cardSpark{font-size:25px;color:#7b6fb8;margin-bottom:13px}
-.cardContent h2{font-size:24px!important;letter-spacing:-.8px;line-height:1.3;margin:0!important}
-.cardContent p{font-size:9px;line-height:1.6;margin-top:13px!important;color:#685f78}
-.revealed .cardContent h2{font-size:43px!important}
-.revealed .cardSpark{color:#9d772a}
-.cardFoot{display:flex;align-items:center;justify-content:center;gap:4px;font-size:8px;border-top:1px solid #d9d3eb;padding-top:12px;color:#685f78;min-height:24px}
-.cardFoot svg{width:11px;height:11px}
 .demoAction{background:var(--navy);color:white;width:100%;min-height:43px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:8px;font-size:10px;font-weight:700;margin-top:10px;padding:11px 7px}
 .demoAction:hover{background:var(--indigo)}
 .demoAction svg{width:14px;height:14px}
@@ -139,3 +122,66 @@
 .demoFooter button{min-height:44px;padding-inline:10px}
 .hero h1{margin-top:0}
 @media(prefers-reduced-motion:reduce){:global(html){scroll-behavior:auto!important}}
+
+/* Android study-screen replica, based on the app layout and native palette. */
+@font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-bold.ttf') format('truetype');font-style:normal;font-weight:500 700;font-display:swap}
+.studyPhone{background:#0d1b4b;color:#fff}
+.studyPhone .phoneHome{background:#8590b6}
+.phoneStatus{font-family:FlashLockRoboto,Arial,sans-serif}
+.phoneStatus i{width:7px;height:7px;top:10px;background:#11192e;border:1px solid #67718f;border-radius:50%}
+.phoneBody{padding:0}
+.phoneHome{margin:8px auto 9px;height:3px;width:68px}
+.nativeStudy{height:433px;display:flex;flex-direction:column;background:#0d1b4b;color:white;font-family:FlashLockRoboto,Roboto,Arial,sans-serif;font-weight:400;letter-spacing:0;text-align:center}
+.nativeStudy button{font-family:inherit;letter-spacing:0;cursor:pointer}
+.nativeStudy :is(button):focus-visible{outline:2px solid #ffdf70;outline-offset:2px}
+.nativeHeader{min-height:43px;display:flex;align-items:center;padding:2px 12px 6px 7px;gap:4px}
+.homeSpace,.nativeHome{width:52px;flex-shrink:0}
+.nativeHome{display:flex;align-items:center;gap:3px;background:none;color:#fff;font-size:10px;font-weight:700;padding:8px 0}
+.nativeHome svg{width:15px;height:15px;color:#c3c6d6}
+.sessionTitle{flex:1;font-size:12px;line-height:1.4;font-weight:400}
+.soundButton{background:transparent;color:white;border-radius:50%;width:34px;height:34px;padding:8px;display:grid;place-items:center;flex-shrink:0;margin-right:15px}
+.soundButton svg{width:20px;height:20px}
+.soundMuted{background:#39404d;color:#ffdf70}
+.nativeProgress{height:3px;flex-shrink:0;background:#3e496d;overflow:hidden;border-radius:2px}
+.nativeProgress>span{display:block;height:100%;background:#c3c5ff;transition:width .2s}
+.nativeCount{font-size:9px;line-height:15px;min-height:22px;padding-top:4px;color:#fff}
+.nativeCard{position:relative;display:flex;flex:1;flex-direction:column;min-height:155px;margin:7px 10px 8px;background:#fff;color:#000;border-radius:12px;overflow:hidden;touch-action:pan-y;box-shadow:0 2px 4px #00000012}
+.nativeCard.nativeAnswer{background:#f3f8ff}
+.cardTap{position:absolute;inset:0;z-index:1;width:100%;height:100%;padding:0;border:0;border-radius:inherit;background:transparent;color:inherit;cursor:pointer}
+.nativeCard .cardTap:focus-visible{outline:3px solid #4f46e5;outline-offset:-4px}
+.nativeCardTop{display:flex;align-items:center;min-height:44px;padding:8px 10px 0 12px;gap:5px;pointer-events:none;z-index:2}
+.nativeCardTop>span{flex:1;text-align:center;font-size:10px;padding-left:17px}
+.cardTools{display:flex;align-items:center;gap:0}
+.cardTools>span{display:grid;place-items:center;width:32px;height:32px;border:1px solid #111;border-radius:50%}
+.cardTools svg{width:17px;height:17px}
+.cardTools .editTool{background:#fde68a;border-color:#a16207;color:#713f12}
+.nativeContent{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 11px 32px;gap:0;pointer-events:none}
+.cardSpeaker{pointer-events:auto;position:relative;z-index:2;flex-shrink:0;display:grid;place-items:center;width:35px;height:35px;border:1.5px solid white;border-radius:50%;background:#8284f4;color:white;margin-bottom:13px;padding:8px}
+.cardSpeaker svg{width:20px;height:20px}
+.page .nativeQuestion{font-family:inherit;font-size:17px;font-weight:400;line-height:1.28;letter-spacing:0;color:#000;margin:0;max-width:100%}
+.answerDivider{width:42px;height:1.5px;background:#111;margin:17px 0 13px;flex-shrink:0}
+.page .nativeAnswerText{font-family:inherit;color:#000;font-size:15px;font-weight:400;line-height:1.4;letter-spacing:0;margin:0}
+.nativeHint,.nativeHelp{min-height:30px;padding:7px 9px 4px;color:#a5adc7;font-size:9px;line-height:1.5;font-weight:700;flex-shrink:0}
+.nativeStudy .nativeHint{margin:0}
+.nativeHelp{display:block;border:0;background:none;align-self:center;min-width:44px;text-decoration:none}
+.nativeRatings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:0 10px 3px;flex-shrink:0}
+.nativeRatings>div{min-width:0;display:flex;flex-direction:column;align-items:center}
+.nativeRatings button{width:100%;min-height:44px;border:1px solid #ffffff55;border-radius:9px;padding:8px 2px;color:white;font-size:10px;font-weight:700;line-height:1.1}
+.nativeRatings button:hover{filter:brightness(1.13)}
+.nativeRatings span{display:grid;place-items:center;color:#ffdf70;height:24px;opacity:.85}
+.nativeRatings svg{width:23px;height:23px}
+.arrowleft{transform:rotate(180deg)}
+.arrowdown{transform:rotate(90deg)}
+.arrowup{transform:rotate(-90deg)}
+.openApp{display:block;flex-shrink:0;background:#15803d;color:white;min-height:38px;border:0;border-radius:9px;font-size:12px;font-weight:700;margin:0 10px 4px;padding:10px}
+.openApp:hover{background:#116e34}
+.feedScene{height:433px;padding:7px 11px 0;display:flex;flex-direction:column;justify-content:space-between}
+.feedScene .demoAction{margin-bottom:6px}
+@media(max-width:860px) and (min-width:681px){.nativeQuestion{font-size:16px!important}.nativeRatings button{font-size:9px}.nativeHeader{padding-right:7px}.soundButton{margin-right:10px}.nativeCardTop{padding-inline:8px}.nativeCardTop>span{padding-left:8px}}
+@media(max-width:359px){.nativeHeader{padding-right:7px}.soundButton{margin-right:10px}.nativeRatings button{font-size:9px}}
+
+.nativeAnswer .nativeContent{padding:8px 11px 12px}
+.nativeAnswer .cardSpeaker{margin-bottom:9px}
+.nativeAnswer .answerDivider{margin:12px 0 9px}
+.cardTools{pointer-events:auto;position:relative;z-index:2}
