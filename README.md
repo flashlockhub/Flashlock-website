@@ -1,6 +1,9 @@
 # FlashLock website
 
-Live site: https://flashlockhub.github.io/Flashlock-website/
+Existing GitHub Pages address: https://flashlockhub.github.io/Flashlock-website/
+
+Custom-domain target: https://flashlock.app/ (requires the domain's DNS and
+GitHub Pages custom-domain configuration; building alone does not make it live).
 
 The FlashLock Android landing page: short product copy, interactive flashcard demo,
 Google Play beta link, privacy page, and the existing medical-student page.
@@ -20,20 +23,50 @@ npm ci
 npm run dev
 ```
 
-## Publish an update
+## Build for the deployment target
+
+Both targets generate a static export in `out/` and `dist/`, then replace `docs/`
+with the files GitHub Pages publishes. They explicitly set the URL and base path
+so shell environment variables cannot accidentally select the wrong target.
+
+### Custom domain: flashlock.app
+
+```sh
+npm run build:domain
+```
+
+This uses root paths and `https://flashlock.app/` canonical/Open Graph URLs. It
+regenerates `docs/CNAME` containing `flashlock.app` on every build, plus
+`docs/.nojekyll`. Publish this target only when the domain is ready to be connected
+to this repository in GitHub Pages and its DNS points to the Pages host. DNS and
+GitHub settings are separate infrastructure changes; the build does not perform them.
+
+### Fallback: GitHub project URL
 
 ```sh
 npm run build:pages
-git add app lib public scripts next.config.mjs package.json package-lock.json docs
+```
+
+This uses `/Flashlock-website` paths and
+`https://flashlockhub.github.io/Flashlock-website/` canonical/Open Graph URLs.
+It recreates `docs/` without a `CNAME`, removing a previous domain-build marker.
+If switching a live custom-domain deployment back, also remove the custom domain
+in GitHub Pages settings; rebuilding alone does not change those settings.
+
+## Publish the selected build
+
+Build the intended target above, review the regenerated files, then:
+
+```sh
+git add app lib public scripts next.config.mjs package.json package-lock.json README.md docs
 git commit -m "Update FlashLock website"
 git push origin main
 ```
 
 GitHub Pages publishes the committed `docs/` directory on `main`.
-`build:pages` sets the project-site URL and base path, builds the static export,
-and adds `.nojekyll` so GitHub serves Next's `_next` assets unchanged.
+Both build targets add `.nojekyll` so GitHub serves Next's `_next` assets unchanged.
 Commit source changes and regenerated `docs/` together. No server, credentials,
 or paid services are required for this static website.
 
-`npm run build` also creates a root-path static export in `out/` and `dist/` for
-other hosting. Serve those files with a static server; do not use `next start`.
+`npm run build` creates `out/` and `dist/` only; it does not refresh `docs/` or add
+deployment markers. Serve static files with a static server; do not use `next start`.

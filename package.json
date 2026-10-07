@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build && node scripts/package-static.mjs",
     "start": "next start",
-    "build:pages": "node scripts/build-pages.mjs"
+    "build:pages": "node scripts/build-pages.mjs pages",
+    "build:domain": "node scripts/build-pages.mjs domain"
   },
   "dependencies": {
     "next": "16.2.12",
