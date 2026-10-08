@@ -185,3 +185,13 @@
 .nativeAnswer .cardSpeaker{margin-bottom:9px}
 .nativeAnswer .answerDivider{margin:12px 0 9px}
 .cardTools{pointer-events:auto;position:relative;z-index:2}
+
+/* Keep the longer benefit-led headline compact beside the demo. */
+.hero h1{font-size:clamp(42px,4.2vw,60px);line-height:1.12;letter-spacing:-2.5px;text-wrap:balance}
+.appTiles span{width:38px;height:38px;border:0;border-radius:10px;flex-shrink:0}
+ .appTiles span.tiktok{background:#080808}
+ .appTiles span.youtube{background:#ff0033}
+ .appTiles span.instagram{background:radial-gradient(circle at 25% 105%,#ffd776 0%,#f58529 20%,#dd2a7b 50%,#8134af 78%,#515bd4 100%)}
+.appTiles img{filter:invert(1);display:block}
+@media(max-width:600px){.hero h1{font-size:42px;letter-spacing:-1.8px}}
+@media(max-width:360px){.hero h1{font-size:36px}}

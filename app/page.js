@@ -193,8 +193,8 @@ export default function Home() {
     <main id="main">
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.heroText}>
-          <h1 id="hero-title">Learn something.<br/><span>Then keep<br className={styles.desktopBreak}/> scrolling.</span></h1>
-          <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you pick. Do a few cards, then get back to your app.</p>
+          <h1 id="hero-title">Get Better Grades<br/><span>Without Giving Up Your Favorite Apps</span></h1>
+          <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
           <a className={styles.cta} href={PLAY_TESTING_URL}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
         </div>
@@ -203,7 +203,7 @@ export default function Home() {
       <section className={styles.control} aria-labelledby="control-title">
         <div className={styles.controlIntro}><h2 id="control-title">Your apps.<br/><span>Your rules.</span></h2></div>
         <div className={styles.choices}>
-          <div><span className={styles.choiceNumber}>01</span><h3>Pick your apps.</h3><div className={styles.appTiles} aria-hidden="true"><span>▶</span><span>◎</span><span>♪</span><span>+</span></div></div>
+          <div><span className={styles.choiceNumber}>01</span><h3>Pick your apps.</h3><div className={styles.appTiles}><span className={styles.tiktok}><img src={sitePath("/brands/tiktok.svg")} width="24" height="24" alt="TikTok"/></span><span className={styles.youtube}><img src={sitePath("/brands/youtube.svg")} width="26" height="24" alt="YouTube"/></span><span className={styles.instagram}><img src={sitePath("/brands/instagram.svg")} width="24" height="24" alt="Instagram"/></span></div></div>
           <div><span className={styles.choiceNumber}>02</span><h3>Choose your cards.</h3><p>Your own or ready-made.</p><div className={styles.miniCards} aria-hidden="true"><i/><i/><i>Hola.</i></div></div>
           <div><span className={styles.choiceNumber}>03</span><h3>Set your breaks.</h3><div className={styles.miniTimer} aria-hidden="true"><svg viewBox="0 0 54 54"><circle cx="27" cy="27" r="22" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M27 13v15l10 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg><span>Your pace.</span></div></div>
         </div>
