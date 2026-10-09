@@ -189,7 +189,7 @@ function PhoneDemo() {
               <button className={`${styles.soundButton} ${muted ? styles.soundMuted : ''}`} aria-label={muted ? 'Unmute feedback sounds' : 'Mute feedback sounds'} aria-pressed={muted} onClick={() => setMuted(value => !value)}><AppIcon name={muted ? 'muted' : 'sound'}/></button>
             </div>
             <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
-            <div className={styles.nativeCount} aria-live="polite">Card {cardIndex % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to open' : ''}</div>
+            <div className={styles.nativeCount} aria-live="polite">Card {cardIndex % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to download' : ''}</div>
             <div className={styles.cardStage}>
             <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
               front={<>
@@ -216,7 +216,7 @@ function PhoneDemo() {
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
 
-            <button ref={actionRef} className={styles.openApp} style={{ visibility: unlocked ? 'visible' : 'hidden' }} inert={!unlocked} onClick={() => changeScene('back')}>Open app</button>
+            <a ref={actionRef} className={styles.openApp} style={{ visibility: unlocked ? 'visible' : 'hidden' }} inert={!unlocked} href={PLAY_TESTING_URL} onClick={() => window.speechSynthesis?.cancel()}>Download for Android</a>
           </div> : <div className={styles.feedScene}>
             <Feed complete={scene === 'back'}/>
             <span className={styles.srOnly} role="status">{scene === 'back' ? 'Study break finished. You are back in your app.' : 'Open your chosen app to start a study break.'}</span>
