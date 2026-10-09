@@ -163,7 +163,7 @@ function PhoneDemo() {
               <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to reveal, or drag left and right to turn. Change direction without lifting. Rate the answer to try the next card.')}>Click here for help</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
-            <div className={styles.nativeRatings} aria-label="Rate your answer" style={{ visibility: revealed ? 'visible' : 'hidden' }} inert={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: rating.color }} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>
+            <div className={styles.nativeRatings} aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>
             <button ref={actionRef} className={styles.openApp} style={{ visibility: unlocked ? 'visible' : 'hidden' }} inert={!unlocked} onClick={() => changeScene('back')}>Open app</button>
           </div> : <div className={styles.feedScene}>
             <Feed complete={scene === 'back'}/>
