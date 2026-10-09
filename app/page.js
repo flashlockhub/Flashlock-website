@@ -134,7 +134,8 @@ function PhoneDemo() {
     setRevealed(next);
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
-    <div className={styles.demoHeading}><span className={styles.liveDot}/><span>TRY A STUDY BREAK</span></div>
+    <h2 className={styles.demoHeading}>Try FlashLock here</h2>
+    <p className={styles.demoInstructions}>Tap to flip · Swipe for next card</p>
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
@@ -209,6 +210,7 @@ export default function Home() {
           <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
           <a className={styles.cta} href={PLAY_TESTING_URL}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
+          <a className={styles.demoLink} href="#demo">Try the demo <span aria-hidden="true">↓</span></a>
         </div>
         <PhoneDemo/>
       </section>
