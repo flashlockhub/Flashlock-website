@@ -295,3 +295,6 @@
 .page .promoCard .nativeAnswerText{font-size:27px;line-height:1.16;font-weight:700;color:#4337a7}
 .tapPrompt{margin-top:18px;font-size:13px;font-weight:700;color:#5145b5}
 @media(max-width:400px){.hero>.demo{padding-inline:0}.heroText .subheader{font-size:18px}}
+
+/* The device screen clips every card/overlay throughout a gesture. */
+.phone{overflow:hidden;isolation:isolate}

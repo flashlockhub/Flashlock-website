@@ -28,8 +28,8 @@ function Feed({ complete = false }) {
 }
 const demoCards = [
   { category: 'FlashLock', question: 'Get better grades', answer: 'without giving up your favorite apps', repeatQuestion: false, promo: true },
-  { category: 'Spanish', question: 'What is “hello” in Spanish?', answer: 'Hola', answerLang: 'es-ES' },
-  { category: 'Everyday life', question: 'What is mum’s birthday?', answer: '14 May' },
+  { category: 'Spanish', question: 'learn spanish', answer: 'While scrolling Instagram', repeatQuestion: false, promo: true },
+  { category: 'Everyday life', question: 'Memorize mum’s birthday', answer: 'So you never forget it again', repeatQuestion: false, promo: true },
   { category: 'Poetry', question: 'First line:\nLet us go then, you and I,\n\nSecond line:', answer: 'When the evening is spread out against the sky', repeatQuestion: false },
 ];
 const ratings = [
