@@ -70,3 +70,14 @@ or paid services are required for this static website.
 
 `npm run build` creates `out/` and `dist/` only; it does not refresh `docs/` or add
 deployment markers. Serve static files with a static server; do not use `next start`.
+
+## Zoo 3D study card
+
+`app/FlipCard.js` loads the local Zoo-generated `public/models/flashcard.glb`
+using a dynamically imported Three.js renderer. Accessible HTML question/answer
+faces follow the same 720ms turn. Rating turns the card back for the next question.
+The outgoing face retains the old answer so the next answer is not exposed.
+No idle animation runs. Model-loading/WebGL failures preserve a CSS flip, and
+reduced-motion mode reveals immediately. WebGL resources are disposed on unmount.
+The native demo's ratings, speech and Open app action remain in `app/page.js`.
+Model provenance and editable CAD source are under `public/models/`.

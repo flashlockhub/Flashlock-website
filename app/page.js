@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { sitePath } from "../lib/site";
 import styles from "./home.module.css";
+import FlipCard from "./FlipCard";
 
 const PLAY_TESTING_URL = "https://play.google.com/apps/testing/com.flashlock.app";
 function Arrow() {
@@ -153,15 +154,24 @@ function PhoneDemo() {
             </div>
             <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
             <div className={styles.nativeCount} aria-live="polite">{unlocked ? `${reviewed} reviewed · ready to open` : '0 / 1'}</div>
-            <div className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card" onPointerDown={swipeStart} onPointerUp={swipeEnd} onPointerCancel={() => { pointer.current = null; }}>
-              {!revealed && <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={() => { if (!swiped.current) reveal(); swiped.current = false; }}/>}
-              <div className={styles.nativeCardTop}><span>{revealed ? 'Answer' : 'Question'}</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true" title="Card editing tools are available in the app"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
-              <div className={styles.nativeContent}>
-                <button className={styles.cardSpeaker} data-card-tool="true" aria-label={revealed ? 'Listen to answer' : 'Listen to question'} onClick={speak}><AppIcon name="sound"/></button>
-                <p className={styles.nativeQuestion}>{card.question}</p>
-                {revealed && <><span className={styles.answerDivider}/><h2 className={styles.nativeAnswerText}>{card.answer}</h2></>}
-              </div>
-            </div>
+            <FlipCard revealed={revealed} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card" onPointerDown={swipeStart} onPointerUp={swipeEnd} onPointerCancel={() => { pointer.current = null; }}
+              front={<>
+                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={() => { if (!swiped.current) reveal(); swiped.current = false; }}/>
+                <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
+                <div className={styles.nativeContent}>
+                  <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to question" onClick={speak}><AppIcon name="sound"/></button>
+                  <p className={styles.nativeQuestion}>{card.question}</p>
+                </div>
+              </>}
+              back={<>
+                <div className={styles.nativeCardTop}><span>Answer</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
+                <div className={styles.nativeContent}>
+                  <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to answer" onClick={speak}><AppIcon name="sound"/></button>
+                  <p className={styles.nativeQuestion}>{card.question}</p>
+                  <span className={styles.answerDivider}/><h2 className={styles.nativeAnswerText}>{card.answer}</h2>
+                </div>
+              </>}
+            />
             {note ? <p className={styles.nativeHint} role="status">{note}</p> : revealed ? <button className={styles.nativeHelp} onClick={() => setNote('Tap a rating, or swipe left for Again and right for Correct.')}>Help</button> : <p className={styles.nativeHint}>Tap or swipe the card to reveal the answer</p>}
             {revealed && <div className={styles.nativeRatings} aria-label="Rate your answer">{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: rating.color }} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>}
             {unlocked && <button ref={actionRef} className={styles.openApp} onClick={() => changeScene('back')}>Open app</button>}

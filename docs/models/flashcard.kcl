@@ -1,0 +1,59 @@
+// Rounded flashcard
+// Single centered solid with plain faces for browser-rendered labels.
+@settings(defaultLengthUnit = mm, kclVersion = 3.0)
+
+cardWidth = 85mm
+cardHeight = 120mm
+cardThickness = 1.5mm
+cornerRadius = 6mm
+
+cardPlane = offsetPlane(XY, offset = -cardThickness / 2)
+cardOutline = sketch(on = cardPlane) {
+  bottomEdge = line(start = [var -36.5mm, var -60mm], end = [var 36.5mm, var -60mm])
+  bottomRight = arc(start = [var 36.5mm, var -60mm], end = [var 42.5mm, var -54mm], center = [var 36.5mm, var -54mm])
+  rightEdge = line(start = [var 42.5mm, var -54mm], end = [var 42.5mm, var 54mm])
+  topRight = arc(start = [var 42.5mm, var 54mm], end = [var 36.5mm, var 60mm], center = [var 36.5mm, var 54mm])
+  topEdge = line(start = [var 36.5mm, var 60mm], end = [var -36.5mm, var 60mm])
+  topLeft = arc(start = [var -36.5mm, var 60mm], end = [var -42.5mm, var 54mm], center = [var -36.5mm, var 54mm])
+  leftEdge = line(start = [var -42.5mm, var 54mm], end = [var -42.5mm, var -54mm])
+  bottomLeft = arc(start = [var -42.5mm, var -54mm], end = [var -36.5mm, var -60mm], center = [var -36.5mm, var -54mm])
+
+  coincident([bottomEdge.end, bottomRight.start])
+  coincident([bottomRight.end, rightEdge.start])
+  coincident([rightEdge.end, topRight.start])
+  coincident([topRight.end, topEdge.start])
+  coincident([topEdge.end, topLeft.start])
+  coincident([topLeft.end, leftEdge.start])
+  coincident([leftEdge.end, bottomLeft.start])
+  coincident([bottomLeft.end, bottomEdge.start])
+  horizontal(bottomEdge)
+  horizontal(topEdge)
+  vertical(rightEdge)
+  vertical(leftEdge)
+  vertical([bottomRight.start, bottomRight.center])
+  horizontal([bottomRight.end, bottomRight.center])
+  horizontal([topRight.start, topRight.center])
+  vertical([topRight.end, topRight.center])
+  vertical([topLeft.start, topLeft.center])
+  horizontal([topLeft.end, topLeft.center])
+  horizontal([bottomLeft.start, bottomLeft.center])
+  vertical([bottomLeft.end, bottomLeft.center])
+  radius(bottomRight) == cornerRadius
+  radius(topRight) == cornerRadius
+  radius(topLeft) == cornerRadius
+  radius(bottomLeft) == cornerRadius
+  distance([bottomEdge.start, bottomEdge.end]) == cardWidth - (2 * cornerRadius)
+  distance([rightEdge.start, rightEdge.end]) == cardHeight - (2 * cornerRadius)
+  horizontalDistance([ORIGIN, bottomEdge.end]) == cardWidth / 2 - cornerRadius
+  verticalDistance([bottomEdge.end, ORIGIN]) == cardHeight / 2
+}
+cardFace = region(
+  segments = [
+    cardOutline.bottomEdge,
+    cardOutline.bottomRight
+  ],
+  intersectionIndex = -1,
+  direction = CCW,
+)
+flashcard = extrude(cardFace, length = cardThickness)
+hide(cardOutline)
