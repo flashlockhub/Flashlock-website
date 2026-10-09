@@ -75,7 +75,11 @@ deployment markers. Serve static files with a static server; do not use `next st
 
 `app/FlipCard.js` loads the local Zoo-generated `public/models/flashcard.glb`
 using a dynamically imported Three.js renderer. Accessible HTML question/answer
-faces follow the same 720ms turn. Rating turns the card back for the next question.
+faces follow the same angle as the mesh. Tap for a 720ms turn, or drag horizontally
+to control the angle continuously: pause/reverse without lifting, then release to
+settle on the nearest side. Pointer capture keeps a held drag attached outside the
+card, cancellation restores the original side, and vertical gestures scroll the
+page. Dragging does not rate a card. Rating turns it back for the next question.
 The outgoing face retains the old answer so the next answer is not exposed.
 No idle animation runs. Model-loading/WebGL failures preserve a CSS flip, and
 reduced-motion mode reveals immediately. WebGL resources are disposed on unmount.

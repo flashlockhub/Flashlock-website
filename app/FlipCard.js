@@ -1,15 +1,88 @@
 "use client";
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { sitePath } from '../lib/site';
 import styles from './flip-card.module.css';
 
 // Zoo-generated geometry, served locally. No account or remote API at runtime.
-export default function FlipCard({ revealed, front, back, ...props }) {
+export default function FlipCard({ revealed, onRevealChange, front, back, ...props }) {
   const stage = useRef(null);
   const canvas = useRef(null);
   const angle = useRef(0);
   const draw = useRef(null);
+  const frame = useRef(null);
+  const gesture = useRef(null);
+  const suppressClick = useRef(false);
+  const targetAngle = useRef(0);
+  const paint = useCallback(value => {
+    angle.current = value;
+    if (!stage.current) return;
+    stage.current.style.setProperty('--turn', `${value}deg`);
+    stage.current.dataset.angle = value.toFixed(1);
+    draw.current?.();
+  }, []);
+  const settle = useCallback((to, duration = 360) => {
+    cancelAnimationFrame(frame.current);
+    targetAngle.current = to;
+    const root = stage.current;
+    const from = angle.current;
+    const finish = () => { paint(to); root.dataset.flipping = 'false'; };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || Math.abs(from - to) < .1) { finish(); return; }
+    const start = performance.now(); root.dataset.flipping = 'true';
+    const tick = now => {
+      const t = Math.min((now - start) / duration, 1);
+      paint(from + (to - from) * (t * t * (3 - 2 * t)));
+      if (t < 1) frame.current = requestAnimationFrame(tick); else finish();
+    };
+    frame.current = requestAnimationFrame(tick);
+  }, [paint]);
+  function nearestSide(backSide, at = angle.current) {
+    const base = backSide ? 180 : 0;
+    const a = base + Math.floor((at - base) / 360) * 360, b = a + 360;
+    const da = Math.abs(at - a), db = Math.abs(at - b);
+    if (Math.abs(da - db) < .001) return Math.abs(a) < Math.abs(b) ? a : b;
+    return da < db ? a : b;
+  }
+  function startDrag(event) {
+    suppressClick.current = false;
+    if (!event.isPrimary || event.button !== 0 || event.target.closest('[data-card-tool]')) return;
+    cancelAnimationFrame(frame.current);
+    setAnswerFace(back);
+    gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, angle: angle.current, width: stage.current.clientWidth, dragging: false, side: revealed };
+    stage.current.setPointerCapture(event.pointerId);
+  }
+  function moveDrag(event) {
+    const g = gesture.current;
+    if (!g || event.pointerId !== g.id) return;
+    const dx = event.clientX - g.x, dy = event.clientY - g.y;
+    if (!g.dragging) {
+      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { cancelDrag(event); return; }
+      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      g.dragging = true; stage.current.dataset.dragging = 'true'; stage.current.dataset.flipping = 'true';
+    }
+    event.preventDefault();
+    // Absolute distance from pointer-down: reversing direction immediately reverses the card.
+    paint(g.angle + dx * 180 / (g.width * .7));
+  }
+  function endDrag(event) {
+    const g = gesture.current;
+    if (!g || event.pointerId !== g.id) return;
+    gesture.current = null; suppressClick.current = true;
+    stage.current.dataset.dragging = 'false';
+    if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
+    const to = g.dragging ? Math.round(angle.current / 180) * 180 : nearestSide(!revealed);
+    const next = Math.abs(Math.round(to / 180) % 2) === 1;
+    settle(to, g.dragging ? 300 : 720);
+    if (next !== revealed) onRevealChange(next);
+  }
+  function cancelDrag(event) {
+    const g = gesture.current;
+    if (!g || (event && event.pointerId !== g.id)) return;
+    gesture.current = null; suppressClick.current = g.dragging;
+    stage.current.dataset.dragging = 'false';
+    if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
+    settle(nearestSide(g.side), 240);
+  }
   const [ready, setReady] = useState(false);
   // Keep the previous answer on the departing face when rating advances the deck.
   const [answerFace, setAnswerFace] = useState(back);
@@ -89,33 +162,22 @@ export default function FlipCard({ revealed, front, back, ...props }) {
     };
   }, []);
   useEffect(() => {
-    const root = stage.current;
+    if (!gesture.current) settle(nearestSide(revealed), 720);
+  }, [revealed, settle]);
+  useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let frame;
-    const from = angle.current, to = revealed ? 180 : 0;
-    const paint = value => {
-      angle.current = value;
-      root.style.setProperty('--turn', `${value}deg`);
-      root.dataset.angle = value.toFixed(1);
-      draw.current?.();
+    const onMotion = () => {
+      if (reduced.matches && !gesture.current) {
+        cancelAnimationFrame(frame.current); paint(targetAngle.current);
+        stage.current.dataset.flipping = 'false';
+      }
     };
-    const finish = () => { cancelAnimationFrame(frame); paint(to); root.dataset.flipping = 'false'; };
-    if (reduced.matches || from === to) finish();
-    else {
-      const start = performance.now(); root.dataset.flipping = 'true';
-      const tick = now => {
-        const t = Math.min((now - start) / 720, 1);
-        const eased = t * t * (3 - 2 * t);
-        paint(from + (to - from) * eased);
-        if (t < 1) frame = requestAnimationFrame(tick); else finish();
-      };
-      frame = requestAnimationFrame(tick);
-    }
-    const onMotion = () => { if (reduced.matches) finish(); };
     reduced.addEventListener('change', onMotion);
-    return () => { cancelAnimationFrame(frame); reduced.removeEventListener('change', onMotion); };
-  }, [revealed]);
-  return <div {...props} ref={stage} data-renderer={ready ? 'zoo-webgl' : 'css-fallback'} className={`${props.className || ''} ${styles.stage}`}>
+    return () => { cancelAnimationFrame(frame.current); reduced.removeEventListener('change', onMotion); };
+  }, [paint]);
+  return <div {...props} ref={stage} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={cancelDrag} onLostPointerCapture={cancelDrag}
+    onClickCapture={event => { if (suppressClick.current && event.detail !== 0) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}
+    data-renderer={ready ? 'zoo-webgl' : 'css-fallback'} className={`${props.className || ''} ${styles.stage}`}>
     <canvas ref={canvas} className={styles.canvas} aria-hidden="true"/>
     <div className={`${styles.face} ${styles.front}`} aria-hidden={revealed} inert={revealed}>{front}</div>
     <div className={`${styles.face} ${styles.back}`} aria-hidden={!revealed} inert={!revealed}>{answerFace}</div>

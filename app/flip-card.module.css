@@ -7,3 +7,7 @@
 .stage[data-flipping="true"] .face{pointer-events:none}
 .face>div:last-child{min-height:0}
 @media(prefers-reduced-motion:reduce){.face{will-change:auto}}
+
+.stage{touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.stage[data-dragging="true"]{cursor:grabbing}
+.stage button[data-card-tool]{cursor:pointer}

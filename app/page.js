@@ -56,8 +56,6 @@ function PhoneDemo() {
   const ratingRef = useRef(null);
   const actionRef = useRef(null);
   const shouldFocus = useRef(false);
-  const pointer = useRef(null);
-  const swiped = useRef(false);
   const card = demoCards[reviewed % demoCards.length];
   const unlocked = reviewed > 0;
   const step = scene === 'app' ? 0 : scene === 'back' ? 2 : 1;
@@ -70,7 +68,6 @@ function PhoneDemo() {
   }, [scene, revealed, reviewed, unlocked]);
   useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
   function changeScene(next) {
-    swiped.current = false;
     window.speechSynthesis?.cancel();
     setNote('');
     shouldFocus.current = true;
@@ -85,7 +82,6 @@ function PhoneDemo() {
   }
   function rate() {
     if (!revealed) return;
-    swiped.current = false;
     window.speechSynthesis?.cancel();
     shouldFocus.current = true;
     setNote('');
@@ -121,21 +117,11 @@ function PhoneDemo() {
     setNote('');
     window.speechSynthesis.speak(speech);
   }
-  function swipeStart(event) {
-    if (event.target.closest('[data-card-tool]') || !event.isPrimary) return;
-    pointer.current = { x: event.clientX, y: event.clientY };
-    swiped.current = false;
-  }
-  function swipeEnd(event) {
-    const start = pointer.current;
-    pointer.current = null;
-    if (!start) return;
-    const dx = event.clientX - start.x, dy = event.clientY - start.y;
-    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-      swiped.current = true;
-      // Let the touch sequence finish before replacing its target element.
-      requestAnimationFrame(() => { if (revealed) rate(); else reveal(); });
-    }
+  function turnCard(next) {
+    window.speechSynthesis?.cancel();
+    setNote('');
+    shouldFocus.current = true;
+    setRevealed(next);
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
     <div className={styles.demoHeading}><span className={styles.liveDot}/><span>TRY A STUDY BREAK</span></div>
@@ -154,9 +140,9 @@ function PhoneDemo() {
             </div>
             <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
             <div className={styles.nativeCount} aria-live="polite">{unlocked ? `${reviewed} reviewed · ready to open` : '0 / 1'}</div>
-            <FlipCard revealed={revealed} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card" onPointerDown={swipeStart} onPointerUp={swipeEnd} onPointerCancel={() => { pointer.current = null; }}
+            <FlipCard revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card"
               front={<>
-                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={() => { if (!swiped.current) reveal(); swiped.current = false; }}/>
+                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={reveal}/>
                 <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to question" onClick={speak}><AppIcon name="sound"/></button>
@@ -172,7 +158,7 @@ function PhoneDemo() {
                 </div>
               </>}
             />
-            {note ? <p className={styles.nativeHint} role="status">{note}</p> : revealed ? <button className={styles.nativeHelp} onClick={() => setNote('Tap a rating, or swipe left for Again and right for Correct.')}>Help</button> : <p className={styles.nativeHint}>Tap or swipe the card to reveal the answer</p>}
+            {note ? <p className={styles.nativeHint} role="status">{note}</p> : revealed ? <button className={styles.nativeHelp} onClick={() => setNote('Drag either way to turn the card. Choose a rating when you are ready.')}>Help</button> : <p className={styles.nativeHint}>Tap or drag the card to reveal the answer</p>}
             {revealed && <div className={styles.nativeRatings} aria-label="Rate your answer">{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: rating.color }} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>}
             {unlocked && <button ref={actionRef} className={styles.openApp} onClick={() => changeScene('back')}>Open app</button>}
           </div> : <div className={styles.feedScene}>
