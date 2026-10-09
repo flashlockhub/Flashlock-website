@@ -184,7 +184,7 @@ function PhoneDemo() {
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
-      <div className={`${styles.phone} ${scene === 'study' ? styles.studyPhone : ''}`}>
+      <div className={`${styles.phone} ${scene === 'study' || scene === 'complete' ? styles.studyPhone : ''}`}>
         <div className={styles.phoneStatus} aria-hidden="true"><span>9:41</span><i/><span>▴ ▰</span></div>
         <div className={styles.phoneBody}>
           {scene === 'complete' ? <div className={styles.demoComplete} data-testid="demo-complete">
