@@ -27,8 +27,10 @@ function Feed({ complete = false }) {
   </div>;
 }
 const demoCards = [
-  { question: 'What is “hello” in Spanish?', answer: 'Hola' },
-  { question: 'What is “thank you” in Spanish?', answer: 'Gracias' },
+  { category: 'Spanish', question: 'What is “hello” in Spanish?', answer: 'Hola', answerLang: 'es-ES' },
+  { category: 'Everyday life', question: 'What is mum’s birthday?', answer: '14 May' },
+  { category: 'Medicine', question: 'How does NKCC2 inhibition in the thick ascending limb increase calcium and magnesium excretion?', answer: 'It reduces the lumen-positive voltage, decreasing paracellular reabsorption of calcium and magnesium.', repeatQuestion: false },
+  { category: 'Poetry', question: 'First line:\nLet us go then, you and I,\n\nSecond line:', answer: 'When the evening is spread out against the sky', repeatQuestion: false },
 ];
 const ratings = [
   { label: 'Again', direction: 'left', color: '#c62828' },
@@ -111,7 +113,7 @@ function PhoneDemo() {
     }
     window.speechSynthesis.cancel();
     const speech = new SpeechSynthesisUtterance(revealed ? card.answer : card.question);
-    speech.lang = revealed ? 'es-ES' : 'en-AU';
+    speech.lang = revealed ? card.answerLang || 'en-AU' : 'en-AU';
     speech.rate = .85;
     speech.onerror = event => { if (!['canceled', 'interrupted'].includes(event.error)) setNote('Read aloud is not available in this browser.'); };
     setNote('');
@@ -135,11 +137,11 @@ function PhoneDemo() {
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">{revealed ? `${card.question} Answer: ${card.answer}` : ""}</span>
             <div className={styles.nativeHeader}>
               {unlocked ? <button className={styles.nativeHome} onClick={() => changeScene('app')} aria-label="Leave the study demo"><AppIcon name="home"/><span>Home</span></button> : <span className={styles.homeSpace}/>}
-              <span className={styles.sessionTitle}>{unlocked ? <>Spanish ·<br/>Keep learning</> : <>🔒 0/1 —<br/>Spanish</>}</span>
+              <span className={styles.sessionTitle}>{unlocked ? <>{card.category} ·<br/>Keep learning</> : <>🔒 0/1 —<br/>{card.category}</>}</span>
               <button className={`${styles.soundButton} ${muted ? styles.soundMuted : ''}`} aria-label={muted ? 'Unmute feedback sounds' : 'Mute feedback sounds'} aria-pressed={muted} onClick={() => setMuted(value => !value)}><AppIcon name={muted ? 'muted' : 'sound'}/></button>
             </div>
             <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
-            <div className={styles.nativeCount} aria-live="polite">{unlocked ? `${reviewed} reviewed · ready to open` : '0 / 1'}</div>
+            <div className={styles.nativeCount} aria-live="polite">Card {reviewed % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to open' : ''}</div>
             <FlipCard revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card"
               front={<>
                 <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={reveal}/>
@@ -153,14 +155,16 @@ function PhoneDemo() {
                 <div className={styles.nativeCardTop}><span>Answer</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to answer" onClick={speak}><AppIcon name="sound"/></button>
-                  <p className={styles.nativeQuestion}>{card.question}</p>
-                  <span className={styles.answerDivider}/><h2 className={styles.nativeAnswerText}>{card.answer}</h2>
+                  <>{card.repeatQuestion !== false && <><p className={styles.nativeQuestion}>{card.question}</p><span className={styles.answerDivider}/></>}</><h2 className={styles.nativeAnswerText}>{card.answer}</h2>
                 </div>
               </>}
             />
-            {note ? <p className={styles.nativeHint} role="status">{note}</p> : revealed ? <button className={styles.nativeHelp} onClick={() => setNote('Drag either way to turn the card. Choose a rating when you are ready.')}>Help</button> : <p className={styles.nativeHint}>Tap or drag the card to reveal the answer</p>}
-            {revealed && <div className={styles.nativeRatings} aria-label="Rate your answer">{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: rating.color }} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>}
-            {unlocked && <button ref={actionRef} className={styles.openApp} onClick={() => changeScene('back')}>Open app</button>}
+            <div className={styles.helpSlot}>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to reveal, or drag left and right to turn. Change direction without lifting. Rate the answer to try the next card.')}>Click here for help</button>
+              {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
+            </div>
+            <div className={styles.nativeRatings} aria-label="Rate your answer" style={{ visibility: revealed ? 'visible' : 'hidden' }} inert={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: rating.color }} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>
+            <button ref={actionRef} className={styles.openApp} style={{ visibility: unlocked ? 'visible' : 'hidden' }} inert={!unlocked} onClick={() => changeScene('back')}>Open app</button>
           </div> : <div className={styles.feedScene}>
             <Feed complete={scene === 'back'}/>
             <span className={styles.srOnly} role="status">{scene === 'back' ? 'Study break finished. You are back in your app.' : 'Open your chosen app to start a study break.'}</span>
@@ -170,7 +174,7 @@ function PhoneDemo() {
         </div>
       </div>
     </div>
-    <div className={styles.demoFooter}><span>Interactive preview · 1-card break</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
+    <div className={styles.demoFooter}><span>Interactive preview · 4 sample cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
     <noscript><p>Open an app → do a few cards → back to your app. Turn on JavaScript to try the demo.</p></noscript>
   </div>;
 }

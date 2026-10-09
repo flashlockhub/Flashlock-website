@@ -247,3 +247,14 @@
  .demoFooter{justify-content:center;text-align:center}
  .control h2{font-size:30px}
 }
+
+/* Both faces and all sample cards share one stable physical size. */
+.nativeStudy,.feedScene{height:620px}
+.nativeCard{flex:0 0 280px;height:280px;min-height:280px}
+.nativeCard .nativeContent{padding:8px 11px 12px}
+.nativeCard .cardSpeaker{margin-bottom:9px}
+.page .nativeQuestion{white-space:pre-line}
+.helpSlot{position:relative;flex:0 0 40px;display:flex;justify-content:center;align-items:center}
+.nativeHelp{font-size:11px;font-weight:400;color:#b0bad4;min-height:40px;padding:10px 12px;text-underline-offset:3px}
+.nativeHelp:hover{text-decoration:underline;color:#fff}
+.helpPanel{position:absolute;bottom:100%;left:12px;right:12px;z-index:10;margin:0;padding:13px;border:1px solid #69769d;border-radius:10px;background:#14234e;color:#fff;font-size:13px;line-height:1.5;text-align:left;box-shadow:0 4px 16px #0005}
