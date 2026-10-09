@@ -298,3 +298,10 @@
 
 /* The device screen clips every card/overlay throughout a gesture. */
 .phone{overflow:hidden;isolation:isolate}
+
+/* Secondary iOS action stays directly below the Android download. */
+.iosWaitlist{display:flex;align-items:center;justify-content:center;gap:10px;width:fit-content;max-width:100%;min-height:48px;margin:16px auto 0;padding:12px 20px;border:2px solid var(--indigo);border-radius:8px;color:var(--indigo);background:#fff;font-size:16px;font-weight:700;text-align:center}
+.iosWaitlist svg{width:18px;height:18px;flex-shrink:0}
+.iosWaitlist:hover{background:#eeecff}
+.iosWaitlist:focus-visible{outline:3px solid var(--indigo);outline-offset:4px}
+@media(max-width:600px){.iosWaitlist{width:100%}}

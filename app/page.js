@@ -208,6 +208,7 @@ export default function Home() {
         <div className={styles.heroText}>
           <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
           <a className={styles.cta} href={PLAY_TESTING_URL}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
+          <a className={styles.iosWaitlist} href="mailto:hello@flashlock.app?subject=iOS%20waitlist">Join the iOS waitlist <Arrow/></a>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
         </div>
       </section>
