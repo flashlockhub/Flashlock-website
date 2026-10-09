@@ -186,7 +186,7 @@ export default function MedicalLandingPage() {
           <p>Free for the first 500 students · Your cards stay on your device</p>
           <div className={styles.waitlist}>
             <p><strong>iPhone version coming soon.</strong><span>iOS build is in progress — grab a spot in line.</span></p>
-            <a className={styles.waitlistCta} href="mailto:hello@flashlock.app?subject=iPhone%20waitlist">Join the iPhone waitlist <Arrow /></a>
+            <a className={styles.waitlistCta} href={sitePath("/#ios-signup")}>Join the iPhone waitlist <Arrow /></a>
           </div>
         </section>
       </main>

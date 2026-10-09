@@ -6,6 +6,47 @@ import styles from "./home.module.css";
 import FlipCard from "./FlipCard";
 
 const PLAY_TESTING_URL = "https://play.google.com/apps/testing/com.flashlock.app";
+const SIGNUPS_ENABLED = false; // Enable after public HTTPS signup verification.
+function IosWaitlist() {
+  const [state, setState] = useState('idle');
+  const [error, setError] = useState('');
+  async function join(event) {
+    event.preventDefault();
+    if (!SIGNUPS_ENABLED || state === 'saving' || state === 'saved') return;
+    const form = event.currentTarget;
+    const fields = new FormData(form);
+    setState('saving'); setError('');
+    try {
+      const response = await fetch('https://sasuclaw.tail274696.ts.net:8443/signup', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({email: fields.get('email'), website: fields.get('website')}),
+        signal: AbortSignal.timeout(15000),
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) throw new Error('save failed');
+      setState('saved'); form.reset();
+    } catch {
+      setState('idle');
+      setError('We couldn’t save your email. Please try again.');
+    }
+  }
+  return <div className={styles.waitlistArea}>
+    <h2 className={styles.waitlistHeading}>iOS waitlist</h2>
+    <form id="ios-signup" className={styles.emailSignup} onSubmit={join}>
+      {state === 'saved' ? <p role="status">You’re on the list. We’ll email you when FlashLock is ready for iOS.</p> : <>
+        <label htmlFor="ios-email">Email address</label>
+        <div className={styles.emailRow}>
+          <input id="ios-email" type="email" name="email" required maxLength={254} autoComplete="email" inputMode="email" placeholder="you@example.com" aria-describedby="ios-signup-note" disabled={state === 'saving'} />
+          <button type="submit" disabled={!SIGNUPS_ENABLED || state === 'saving'}>{state === 'saving' ? 'Saving…' : 'Notify me'}</button>
+        </div>
+        <div className={styles.signupTrap} aria-hidden="true"><label>Leave this empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
+        <p id="ios-signup-note">{SIGNUPS_ENABLED ? 'Only iOS launch updates.' : 'Signups aren’t open yet. Please check back soon.'} <a href={sitePath('/privacy/')}>Privacy</a></p>
+        {error && <p role="alert">{error}</p>}
+      </>}
+    </form>
+  </div>;
+}
+
 function Arrow() {
   return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>;
 }
@@ -208,7 +249,7 @@ export default function Home() {
         <div className={styles.heroText}>
           <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
           <a className={styles.cta} href={PLAY_TESTING_URL}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
-          <a className={styles.iosWaitlist} href="mailto:hello@flashlock.app?subject=iOS%20waitlist">Join the iOS waitlist <Arrow/></a>
+          <IosWaitlist/>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
         </div>
       </section>
