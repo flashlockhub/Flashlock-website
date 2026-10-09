@@ -27,9 +27,9 @@ function Feed({ complete = false }) {
   </div>;
 }
 const demoCards = [
+  { category: 'FlashLock', question: 'Get better grades', answer: 'without giving up your favorite apps', repeatQuestion: false, promo: true },
   { category: 'Spanish', question: 'What is “hello” in Spanish?', answer: 'Hola', answerLang: 'es-ES' },
   { category: 'Everyday life', question: 'What is mum’s birthday?', answer: '14 May' },
-  { category: 'Medicine', question: 'How does NKCC2 inhibition in the thick ascending limb increase calcium and magnesium excretion?', answer: 'It reduces the lumen-positive voltage, decreasing paracellular reabsorption of calcium and magnesium.', repeatQuestion: false },
   { category: 'Poetry', question: 'First line:\nLet us go then, you and I,\n\nSecond line:', answer: 'When the evening is spread out against the sky', repeatQuestion: false },
 ];
 const ratings = [
@@ -60,7 +60,6 @@ function PhoneDemo() {
   const actionRef = useRef(null);
   const shouldFocus = useRef(false);
   const card = demoCards[cardIndex % demoCards.length];
-  const nextCard = demoCards[(cardIndex + 1) % demoCards.length];
   const unlocked = reviewed > 0;
   const step = scene === 'app' ? 0 : scene === 'back' ? 2 : 1;
   const labels = ['Open app', 'Do a card', 'Back to app'];
@@ -134,8 +133,8 @@ function PhoneDemo() {
     setRevealed(next);
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
-    <h2 className={styles.demoHeading}>Try FlashLock here</h2>
-    <p className={styles.demoInstructions}>Tap to flip · Swipe for next card</p>
+    <h2 className={styles.demoHeading}>Tap the card. Try FlashLock.</h2>
+    <p className={styles.demoInstructions}>Tap to flip · Swipe to move on</p>
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
@@ -152,14 +151,14 @@ function PhoneDemo() {
             <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
             <div className={styles.nativeCount} aria-live="polite">Card {cardIndex % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to open' : ''}</div>
             <div className={styles.cardStage}>
-            <div className={styles.queuedCard} aria-hidden="true" data-testid="next-card"><div className={styles.nativeCardTop}><span>Question</span></div><div className={styles.nativeContent}><p className={styles.nativeQuestion}>{nextCard.question}</p></div></div>
-            <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card"
+            <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
               front={<>
                 <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={reveal}/>
                 <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to question" onClick={speak}><AppIcon name="sound"/></button>
                   <p className={styles.nativeQuestion}>{card.question}</p>
+                  {card.promo && <span className={styles.tapPrompt}>Tap to turn over ↻</span>}
                 </div>
               </>}
               back={<>
@@ -173,7 +172,7 @@ function PhoneDemo() {
 
             </div>
             <div className={styles.helpSlot}>
-              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe left or right to uncover the next card without rating. Or reveal and choose a rating. Keyboard: left or right arrow for the next card.')}>Click here for help</button>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe left or right to tuck this card away and move on without rating. Or reveal and choose a rating. Keyboard: left or right arrow for the next card.')}>Click here for help</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
 
@@ -205,14 +204,13 @@ export default function Home() {
     </header>
     <main id="main">
       <section className={styles.hero} aria-labelledby="hero-title">
+        <h1 id="hero-title" className={styles.srOnly}>Get better grades with FlashLock</h1>
+        <PhoneDemo/>
         <div className={styles.heroText}>
-          <h1 id="hero-title">Get Better Grades<br/><span>Without Giving Up Your Favorite Apps</span></h1>
           <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
           <a className={styles.cta} href={PLAY_TESTING_URL}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
-          <a className={styles.demoLink} href="#demo">Try the demo <span aria-hidden="true">↓</span></a>
         </div>
-        <PhoneDemo/>
       </section>
       <section className={styles.control} aria-labelledby="control-title">
         <div className={styles.controlIntro}><h2 id="control-title">Your apps.<br/><span>Your rules.</span></h2></div>

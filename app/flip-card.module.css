@@ -12,5 +12,7 @@
 .stage[data-dragging="true"]{cursor:grabbing}
 .stage button[data-card-tool]{cursor:pointer}
 
-.stage{transform:translate3d(var(--slide-x,0px),0,0) rotate(var(--slide-tilt,0deg));z-index:2}
+.stage{transform:translate3d(var(--slide-x,0px),var(--slide-y,0px),0) rotate(var(--slide-tilt,0deg)) scale(var(--slide-scale,1));z-index:2}
 .stage[data-sliding="true"]{pointer-events:none}
+
+.stage{opacity:var(--slide-opacity,1)}
