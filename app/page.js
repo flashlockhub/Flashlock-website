@@ -100,7 +100,7 @@ function PhoneDemo() {
   const actionRef = useRef(null);
   const shouldFocus = useRef(false);
   const card = demoCards[Math.min(cardIndex, demoCards.length - 1)];
-  const unlocked = reviewed > 0;
+  const unlocked = cardIndex > 0;
   const step = scene === 'app' ? 0 : scene === 'back' ? 2 : 1;
   const labels = ['Open app', 'Do a card', 'Back to app'];
   useEffect(() => {
@@ -197,7 +197,7 @@ function PhoneDemo() {
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">{revealed ? `${card.question} Answer: ${card.answer}` : ""}</span>
             <div className={styles.nativeHeader}>
               {unlocked ? <button className={styles.nativeHome} onClick={() => changeScene('app')} aria-label="Leave the study demo"><AppIcon name="home"/><span>Home</span></button> : <span className={styles.homeSpace}/>}
-              <span className={styles.sessionTitle}>{unlocked ? <>{card.category} ·<br/>Keep learning</> : <>🔒 0/1 —<br/>{card.category}</>}</span>
+              <span className={styles.sessionTitle}>{unlocked ? <>{card.category} ·<br/>Keep learning</> : <>🔒 0/{demoCards.length} —<br/>{card.category}</>}</span>
               <button className={`${styles.soundButton} ${muted ? styles.soundMuted : ''}`} aria-label={muted ? 'Unmute feedback sounds' : 'Mute feedback sounds'} aria-pressed={muted} onClick={() => setMuted(value => !value)}><AppIcon name={muted ? 'muted' : 'sound'}/></button>
             </div>
             <div className={styles.nativeProgress} role="progressbar" aria-label="Demo cards completed" aria-valuemin={0} aria-valuemax={demoCards.length} aria-valuenow={cardIndex}><span style={{ width: `${cardIndex / demoCards.length * 100}%` }}/></div>
