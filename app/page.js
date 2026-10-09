@@ -30,7 +30,6 @@ const demoCards = [
   { category: 'FlashLock', question: 'Get better grades', answer: 'without giving up your favorite apps', repeatQuestion: false, promo: true },
   { category: 'Spanish', question: 'learn spanish', answer: 'While scrolling Instagram', repeatQuestion: false, promo: true },
   { category: 'Everyday life', question: 'Memorize mum’s birthday', answer: 'So you never forget it again', repeatQuestion: false, promo: true },
-  { category: 'Poetry', question: 'First line:\nLet us go then, you and I,\n\nSecond line:', answer: 'When the evening is spread out against the sky', repeatQuestion: false },
 ];
 const ratings = [
   { label: 'Again', direction: 'left', color: '#c62828' },
@@ -172,7 +171,7 @@ function PhoneDemo() {
 
             </div>
             <div className={styles.helpSlot}>
-              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe left or right to tuck this card away and move on without rating. Or reveal and choose a rating. Keyboard: left or right arrow for the next card.')}>Click here for help</button>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe left or right to slide this card off the screen and move on without rating. Or reveal and choose a rating. Keyboard: left or right arrow for the next card.')}>Click here for help</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
 
@@ -186,7 +185,7 @@ function PhoneDemo() {
         </div>
       </div>
     </div>
-    <div className={styles.demoFooter}><span>Interactive preview · 4 sample cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
+    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
     <noscript><p>Open an app → do a few cards → back to your app. Turn on JavaScript to try the demo.</p></noscript>
   </div>;
 }

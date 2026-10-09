@@ -46,16 +46,13 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     if (Math.abs(da - db) < .001) return Math.abs(a) < Math.abs(b) ? a : b;
     return da < db ? a : b;
   }
-  function moveCard(x, y = 0, scale = 1, opacity = 1) {
+  function moveCard(x) {
     slideX.current = x;
     stage.current.style.setProperty('--slide-x', `${x}px`);
-    stage.current.style.setProperty('--slide-y', `${y}px`);
-    stage.current.style.setProperty('--slide-scale', scale);
-    stage.current.style.setProperty('--slide-opacity', opacity);
     stage.current.style.setProperty('--slide-tilt', `${x / 35}deg`);
     stage.current.dataset.slide = x.toFixed(1);
   }
-  function slideTo(to, done, tuck = false) {
+  function slideTo(to, done) {
     cancelAnimationFrame(slideFrame.current);
     sliding.current = true;
     stage.current.dataset.sliding = 'true';
@@ -64,7 +61,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     const tick = now => {
       const t = duration ? Math.min((now - start) / duration, 1) : 1;
       const eased = 1 - (1 - t) ** 3;
-      moveCard(from + (to - from) * eased, tuck ? stage.current.clientHeight * .58 * eased : 0, tuck ? 1 - .93 * eased : 1, tuck ? 1 - t : 1);
+      moveCard(from + (to - from) * eased);
       if (t < 1) slideFrame.current = requestAnimationFrame(tick);
       else { sliding.current = false; stage.current.dataset.sliding = 'false'; done?.(); }
     };
@@ -73,7 +70,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
   function dismiss(direction) {
     if (sliding.current) return;
     suppressClick.current = true;
-    slideTo(direction * stage.current.clientWidth * .43, onSwipe, true);
+    slideTo(direction * (stage.current.clientWidth + 120), onSwipe);
   }
   function startDrag(event) {
     suppressClick.current = false;
