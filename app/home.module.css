@@ -249,7 +249,7 @@
 }
 
 /* Both faces and all sample cards share one stable physical size. */
-.nativeStudy,.feedScene{height:620px}
+.nativeStudy,.feedScene{height:520px}
 .nativeCard{flex:0 0 280px;height:280px;min-height:280px}
 .nativeCard .nativeContent{padding:8px 11px 12px}
 .nativeCard .cardSpeaker{margin-bottom:9px}
