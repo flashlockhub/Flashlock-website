@@ -5,13 +5,16 @@ import { sitePath } from '../lib/site';
 import styles from './flip-card.module.css';
 
 // Zoo-generated geometry, served locally. No account or remote API at runtime.
-export default function FlipCard({ revealed, onRevealChange, front, back, ...props }) {
+export default function FlipCard({ revealed, onRevealChange, front, back, overlay, onSwipe, ...props }) {
   const stage = useRef(null);
   const canvas = useRef(null);
   const angle = useRef(0);
   const draw = useRef(null);
   const frame = useRef(null);
   const gesture = useRef(null);
+  const slideFrame = useRef(null);
+  const sliding = useRef(false);
+  const slideX = useRef(0);
   const suppressClick = useRef(false);
   const targetAngle = useRef(0);
   const paint = useCallback(value => {
@@ -43,12 +46,35 @@ export default function FlipCard({ revealed, onRevealChange, front, back, ...pro
     if (Math.abs(da - db) < .001) return Math.abs(a) < Math.abs(b) ? a : b;
     return da < db ? a : b;
   }
+  function moveCard(x) {
+    slideX.current = x;
+    stage.current.style.setProperty('--slide-x', `${x}px`);
+    stage.current.style.setProperty('--slide-tilt', `${x / 35}deg`);
+    stage.current.dataset.slide = x.toFixed(1);
+  }
+  function slideTo(to, done) {
+    cancelAnimationFrame(slideFrame.current);
+    sliding.current = true;
+    stage.current.dataset.sliding = 'true';
+    const from = slideX.current, start = performance.now();
+    const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 220;
+    const tick = now => {
+      const t = duration ? Math.min((now - start) / duration, 1) : 1;
+      moveCard(from + (to - from) * (1 - (1 - t) ** 3));
+      if (t < 1) slideFrame.current = requestAnimationFrame(tick);
+      else { sliding.current = false; stage.current.dataset.sliding = 'false'; done?.(); }
+    };
+    slideFrame.current = requestAnimationFrame(tick);
+  }
+  function dismiss(direction) {
+    if (sliding.current) return;
+    suppressClick.current = true;
+    slideTo(direction * (stage.current.clientWidth + 100), onSwipe);
+  }
   function startDrag(event) {
     suppressClick.current = false;
-    if (!event.isPrimary || event.button !== 0 || event.target.closest('[data-card-tool]')) return;
-    cancelAnimationFrame(frame.current);
-    setAnswerFace(back);
-    gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, angle: angle.current, width: stage.current.clientWidth, dragging: false, side: revealed };
+    if (sliding.current || !event.isPrimary || event.button !== 0 || event.target.closest('[data-card-tool]')) return;
+    gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false };
     stage.current.setPointerCapture(event.pointerId);
   }
   function moveDrag(event) {
@@ -58,11 +84,10 @@ export default function FlipCard({ revealed, onRevealChange, front, back, ...pro
     if (!g.dragging) {
       if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { cancelDrag(event); return; }
       if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
-      g.dragging = true; stage.current.dataset.dragging = 'true'; stage.current.dataset.flipping = 'true';
+      g.dragging = true; stage.current.dataset.dragging = 'true';
     }
     event.preventDefault();
-    // Absolute distance from pointer-down: reversing direction immediately reverses the card.
-    paint(g.angle + dx * 180 / (g.width * .7));
+    moveCard(dx);
   }
   function endDrag(event) {
     const g = gesture.current;
@@ -70,10 +95,10 @@ export default function FlipCard({ revealed, onRevealChange, front, back, ...pro
     gesture.current = null; suppressClick.current = true;
     stage.current.dataset.dragging = 'false';
     if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
-    const to = g.dragging ? Math.round(angle.current / 180) * 180 : nearestSide(!revealed);
-    const next = Math.abs(Math.round(to / 180) % 2) === 1;
-    settle(to, g.dragging ? 300 : 720);
-    if (next !== revealed) onRevealChange(next);
+    if (g.dragging) {
+      if (Math.abs(slideX.current) >= Math.min(45, stage.current.clientWidth * .18)) dismiss(Math.sign(slideX.current));
+      else slideTo(0);
+    } else onRevealChange(!revealed);
   }
   function cancelDrag(event) {
     const g = gesture.current;
@@ -81,7 +106,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, ...pro
     gesture.current = null; suppressClick.current = g.dragging;
     stage.current.dataset.dragging = 'false';
     if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
-    settle(nearestSide(g.side), 240);
+    slideTo(0);
   }
   const [ready, setReady] = useState(false);
   // Keep the previous answer on the departing face when rating advances the deck.
@@ -173,13 +198,15 @@ export default function FlipCard({ revealed, onRevealChange, front, back, ...pro
       }
     };
     reduced.addEventListener('change', onMotion);
-    return () => { cancelAnimationFrame(frame.current); reduced.removeEventListener('change', onMotion); };
+    return () => { cancelAnimationFrame(slideFrame.current); cancelAnimationFrame(frame.current); reduced.removeEventListener('change', onMotion); };
   }, [paint]);
   return <div {...props} ref={stage} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={cancelDrag} onLostPointerCapture={cancelDrag}
+    onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key) && !event.target.closest('[data-card-tool]')) { event.preventDefault(); dismiss(event.key === 'ArrowLeft' ? -1 : 1); } }}
     onClickCapture={event => { if (suppressClick.current && event.detail !== 0) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}
     data-renderer={ready ? 'zoo-webgl' : 'css-fallback'} className={`${props.className || ''} ${styles.stage}`}>
     <canvas ref={canvas} className={styles.canvas} aria-hidden="true"/>
     <div className={`${styles.face} ${styles.front}`} aria-hidden={revealed} inert={revealed}>{front}</div>
     <div className={`${styles.face} ${styles.back}`} aria-hidden={!revealed} inert={!revealed}>{answerFace}</div>
+    {overlay}
   </div>;
 }

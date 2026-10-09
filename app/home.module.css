@@ -261,3 +261,16 @@
 
 .nativeRatings button:disabled{background:#394356;color:#bac2cf;border-color:#647087;cursor:not-allowed;filter:none}
 .nativeRatings[data-disabled="true"] span{color:#8792a7;opacity:.65}
+
+/* Overlay controls occupy their own reserved band, outside the rotating faces. */
+.nativeStudy,.feedScene{height:550px}
+.cardStage{position:relative;flex:0 0 370px;height:370px;margin:7px 10px 8px}
+.cardStage .nativeCard{height:370px;min-height:370px;margin:0;width:100%}
+.cardStage .nativeContent{padding-bottom:102px}
+.cardStage .nativeRatings{position:absolute;z-index:4;left:14px;right:14px;bottom:18px;padding:0}
+.cardStage .nativeRatings span{color:#53617b}
+
+.cardStage{isolation:isolate}
+.queuedCard{position:absolute;inset:8px;display:flex;flex-direction:column;background:#eef0ff;border:1px solid #b8bee2;border-radius:12px;transform:translateY(7px) scale(.97);color:#000;pointer-events:none}
+.queuedCard .nativeCardTop>span{padding-left:0}
+.cardStage .nativeRatings{bottom:18px}

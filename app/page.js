@@ -52,13 +52,15 @@ function PhoneDemo() {
   const [scene, setScene] = useState('study');
   const [revealed, setRevealed] = useState(false);
   const [reviewed, setReviewed] = useState(0);
+  const [cardIndex, setCardIndex] = useState(0);
   const [muted, setMuted] = useState(true);
   const [note, setNote] = useState('');
   const cardRef = useRef(null);
   const ratingRef = useRef(null);
   const actionRef = useRef(null);
   const shouldFocus = useRef(false);
-  const card = demoCards[reviewed % demoCards.length];
+  const card = demoCards[cardIndex % demoCards.length];
+  const nextCard = demoCards[(cardIndex + 1) % demoCards.length];
   const unlocked = reviewed > 0;
   const step = scene === 'app' ? 0 : scene === 'back' ? 2 : 1;
   const labels = ['Open app', 'Do a card', 'Back to app'];
@@ -67,14 +69,14 @@ function PhoneDemo() {
     shouldFocus.current = false;
     const target = scene !== 'study' ? actionRef.current : revealed ? ratingRef.current : unlocked ? actionRef.current : cardRef.current;
     target?.focus({ preventScroll: true });
-  }, [scene, revealed, reviewed, unlocked]);
+  }, [scene, revealed, reviewed, unlocked, cardIndex]);
   useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
   function changeScene(next) {
     window.speechSynthesis?.cancel();
     setNote('');
     shouldFocus.current = true;
     setScene(next);
-    if (next === 'app' || next === 'study') { setReviewed(0); setRevealed(false); }
+    if (next === 'app' || next === 'study') { setReviewed(0); setCardIndex(0); setRevealed(false); }
   }
   function reveal() {
     if (revealed) return;
@@ -88,6 +90,7 @@ function PhoneDemo() {
     shouldFocus.current = true;
     setNote('');
     setReviewed(value => value + 1);
+    setCardIndex(value => value + 1);
     setRevealed(false);
     if (!muted) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -119,6 +122,11 @@ function PhoneDemo() {
     setNote('');
     window.speechSynthesis.speak(speech);
   }
+  function skipCard() {
+    window.speechSynthesis?.cancel();
+    setNote(''); shouldFocus.current = true;
+    setRevealed(false); setCardIndex(value => value + 1);
+  }
   function turnCard(next) {
     window.speechSynthesis?.cancel();
     setNote('');
@@ -141,8 +149,10 @@ function PhoneDemo() {
               <button className={`${styles.soundButton} ${muted ? styles.soundMuted : ''}`} aria-label={muted ? 'Unmute feedback sounds' : 'Mute feedback sounds'} aria-pressed={muted} onClick={() => setMuted(value => !value)}><AppIcon name={muted ? 'muted' : 'sound'}/></button>
             </div>
             <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
-            <div className={styles.nativeCount} aria-live="polite">Card {reviewed % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to open' : ''}</div>
-            <FlipCard revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card"
+            <div className={styles.nativeCount} aria-live="polite">Card {cardIndex % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to open' : ''}</div>
+            <div className={styles.cardStage}>
+            <div className={styles.queuedCard} aria-hidden="true" data-testid="next-card"><div className={styles.nativeCardTop}><span>Question</span></div><div className={styles.nativeContent}><p className={styles.nativeQuestion}>{nextCard.question}</p></div></div>
+            <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''}`} data-testid="study-card"
               front={<>
                 <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={reveal}/>
                 <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
@@ -159,11 +169,13 @@ function PhoneDemo() {
                 </div>
               </>}
             />
+
+            </div>
             <div className={styles.helpSlot}>
-              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to reveal, or drag left and right to turn. Change direction without lifting. Rate the answer to try the next card.')}>Click here for help</button>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe left or right to uncover the next card without rating. Or reveal and choose a rating. Keyboard: left or right arrow for the next card.')}>Click here for help</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
-            <div className={styles.nativeRatings} aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>
+
             <button ref={actionRef} className={styles.openApp} style={{ visibility: unlocked ? 'visible' : 'hidden' }} inert={!unlocked} onClick={() => changeScene('back')}>Open app</button>
           </div> : <div className={styles.feedScene}>
             <Feed complete={scene === 'back'}/>

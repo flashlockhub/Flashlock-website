@@ -11,3 +11,6 @@
 .stage{touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
 .stage[data-dragging="true"]{cursor:grabbing}
 .stage button[data-card-tool]{cursor:pointer}
+
+.stage{transform:translate3d(var(--slide-x,0px),0,0) rotate(var(--slide-tilt,0deg));z-index:2}
+.stage[data-sliding="true"]{pointer-events:none}
