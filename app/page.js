@@ -68,9 +68,9 @@ function Feed({ complete = false }) {
   </div>;
 }
 const demoCards = [
-  { category: 'FlashLock', question: 'Get better grades', answer: 'without giving up your favorite apps', repeatQuestion: false, promo: true },
-  { category: 'Spanish', question: 'learn spanish', answer: 'While scrolling Instagram', repeatQuestion: false, promo: true },
-  { category: 'Everyday life', question: 'Memorize mum’s birthday', answer: 'So you never forget it again', repeatQuestion: false, promo: true },
+  { category: 'FlashLock', question: 'Get better grades.', answer: 'Without giving up your favourite apps.', repeatQuestion: false, promo: true },
+  { category: 'Spanish', question: 'Learn Spanish.', answer: 'While scrolling Instagram.', repeatQuestion: false, promo: true },
+  { category: 'Everyday life', question: 'Memorise Mum’s birthday.', answer: 'So you never forget it again.', repeatQuestion: false, promo: true },
 ];
 const ratings = [
   { label: 'Again', direction: 'left', color: '#c62828' },
@@ -99,14 +99,14 @@ function PhoneDemo() {
   const ratingRef = useRef(null);
   const actionRef = useRef(null);
   const shouldFocus = useRef(false);
-  const card = demoCards[cardIndex % demoCards.length];
+  const card = demoCards[Math.min(cardIndex, demoCards.length - 1)];
   const unlocked = reviewed > 0;
   const step = scene === 'app' ? 0 : scene === 'back' ? 2 : 1;
   const labels = ['Open app', 'Do a card', 'Back to app'];
   useEffect(() => {
     if (!shouldFocus.current) return;
     shouldFocus.current = false;
-    const target = scene !== 'study' ? actionRef.current : revealed ? ratingRef.current : unlocked ? actionRef.current : cardRef.current;
+    const target = scene !== 'study' ? actionRef.current : revealed ? ratingRef.current : cardRef.current;
     target?.focus({ preventScroll: true });
   }, [scene, revealed, reviewed, unlocked, cardIndex]);
   useEffect(() => () => { window.speechSynthesis?.cancel(); }, []);
@@ -129,8 +129,7 @@ function PhoneDemo() {
     shouldFocus.current = true;
     setNote('');
     setReviewed(value => value + 1);
-    setCardIndex(value => value + 1);
-    setRevealed(false);
+    advanceCard();
     if (!muted) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       if (AudioContext) {
@@ -164,7 +163,14 @@ function PhoneDemo() {
   function skipCard() {
     window.speechSynthesis?.cancel();
     setNote(''); shouldFocus.current = true;
-    setRevealed(false); setCardIndex(value => value + 1);
+    advanceCard();
+  }
+  function advanceCard() {
+    setRevealed(false);
+    if (cardIndex >= demoCards.length - 1) {
+      setCardIndex(demoCards.length);
+      setScene('complete');
+    } else setCardIndex(value => value + 1);
   }
   function turnCard(next) {
     window.speechSynthesis?.cancel();
@@ -174,22 +180,28 @@ function PhoneDemo() {
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
     <h2 className={styles.demoHeading}>Tap the card. Try FlashLock.</h2>
-    <p className={styles.demoInstructions}>Tap to flip · Swipe to move on</p>
+    <p className={styles.demoInstructions}>Tap to flip. Swipe in any direction to move on.</p>
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
       <div className={`${styles.phone} ${scene === 'study' ? styles.studyPhone : ''}`}>
         <div className={styles.phoneStatus} aria-hidden="true"><span>9:41</span><i/><span>▴ ▰</span></div>
         <div className={styles.phoneBody}>
-          {scene === 'study' ? <div className={styles.nativeStudy} data-testid="study-screen">
+          {scene === 'complete' ? <div className={styles.demoComplete} data-testid="demo-complete">
+            <span className={styles.completionMark} aria-hidden="true">✓</span>
+            <h2>Three cards.<br/>A little smarter.</h2>
+            <p>Make your next scroll count.</p>
+            <a ref={actionRef} className={styles.openApp} href={PLAY_TESTING_URL}>Download for Android</a>
+            <button className={styles.restartDemo} onClick={() => changeScene('study')}>Try the cards again</button>
+          </div> : scene === 'study' ? <div className={styles.nativeStudy} data-testid="study-screen">
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">{revealed ? `${card.question} Answer: ${card.answer}` : ""}</span>
             <div className={styles.nativeHeader}>
               {unlocked ? <button className={styles.nativeHome} onClick={() => changeScene('app')} aria-label="Leave the study demo"><AppIcon name="home"/><span>Home</span></button> : <span className={styles.homeSpace}/>}
               <span className={styles.sessionTitle}>{unlocked ? <>{card.category} ·<br/>Keep learning</> : <>🔒 0/1 —<br/>{card.category}</>}</span>
               <button className={`${styles.soundButton} ${muted ? styles.soundMuted : ''}`} aria-label={muted ? 'Unmute feedback sounds' : 'Mute feedback sounds'} aria-pressed={muted} onClick={() => setMuted(value => !value)}><AppIcon name={muted ? 'muted' : 'sound'}/></button>
             </div>
-            <div className={styles.nativeProgress} role="progressbar" aria-label="Cards reviewed to open your app" aria-valuemin={0} aria-valuemax={1} aria-valuenow={Math.min(reviewed, 1)}><span style={{ width: unlocked ? '100%' : '0%' }}/></div>
-            <div className={styles.nativeCount} aria-live="polite">Card {cardIndex % demoCards.length + 1} of {demoCards.length}{unlocked ? ' · ready to download' : ''}</div>
+            <div className={styles.nativeProgress} role="progressbar" aria-label="Demo cards completed" aria-valuemin={0} aria-valuemax={demoCards.length} aria-valuenow={cardIndex}><span style={{ width: `${cardIndex / demoCards.length * 100}%` }}/></div>
+            <div className={styles.nativeCount} aria-live="polite">Card {Math.min(cardIndex + 1, demoCards.length)} of {demoCards.length}</div>
             <div className={styles.cardStage}>
             <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
               front={<>
@@ -212,11 +224,11 @@ function PhoneDemo() {
 
             </div>
             <div className={styles.helpSlot}>
-              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe left or right to slide this card off the screen and move on without rating. Or reveal and choose a rating. Keyboard: left or right arrow for the next card.')}>Click here for help</button>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe up, down, left or right to move on. Or reveal the answer and choose a rating. Keyboard: use any arrow key. After three cards, you can download FlashLock.')}>Click here for help</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
 
-            <a ref={actionRef} className={styles.openApp} style={{ visibility: unlocked ? 'visible' : 'hidden' }} inert={!unlocked} href={PLAY_TESTING_URL} onClick={() => window.speechSynthesis?.cancel()}>Download for Android</a>
+
           </div> : <div className={styles.feedScene}>
             <Feed complete={scene === 'back'}/>
             <span className={styles.srOnly} role="status">{scene === 'back' ? 'Study break finished. You are back in your app.' : 'Open your chosen app to start a study break.'}</span>
@@ -226,7 +238,7 @@ function PhoneDemo() {
         </div>
       </div>
     </div>
-    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
+    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('study')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
     <noscript><p>Open an app → do a few cards → back to your app. Turn on JavaScript to try the demo.</p></noscript>
   </div>;
 }

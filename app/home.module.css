@@ -146,7 +146,7 @@
 .nativeProgress{height:3px;flex-shrink:0;background:#3e496d;overflow:hidden;border-radius:2px}
 .nativeProgress>span{display:block;height:100%;background:#c3c5ff;transition:width .2s}
 .nativeCount{font-size:9px;line-height:15px;min-height:22px;padding-top:4px;color:#fff}
-.nativeCard{position:relative;display:flex;flex:1;flex-direction:column;min-height:155px;margin:7px 10px 8px;background:#fff;color:#000;border-radius:12px;overflow:hidden;touch-action:pan-y;box-shadow:0 2px 4px #00000012}
+.nativeCard{position:relative;display:flex;flex:1;flex-direction:column;min-height:155px;margin:7px 10px 8px;background:#fff;color:#000;border-radius:12px;overflow:hidden;box-shadow:0 2px 4px #00000012}
 .nativeCard.nativeAnswer{background:#f3f8ff}
 .cardTap{position:absolute;inset:0;z-index:1;width:100%;height:100%;padding:0;border:0;border-radius:inherit;background:transparent;color:inherit;cursor:pointer}
 .nativeCard .cardTap:focus-visible{outline:3px solid #4f46e5;outline-offset:-4px}
@@ -327,3 +327,10 @@
 .emailRow button:disabled{cursor:not-allowed}
 .page .waitlistHeading{margin:30px 0 0;letter-spacing:-.4px;font-size:28px;line-height:1.2;font-weight:900;color:var(--navy)}
 .page .emailSignup p{margin-top:10px}
+
+.demoComplete{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 16px;text-align:center;color:white;gap:20px}
+.page .demoComplete h2{font-size:27px;letter-spacing:-.5px;line-height:1.2;margin:0;color:white}
+.page .demoComplete p{font-size:15px;line-height:1.5;margin:0;color:#dcd8ff}
+.completionMark{font-size:42px;color:#86efac}
+.demoComplete .openApp{width:100%;margin:8px 0 0;font-size:15px;min-height:52px;padding:12px 8px}
+.restartDemo{border:0;background:transparent;color:#ddd9ff;font-size:13px;text-decoration:underline;padding:12px;min-height:44px;cursor:pointer}

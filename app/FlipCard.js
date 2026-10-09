@@ -15,6 +15,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
   const slideFrame = useRef(null);
   const sliding = useRef(false);
   const slideX = useRef(0);
+  const slideY = useRef(0);
   const suppressClick = useRef(false);
   const targetAngle = useRef(0);
   const paint = useCallback(value => {
@@ -46,36 +47,38 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     if (Math.abs(da - db) < .001) return Math.abs(a) < Math.abs(b) ? a : b;
     return da < db ? a : b;
   }
-  function moveCard(x) {
-    slideX.current = x;
+  function moveCard(x, y = 0) {
+    slideX.current = x; slideY.current = y;
     stage.current.style.setProperty('--slide-x', `${x}px`);
+    stage.current.style.setProperty('--slide-y', `${y}px`);
     stage.current.style.setProperty('--slide-tilt', `${x / 35}deg`);
     stage.current.dataset.slide = x.toFixed(1);
+    stage.current.dataset.slideY = y.toFixed(1);
   }
-  function slideTo(to, done) {
+  function slideTo(x, y = 0, done) {
     cancelAnimationFrame(slideFrame.current);
-    sliding.current = true;
-    stage.current.dataset.sliding = 'true';
-    const from = slideX.current, start = performance.now();
+    sliding.current = true; stage.current.dataset.sliding = 'true';
+    const fromX = slideX.current, fromY = slideY.current, start = performance.now();
     const duration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 320;
     const tick = now => {
       const t = duration ? Math.min((now - start) / duration, 1) : 1;
       const eased = 1 - (1 - t) ** 3;
-      moveCard(from + (to - from) * eased);
+      moveCard(fromX + (x - fromX) * eased, fromY + (y - fromY) * eased);
       if (t < 1) slideFrame.current = requestAnimationFrame(tick);
       else { sliding.current = false; stage.current.dataset.sliding = 'false'; done?.(); }
     };
     slideFrame.current = requestAnimationFrame(tick);
   }
-  function dismiss(direction) {
+  function dismiss(direction, axis = 'x') {
     if (sliding.current) return;
     suppressClick.current = true;
-    slideTo(direction * (stage.current.clientWidth + 120), onSwipe);
+    const distance = direction * ((axis === 'y' ? stage.current.clientHeight : stage.current.clientWidth) + 120);
+    slideTo(axis === 'x' ? distance : 0, axis === 'y' ? distance : 0, onSwipe);
   }
   function startDrag(event) {
     suppressClick.current = false;
     if (sliding.current || !event.isPrimary || event.button !== 0 || event.target.closest('[data-card-tool]')) return;
-    gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false };
+    gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false, axis: null };
     stage.current.setPointerCapture(event.pointerId);
   }
   function moveDrag(event) {
@@ -83,12 +86,12 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     if (!g || event.pointerId !== g.id) return;
     const dx = event.clientX - g.x, dy = event.clientY - g.y;
     if (!g.dragging) {
-      if (Math.abs(dy) > 10 && Math.abs(dy) > Math.abs(dx)) { cancelDrag(event); return; }
-      if (Math.abs(dx) < 6 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 8) return;
+      g.axis = Math.abs(dy) > Math.abs(dx) ? 'y' : 'x';
       g.dragging = true; stage.current.dataset.dragging = 'true';
     }
     event.preventDefault();
-    moveCard(dx);
+    moveCard(g.axis === 'x' ? dx : 0, g.axis === 'y' ? dy : 0);
   }
   function endDrag(event) {
     const g = gesture.current;
@@ -97,8 +100,10 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     stage.current.dataset.dragging = 'false';
     if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
     if (g.dragging) {
-      if (Math.abs(slideX.current) >= Math.min(45, stage.current.clientWidth * .18)) dismiss(Math.sign(slideX.current));
-      else slideTo(0);
+      const distance = g.axis === 'y' ? slideY.current : slideX.current;
+      const size = g.axis === 'y' ? stage.current.clientHeight : stage.current.clientWidth;
+      if (Math.abs(distance) >= Math.min(45, size * .18)) dismiss(Math.sign(distance), g.axis);
+      else slideTo(0, 0);
     } else onRevealChange(!revealed);
   }
   function cancelDrag(event) {
@@ -107,7 +112,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     gesture.current = null; suppressClick.current = g.dragging;
     stage.current.dataset.dragging = 'false';
     if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
-    slideTo(0);
+    slideTo(0, 0);
   }
   const [ready, setReady] = useState(false);
   // Keep the previous answer on the departing face when rating advances the deck.
@@ -202,7 +207,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     return () => { cancelAnimationFrame(slideFrame.current); cancelAnimationFrame(frame.current); reduced.removeEventListener('change', onMotion); };
   }, [paint]);
   return <div {...props} ref={stage} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={cancelDrag} onLostPointerCapture={cancelDrag}
-    onKeyDown={event => { if (['ArrowLeft', 'ArrowRight'].includes(event.key) && !event.target.closest('[data-card-tool]')) { event.preventDefault(); dismiss(event.key === 'ArrowLeft' ? -1 : 1); } }}
+    onKeyDown={event => { if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key) && !event.target.closest('[data-card-tool]')) { event.preventDefault(); dismiss(['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 1, ['ArrowUp', 'ArrowDown'].includes(event.key) ? 'y' : 'x'); } }}
     onClickCapture={event => { if (suppressClick.current && event.detail !== 0) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}
     data-renderer={ready ? 'zoo-webgl' : 'css-fallback'} className={`${props.className || ''} ${styles.stage}`}>
     <canvas ref={canvas} className={styles.canvas} aria-hidden="true"/>
