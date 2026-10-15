@@ -23,6 +23,27 @@ npm ci
 npm run dev
 ```
 
+## Security checks
+
+```sh
+npm run security:secrets
+npm run security:audit
+```
+
+The secret check downloads Gitleaks 8.30.1 from its official release, verifies a
+pinned SHA-256 before every run, and scans the current tree (including published
+`docs/`) with default detectors plus Android signing-password checks. It excludes
+only Git internals, installed dependencies and disposable build output; it never
+scans old Git history or prints matched values. Linux/macOS x64/arm64 need Bash,
+curl, tar and Python 3; Windows developers can use WSL. A secret finding fails the
+check and reports only the detector, filename and line number. Historical leaks
+still require separate rotation/remediation; a passing check does not revoke them.
+
+The read-only GitHub Actions workflow runs these checks and builds both static
+targets on pull requests, main-branch pushes and weekly. It does not publish the
+site. Dependabot proposes npm and GitHub Actions updates; repository-level
+Dependabot alerts and branch protection are separate GitHub settings.
+
 ## Build for the deployment target
 
 Both targets generate a static export in `out/` and `dist/`, then replace `docs/`
