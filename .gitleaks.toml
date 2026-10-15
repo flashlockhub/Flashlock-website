@@ -1,0 +1,31 @@
+title = "FlashLock current-tree secret checks"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Dependencies, Git internals and disposable build output; published docs remain scanned"
+paths = ['''(^|/)(\.git|node_modules|\.next|out|dist)/''']
+
+[[rules]]
+id = "android-signing-password"
+description = "Hard-coded Android signing password"
+regex = '''(?i)(?:storePassword|keyPassword)["']?\s*(?:=|:)?\s*["']([^"'\r\n]{4,})["']'''
+secretGroup = 1
+keywords = ["storepassword", "keypassword"]
+[[rules.allowlists]]
+description = "Explicit documentation placeholders only"
+regexTarget = "secret"
+regexes = ['''^(?:YOUR_[A-Z_]+|<[^>]+>|\$\{[^}]+\})$''']
+
+[[rules]]
+id = "android-signing-password-properties"
+description = "Unquoted Android signing password in Java properties"
+path = '''(?i)\.properties$'''
+regex = '''(?mi)^[\t ]*(?:storePassword|keyPassword)[\t ]*=[\t ]*([^"'\r\n \t][^\r\n]*?)[\t ]*$'''
+secretGroup = 1
+keywords = ["storepassword", "keypassword"]
+[[rules.allowlists]]
+description = "Explicit documentation placeholders only"
+regexTarget = "secret"
+regexes = ['''^(?:YOUR_[A-Z_]+|<[^>]+>|\$\{[^}]+\})$''']
