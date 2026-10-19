@@ -349,7 +349,8 @@
 /* Keep the download CTA plain; use an underline for keyboard focus. */
 .page .demoComplete .openApp:focus-visible{outline:none;text-decoration:underline;text-underline-offset:4px}
 
-/* Compact device proportions without shrinking text or touch targets. */
+/* Mobile compact sizing; original desktop proportions above 680px. */
+@media(max-width:680px){
 .phone{width:300px;max-width:100%}
 .nativeStudy,.feedScene,.demoComplete{height:466px}
 .cardStage{flex-basis:340px;height:340px;margin:5px 10px}
@@ -366,6 +367,8 @@
  .phone{width:280px}
  .page .promoCard .nativeQuestion{font-size:26px}
  .page .promoCard .nativeAnswerText{font-size:24px}
+}
+
 }
 
 /* Simulated launcher: one app, with the same screen geometry as the cards. */
