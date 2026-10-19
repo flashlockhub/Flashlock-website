@@ -451,3 +451,13 @@
 .reelMessage strong{text-shadow:0 2px 4px #000,0 0 14px #000,0 0 26px #000}
 .reelMessage:before{content:'';position:absolute;inset:-12px -5px;z-index:-1;background:radial-gradient(ellipse,#080e21dc, #080e2166 65%,transparent 75%);pointer-events:none}
 @media(prefers-reduced-motion:reduce){.tryArrow{animation:none;transform:none}.firework{animation:none;transform:scale(.9);opacity:.9}}
+
+/* Keep the learning win dominant, with fireworks outside its quiet backing. */
+.reelMessage{top:25%}
+.reelMessage>span:first-child{font-size:6px;letter-spacing:.8px;margin-bottom:10px;color:#e1d9e9}
+.reelMessage strong{font-size:30px;line-height:1.06;letter-spacing:-.8px;text-shadow:0 2px 3px #000}
+.reelMessageLead{display:block;font-size:15px;line-height:1.4;font-weight:500;letter-spacing:0;color:#f3edf8;margin-bottom:7px}
+.reelMessageFocus{display:block;font-weight:900;color:#fff1ad}
+.reelMessage:before{inset:-12px -8px;background:linear-gradient(135deg,#080e21f5,#080e21e8);border:1px solid #fff1ad26;border-radius:12px;box-shadow:0 8px 26px #0004}
+.reelSparkle{font-size:23px;line-height:1;margin-top:10px}
+@media(max-width:680px){.reelMessage{top:22%}.reelMessage strong{font-size:34px}.reelMessageLead{font-size:16px}}

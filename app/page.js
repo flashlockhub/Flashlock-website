@@ -77,9 +77,9 @@ function InstagramReel() {
   <div className={styles.celebrationReel}>
    <div className={styles.reelHeader} aria-hidden="true"><b>Reels <span>⌄</span></b><SocialIcon name="camera"/></div>
    <div className={styles.fireworks} aria-hidden="true">{[0,1,2,3].map(n => <span key={n} className={styles.firework}>{Array.from({length:16},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div>
-   <div className={styles.reelMessage}><span>A LITTLE WIN. A BETTER HABIT.</span><strong>You just studied before scrolling!</strong><span className={styles.reelSparkle} aria-hidden="true">✧</span></div>
+   <div className={styles.reelMessage}><span>A LITTLE WIN. A BETTER HABIT.</span><strong><span className={styles.reelMessageLead}>You just </span><span className={styles.reelMessageFocus}>studied before scrolling!</span></strong><span className={styles.reelSparkle} aria-hidden="true">✧</span></div>
    <div className={styles.reelActions} aria-hidden="true"><span><SocialIcon name="heart"/><small>1,284</small></span><span><SocialIcon name="comment"/><small>24</small></span><span><SocialIcon name="share"/><small>86</small></span><span><SocialIcon name="save"/></span><b>···</b></div>
-   <div className={styles.reelCaption}><div><img src={sitePath('/demo/avatar.svg')} width="28" height="28" alt=""/><b>littlewins.demo</b><span>Follow</span></div><p>One small win before the scroll. ✨</p><small>♫ Original audio · littlewins.demo</small></div>
+   <div className={styles.reelCaption}><div><img src={sitePath('/demo/avatar.svg')} width="28" height="28" alt=""/><b>flashlock.app</b><span>Follow</span></div><p>One small win before the scroll. ✨</p><small>♫ Original audio · flashlock.app</small></div>
   </div>
   <div className={styles.instagramNav} aria-hidden="true"><SocialIcon name="home"/><SocialIcon name="search"/><SocialIcon name="plus"/><SocialIcon name="reels"/><img src={sitePath('/demo/avatar.svg')} width="22" height="22" alt=""/></div>
  </div>;
