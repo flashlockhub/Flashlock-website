@@ -428,3 +428,6 @@
 .completionCta{text-align:center;padding:12px 0 5px;max-width:320px;margin:auto}.page .completionCta h2{font-size:25px;line-height:1.25;letter-spacing:-.5px}.completionCta h2 span{display:block}.page .completionCta p{font-size:14px;margin:10px 0 14px;color:#514866}.completionCta .openApp{margin:0;min-height:48px;font-size:15px}.completionCta .restartDemo{color:#5145b5;font-size:13px;min-height:44px}
 @media(max-width:680px){.androidClock{top:78px;font-size:96px}.instagramLaunch{bottom:62px;left:22px}.reelMessage{top:24%;left:18px;right:53px}.reelMessage strong{font-size:32px}.reelActions{gap:12px;bottom:87px}}
 @media(prefers-reduced-motion:reduce){.firework{animation:none;transform:scale(.9);opacity:.65}}
+
+/* Leave clear space above the account caption on short screens. */
+@media(max-width:680px){.reelSparkle{display:none}}
