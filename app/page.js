@@ -56,16 +56,33 @@ function Check() {
 function PlayIcon() {
   return <svg viewBox="0 0 24 26" fill="none" aria-hidden="true"><path d="M3 2v22l18-11L3 2Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round"/><path d="m3 2 12 15M3 24 15 9" stroke="currentColor" strokeWidth="1.4"/></svg>;
 }
-function Feed({ complete = false }) {
-  return <div className={styles.feed} aria-hidden="true">
-    <div className={styles.feedHeader}><strong>Your feed</strong><span>✦</span></div>
-    <div className={styles.feedByline}><i/><span>out & about<small>A little fresh air</small></span><b>•••</b></div>
-    <div className={styles.landscape}><span className={styles.sun}/><span className={styles.hillBack}/><span className={styles.hillFront}/><span className={styles.trail}/><span className={styles.landscapeLabel}>THE SLOW WAY HOME</span></div>
-    <div className={styles.feedReactions}><span>♡ &nbsp; ◯ &nbsp; ↗</span><span>⌑</span></div>
-    <div className={styles.feedLines}><i/><i/></div>
-    <div className={styles.feedNav}><span>⌂</span><span>⌕</span><span>⊞</span><span>○</span></div>
-    {complete && <div className={styles.backNote}><span><Check/></span><strong>You’re back.</strong><p>Study break done. Carry on.</p></div>}
-  </div>;
+// Decorative local preview: no login or external Instagram navigation.
+function SocialIcon({ name }) {
+ const paths = {
+ heart:'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
+ comment:'M21 11.5a9 9 0 1 1-4.5-7.8A9 9 0 0 1 21 11.5ZM6 19l-3 2 1-5',
+ share:'m22 2-7 20-4-9L2 9 22 2ZM11 13 22 2',
+ save:'M5 3h14v19l-7-5-7 5V3Z',
+ home:'m3 10 9-8 9 8v11h-6v-7H9v7H3V10Z',
+ search:'M21 21l-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z',
+ plus:'M12 7v10M7 12h10M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Z',
+ reels:'M3 8h18M6 2l4 6m5-6 4 6M5 2h14a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm5 10 6 4-6 4v-8Z',
+ camera:'M3 6h5l2-3h4l2 3h5v15H3V6Zm13 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z',
+ };
+ return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]}/></svg>;
+}
+function InstagramReel() {
+ return <div className={styles.mockInstagram} data-testid="instagram-celebration" aria-label="Instagram Reels preview, fictional demo account">
+  <div className={styles.instagramHeader}><strong>Instagram</strong><span>PREVIEW</span><SocialIcon name="heart"/></div>
+  <div className={styles.celebrationReel}>
+   <div className={styles.reelHeader} aria-hidden="true"><b>Reels <span>⌄</span></b><SocialIcon name="camera"/></div>
+   <div className={styles.fireworks} aria-hidden="true">{[0,1,2,3].map(n => <span key={n} className={styles.firework}>{Array.from({length:16},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div>
+   <div className={styles.reelMessage}><span>A LITTLE WIN. A BETTER HABIT.</span><strong>You just studied before scrolling!</strong><span className={styles.reelSparkle} aria-hidden="true">✧</span></div>
+   <div className={styles.reelActions} aria-hidden="true"><span><SocialIcon name="heart"/><small>1,284</small></span><span><SocialIcon name="comment"/><small>24</small></span><span><SocialIcon name="share"/><small>86</small></span><span><SocialIcon name="save"/></span><b>···</b></div>
+   <div className={styles.reelCaption}><div><img src={sitePath('/demo/avatar.svg')} width="28" height="28" alt=""/><b>littlewins.demo</b><span>Follow</span></div><p>One small win before the scroll. ✨</p><small>♫ Original audio · littlewins.demo</small></div>
+  </div>
+  <div className={styles.instagramNav} aria-hidden="true"><SocialIcon name="home"/><SocialIcon name="search"/><SocialIcon name="plus"/><SocialIcon name="reels"/><img src={sitePath('/demo/avatar.svg')} width="22" height="22" alt=""/></div>
+ </div>;
 }
 const demoCards = [
   { category: 'FlashLock', question: 'Get better grades.', answer: 'Without giving up your favourite apps.', repeatQuestion: false, promo: true },
@@ -101,7 +118,7 @@ function PhoneDemo() {
   const shouldFocus = useRef(false);
   const card = demoCards[Math.min(cardIndex, demoCards.length - 1)];
   const unlocked = cardIndex > 0;
-  const step = scene === 'app' ? 0 : scene === 'back' ? 2 : 1;
+  const step = scene === 'app' ? 0 : scene === 'complete' ? 2 : 1;
   const labels = ['Open app', 'Do a card', 'Back to app'];
   useEffect(() => {
     if (!shouldFocus.current) return;
@@ -181,22 +198,11 @@ function PhoneDemo() {
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
-      <div className={`${styles.phone} ${scene === 'study' || scene === 'complete' ? styles.studyPhone : ''}`}>
-        <div className={styles.phoneStatus} aria-hidden="true"><span>9:41</span><i/><span>▴ ▰</span></div>
+      <div className={`${styles.phone} ${scene === 'study' ? styles.studyPhone : scene === 'complete' ? styles.reelPhone : styles.launcherPhone}`}>
+        <div className={styles.phoneStatus} aria-hidden="true"><span>9:41</span><i/><span className={styles.statusIcons}><svg viewBox="0 0 42 14"><path d="M1 4Q7-1 13 4L7 11Z" fill="currentColor"/><path d="M16 11 25 2v9Z" fill="currentColor"/><rect x="29" y="3" width="10" height="8" rx="1" fill="none" stroke="currentColor"/><path d="M31 5h6v4h-6zM40 5v4" stroke="currentColor"/></svg></span></div>
         <div className={styles.phoneBody}>
           {scene === 'complete' ? <div className={styles.demoComplete} data-testid="demo-complete">
-            <div className={styles.mockInstagram} data-testid="instagram-celebration">
-              <div className={styles.instagramHeader}><strong>Instagram</strong><span>Preview</span></div>
-              <div className={styles.celebrationReel} role="img" aria-label="Animated fireworks celebrating your study break">
-                <div className={styles.fireworks} aria-hidden="true">{[0,1,2].map(n => <span key={n} className={styles.firework}>{Array.from({length:12},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div>
-                <strong>You just studied before scrolling!</strong>
-              </div>
-              <div className={styles.instagramReactions} aria-hidden="true">♡　◯　↗</div>
-            </div>
-            <h2><span>Stay consistent</span><span>without even trying</span></h2>
-            <p>Make your next scroll count</p>
-            <a ref={actionRef} className={styles.openApp} href={PLAY_TESTING_URL}>Download for android</a>
-            <button className={styles.restartDemo} onClick={() => changeScene('app')}>Try the cards again</button>
+            <InstagramReel/>
           </div> : scene === 'study' ? <div className={styles.nativeStudy} data-testid="study-screen">
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">{revealed ? `${card.question} Answer: ${card.answer}` : ""}</span>
             <div className={styles.nativeHeader}>
@@ -234,17 +240,25 @@ function PhoneDemo() {
 
 
           </div> : <div className={styles.homeScreen} data-testid="demo-home">
-            <p className={styles.homePrompt}>Tap Instagram to try it</p>
+            <div className={styles.androidDate}>Monday, 19 Oct <span>☀ 22°</span></div>
+            <div className={styles.androidClock} aria-label="9:41"><span>09</span><span>41</span></div>
             <button ref={actionRef} className={styles.instagramLaunch} aria-label="Open Instagram demo" aria-describedby="demo-home-note" onClick={() => changeScene('study')}>
-              <img src={sitePath('/brands/instagram.svg')} alt="" width="64" height="64"/>
+              <img src={sitePath('/demo/instagram-app.svg')} alt="" width="58" height="58"/>
               <span>Instagram</span>
             </button>
-            <p id="demo-home-note" className={styles.homeNote}>A preview, not the real app.</p>
+            <span className={styles.launcherPageDot} aria-hidden="true"/>
           </div>}
           <span className={styles.phoneHome} aria-hidden="true"/>
         </div>
       </div>
     </div>
+    {scene === 'complete' && <div className={styles.completionCta}>
+      <h2><span>Stay consistent</span><span>without even trying</span></h2>
+      <p>Make your next scroll count</p>
+      <a ref={actionRef} className={styles.openApp} href={PLAY_TESTING_URL}>Download for android</a>
+      <button className={styles.restartDemo} onClick={() => changeScene('app')}>Try the cards again</button>
+    </div>}
+    <p id="demo-home-note" className={styles.previewNote}>Interactive preview · not connected to Instagram</p>
     <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
     <noscript><p>Open an app → do a few cards → back to your app. Turn on JavaScript to try the demo.</p></noscript>
   </div>;
