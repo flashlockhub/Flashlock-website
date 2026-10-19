@@ -419,7 +419,7 @@
 .celebrationReel{padding:0;display:block;border-radius:0;min-height:0;background:radial-gradient(ellipse at 20% 25%,#452359 0,transparent 50%),radial-gradient(ellipse at 90% 75%,#133f57 0,transparent 55%),#080e21;overflow:hidden}
 .celebrationReel:after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#000b);pointer-events:none;z-index:-1}
 .reelHeader{position:absolute;top:10px;left:12px;right:12px;display:flex;align-items:center;justify-content:space-between}.reelHeader b{font-size:18px}.reelHeader span{font-size:16px;margin-left:4px}.reelHeader svg{width:22px;height:22px}
-.reelMessage{position:absolute;left:16px;right:43px;top:27%;text-align:left;z-index:1}.reelMessage>span:first-child{display:block;font-size:7px;letter-spacing:1.2px;font-weight:700;color:#ffe9b8;margin-bottom:13px}.reelMessage strong{font-size:29px;line-height:1.12;letter-spacing:-.8px;font-weight:800;color:#fff;text-shadow:0 2px 16px #0006;display:block}.reelSparkle{display:block;font-size:36px;color:#ffdf9c;margin-top:8px}
+.reelMessage{position:absolute;left:16px;right:43px;top:27%;text-align:left;z-index:1}.reelMessage strong{font-size:29px;line-height:1.12;letter-spacing:-.8px;font-weight:800;color:#fff;text-shadow:0 2px 16px #0006;display:block}
 .reelActions{position:absolute;right:9px;bottom:90px;display:flex;align-items:center;flex-direction:column;gap:15px;color:#fff;z-index:2}.reelActions>span{display:flex;flex-direction:column;align-items:center;gap:4px}.reelActions svg{width:24px;height:24px;filter:drop-shadow(0 1px 3px #0008)}.reelActions small{font-size:9px}.reelActions b{line-height:5px;font-size:21px}
 .reelCaption{position:absolute;left:11px;right:9px;bottom:13px;color:#fff}.reelCaption>div{display:flex;align-items:center;gap:6px;font-size:10px}.reelCaption img,.instagramNav img{border-radius:50%;object-fit:cover}.reelCaption>div>span{font-size:9px;border:1px solid #ffffff90;border-radius:4px;padding:3px 5px}.page .reelCaption p{color:white;font-size:9px;line-height:1.4;margin:8px 0 5px}.reelCaption small{font-size:8px;color:#e6e6ed}
 .instagramNav{height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:space-around;background:#080808;border-top:1px solid #ffffff10}.instagramNav svg{width:21px;height:21px}.instagramNav svg:nth-child(4){fill:#fff;stroke:#080808;background:white;border-radius:4px}
@@ -430,12 +430,12 @@
 @media(prefers-reduced-motion:reduce){.firework{animation:none;transform:scale(.9);opacity:.65}}
 
 /* Leave clear space above the account caption on short screens. */
-@media(max-width:680px){.reelSparkle{display:none}}
+
 
 /* Anchored to the launcher button: the arrow tip stays beside the icon at every size. */
-.tryArrow{position:absolute;left:73px;top:-28px;width:116px;height:78px;pointer-events:none;text-shadow:0 2px 5px #0009;animation:tryArrowNudge 2.4s ease-in-out infinite}
-.tryArrow>span{display:block;margin-left:15px;font-size:17px;font-weight:800;color:#fff3ae;white-space:nowrap}
-.tryArrow svg{display:block;width:110px;height:65px;stroke:#fff3ae;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 3px #0008)}
+.tryArrow{position:absolute;left:73px;top:-44px;width:124px;height:94px;pointer-events:none;text-shadow:0 2px 5px #0009;animation:tryArrowNudge 2.4s ease-in-out infinite}
+.tryArrow>span{display:inline-block;margin-left:0;padding:6px 9px;border:1px solid #fff3ae88;border-radius:10px;background:#10182ff2;box-shadow:0 3px 12px #0005;font-size:21px;line-height:1.2;font-weight:900;color:#fff3ae;white-space:nowrap}
+.tryArrow svg{display:block;width:110px;height:65px;stroke:#fff3ae;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 2px 3px #0008)}
 @keyframes tryArrowNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(6px)}}
 /* A sibling overlay button, not a button wrapped around interactive descendants.
    Restart only on click (never pointerdown), so the reset home cannot receive the same gesture. */
@@ -452,12 +452,8 @@
 .reelMessage:before{content:'';position:absolute;inset:-12px -5px;z-index:-1;background:radial-gradient(ellipse,#080e21dc, #080e2166 65%,transparent 75%);pointer-events:none}
 @media(prefers-reduced-motion:reduce){.tryArrow{animation:none;transform:none}.firework{animation:none;transform:scale(.9);opacity:.9}}
 
-/* Keep the learning win dominant, with fireworks outside its quiet backing. */
+/* One sentence, one typographic treatment; quiet backing keeps fireworks clear. */
 .reelMessage{top:25%}
-.reelMessage>span:first-child{font-size:6px;letter-spacing:.8px;margin-bottom:10px;color:#e1d9e9}
-.reelMessage strong{font-size:30px;line-height:1.06;letter-spacing:-.8px;text-shadow:0 2px 3px #000}
-.reelMessageLead{display:block;font-size:15px;line-height:1.4;font-weight:500;letter-spacing:0;color:#f3edf8;margin-bottom:7px}
-.reelMessageFocus{display:block;font-weight:900;color:#fff1ad}
+.reelMessage strong{font-size:30px;line-height:1.1;letter-spacing:-.8px;font-weight:900;color:#fff1ad;text-shadow:0 2px 3px #000}
 .reelMessage:before{inset:-12px -8px;background:linear-gradient(135deg,#080e21f5,#080e21e8);border:1px solid #fff1ad26;border-radius:12px;box-shadow:0 8px 26px #0004}
-.reelSparkle{font-size:23px;line-height:1;margin-top:10px}
-@media(max-width:680px){.reelMessage{top:22%}.reelMessage strong{font-size:34px}.reelMessageLead{font-size:16px}}
+@media(max-width:680px){.reelMessage{top:22%}.reelMessage strong{font-size:32px}}
