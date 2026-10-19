@@ -89,7 +89,7 @@ function AppIcon({ name }) {
   return <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={paths[name]}/></svg>;
 }
 function PhoneDemo() {
-  const [scene, setScene] = useState('study');
+  const [scene, setScene] = useState('app');
   const [revealed, setRevealed] = useState(false);
   const [reviewed, setReviewed] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
@@ -176,8 +176,8 @@ function PhoneDemo() {
     } else setCardIndex(value => value + 1);
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
-    <h2 className={styles.demoHeading}>Tap the card. Try FlashLock.</h2>
-    <p className={styles.demoInstructions}>{scene === 'complete' ? 'Your learning break is complete.' : revealed ? 'Swipe right to move on →' : 'Tap to turn over'}</p>
+    <h2 className={styles.demoHeading}>{scene === 'app' ? 'Try a learning break.' : scene === 'complete' ? 'Now enjoy your scroll.' : 'Tap the card. Try FlashLock.'}</h2>
+    <p className={styles.demoInstructions}>{scene === 'app' ? 'Tap Instagram to try it' : scene === 'complete' ? 'Your learning break is complete.' : revealed ? 'Swipe right to move on →' : 'Tap to turn over'}</p>
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
@@ -185,11 +185,18 @@ function PhoneDemo() {
         <div className={styles.phoneStatus} aria-hidden="true"><span>9:41</span><i/><span>▴ ▰</span></div>
         <div className={styles.phoneBody}>
           {scene === 'complete' ? <div className={styles.demoComplete} data-testid="demo-complete">
-            <span className={styles.completionMark} aria-hidden="true">✓</span>
+            <div className={styles.mockInstagram} data-testid="instagram-celebration">
+              <div className={styles.instagramHeader}><strong>Instagram</strong><span>Preview</span></div>
+              <div className={styles.celebrationReel} role="img" aria-label="Animated fireworks celebrating your study break">
+                <div className={styles.fireworks} aria-hidden="true">{[0,1,2].map(n => <span key={n} className={styles.firework}>{Array.from({length:12},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div>
+                <strong>You just studied before scrolling!</strong>
+              </div>
+              <div className={styles.instagramReactions} aria-hidden="true">♡　◯　↗</div>
+            </div>
             <h2><span>Stay consistent</span><span>without even trying</span></h2>
             <p>Make your next scroll count</p>
             <a ref={actionRef} className={styles.openApp} href={PLAY_TESTING_URL}>Download for android</a>
-            <button className={styles.restartDemo} onClick={() => changeScene('study')}>Try the cards again</button>
+            <button className={styles.restartDemo} onClick={() => changeScene('app')}>Try the cards again</button>
           </div> : scene === 'study' ? <div className={styles.nativeStudy} data-testid="study-screen">
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">{revealed ? `${card.question} Answer: ${card.answer}` : ""}</span>
             <div className={styles.nativeHeader}>
@@ -226,16 +233,19 @@ function PhoneDemo() {
             </div>
 
 
-          </div> : <div className={styles.feedScene}>
-            <Feed complete={scene === 'back'}/>
-            <span className={styles.srOnly} role="status">{scene === 'back' ? 'Study break finished. You are back in your app.' : 'Open your chosen app to start a study break.'}</span>
-            <button ref={actionRef} className={styles.demoAction} onClick={() => changeScene(scene === 'back' ? 'app' : 'study')}>{scene === 'back' ? 'Try again' : 'Open my app'}<Arrow/></button>
+          </div> : <div className={styles.homeScreen} data-testid="demo-home">
+            <p className={styles.homePrompt}>Tap Instagram to try it</p>
+            <button ref={actionRef} className={styles.instagramLaunch} aria-label="Open Instagram demo" aria-describedby="demo-home-note" onClick={() => changeScene('study')}>
+              <img src={sitePath('/brands/instagram.svg')} alt="" width="64" height="64"/>
+              <span>Instagram</span>
+            </button>
+            <p id="demo-home-note" className={styles.homeNote}>A preview, not the real app.</p>
           </div>}
           <span className={styles.phoneHome} aria-hidden="true"/>
         </div>
       </div>
     </div>
-    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('study')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
+    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
     <noscript><p>Open an app → do a few cards → back to your app. Turn on JavaScript to try the demo.</p></noscript>
   </div>;
 }
