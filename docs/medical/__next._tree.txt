@@ -3,4 +3,4 @@
 :HL["/_next/static/chunks/097e_dht-oceb.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"medical","h":96,"c":"$Q2"}]]
-0:{"b":"ZCtR0fhCD5xZAXv0n8WFn","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"PVRV1EPkOh5OLP54NlN3U","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

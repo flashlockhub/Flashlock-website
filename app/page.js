@@ -199,6 +199,7 @@ function PhoneDemo() {
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
       <div className={`${styles.phone} ${scene === 'study' ? styles.studyPhone : scene === 'complete' ? styles.reelPhone : styles.launcherPhone}`}>
+        {scene === 'complete' && <button className={styles.phoneReplay} aria-label="Restart demo to Android home" onClick={event => { event.preventDefault(); event.stopPropagation(); changeScene('app'); }}><span className={styles.srOnly}>Tap anywhere on the phone to try again</span></button>}
         <div className={styles.phoneStatus} aria-hidden="true"><span>9:41</span><i/><span className={styles.statusIcons}><svg viewBox="0 0 42 14"><path d="M1 4Q7-1 13 4L7 11Z" fill="currentColor"/><path d="M16 11 25 2v9Z" fill="currentColor"/><rect x="29" y="3" width="10" height="8" rx="1" fill="none" stroke="currentColor"/><path d="M31 5h6v4h-6zM40 5v4" stroke="currentColor"/></svg></span></div>
         <div className={styles.phoneBody}>
           {scene === 'complete' ? <div className={styles.demoComplete} data-testid="demo-complete">
@@ -245,6 +246,7 @@ function PhoneDemo() {
             <button ref={actionRef} className={styles.instagramLaunch} aria-label="Open Instagram demo" aria-describedby="demo-home-note" onClick={() => changeScene('study')}>
               <img src={sitePath('/demo/instagram-app.svg')} alt="" width="58" height="58"/>
               <span>Instagram</span>
+              <span className={styles.tryArrow} aria-hidden="true"><span>Try it out</span><svg viewBox="0 0 110 65" fill="none"><path d="M101 9C68 3 67 47 10 47M23 35 9 47l16 9"/></svg></span>
             </button>
             <span className={styles.launcherPageDot} aria-hidden="true"/>
           </div>}
