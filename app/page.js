@@ -180,7 +180,7 @@ function PhoneDemo() {
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
     <h2 className={styles.demoHeading}>Tap the card. Try FlashLock.</h2>
-    <p className={styles.demoInstructions}>Tap to flip. Swipe in any direction to move on.</p>
+    <p className={styles.demoInstructions}>Tap to flip. Swipe right to move on →</p>
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
@@ -189,9 +189,9 @@ function PhoneDemo() {
         <div className={styles.phoneBody}>
           {scene === 'complete' ? <div className={styles.demoComplete} data-testid="demo-complete">
             <span className={styles.completionMark} aria-hidden="true">✓</span>
-            <h2>Three cards.<br/>A little smarter.</h2>
-            <p>Make your next scroll count.</p>
-            <a ref={actionRef} className={styles.openApp} href={PLAY_TESTING_URL}>Download for Android</a>
+            <h2><span>Stay consistent</span><span>without even trying</span></h2>
+            <p>Make your next scroll count</p>
+            <a ref={actionRef} className={styles.openApp} href={PLAY_TESTING_URL}>Download for android</a>
             <button className={styles.restartDemo} onClick={() => changeScene('study')}>Try the cards again</button>
           </div> : scene === 'study' ? <div className={styles.nativeStudy} data-testid="study-screen">
             <span className={styles.srOnly} aria-live="polite" aria-atomic="true">{revealed ? `${card.question} Answer: ${card.answer}` : ""}</span>
@@ -205,12 +205,12 @@ function PhoneDemo() {
             <div className={styles.cardStage}>
             <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
               front={<>
-                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" onClick={reveal}/>
+                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" aria-describedby="card-swipe-hint" onClick={reveal}/>
                 <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to question" onClick={speak}><AppIcon name="sound"/></button>
                   <p className={styles.nativeQuestion}>{card.question}</p>
-                  {card.promo && <span className={styles.tapPrompt}>Tap to turn over ↻</span>}
+                  {card.promo && <div className={styles.cardPrompts}><span className={styles.tapPrompt}>Tap to turn over ↻</span><span id="card-swipe-hint" className={styles.swipePrompt}>Swipe right <span aria-hidden="true">→</span><span className={styles.srOnly}> to move on. Or press the right arrow key.</span></span></div>}
                 </div>
               </>}
               back={<>
@@ -256,7 +256,10 @@ export default function Home() {
     </header>
     <main id="main">
       <section className={styles.hero} aria-labelledby="hero-title">
-        <h1 id="hero-title" className={styles.srOnly}>Get better grades with FlashLock</h1>
+        <div className={styles.heroIntro}>
+          <h1 id="hero-title">A learning break before you scroll</h1>
+          <a className={styles.cta} href={PLAY_TESTING_URL}><PlayIcon/><span>Get Flashlock for Android</span><Arrow/></a>
+        </div>
         <PhoneDemo/>
         <div className={styles.heroText}>
           <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
