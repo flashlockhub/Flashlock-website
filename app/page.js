@@ -119,6 +119,7 @@ function PhoneDemo() {
   }
   function reveal() {
     if (revealed) return;
+    window.speechSynthesis?.cancel();
     shouldFocus.current = true;
     setNote('');
     setRevealed(true);
@@ -161,26 +162,22 @@ function PhoneDemo() {
     window.speechSynthesis.speak(speech);
   }
   function skipCard() {
+    if (!revealed) return;
     window.speechSynthesis?.cancel();
     setNote(''); shouldFocus.current = true;
     advanceCard();
   }
   function advanceCard() {
+    if (!revealed) return;
     setRevealed(false);
     if (cardIndex >= demoCards.length - 1) {
       setCardIndex(demoCards.length);
       setScene('complete');
     } else setCardIndex(value => value + 1);
   }
-  function turnCard(next) {
-    window.speechSynthesis?.cancel();
-    setNote('');
-    shouldFocus.current = true;
-    setRevealed(next);
-  }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
     <h2 className={styles.demoHeading}>Tap the card. Try FlashLock.</h2>
-    <p className={styles.demoInstructions}>Tap to flip. Swipe right to move on →</p>
+    <p className={styles.demoInstructions}>{scene === 'complete' ? 'Your learning break is complete.' : revealed ? 'Swipe right to move on →' : 'Tap to turn over'}</p>
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
@@ -203,14 +200,14 @@ function PhoneDemo() {
             <div className={styles.nativeProgress} role="progressbar" aria-label="Demo cards completed" aria-valuemin={0} aria-valuemax={demoCards.length} aria-valuenow={cardIndex}><span style={{ width: `${cardIndex / demoCards.length * 100}%` }}/></div>
             <div className={styles.nativeCount} aria-live="polite">Card {Math.min(cardIndex + 1, demoCards.length)} of {demoCards.length}</div>
             <div className={styles.cardStage}>
-            <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} onRevealChange={turnCard} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
+            <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
               front={<>
-                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" aria-describedby="card-swipe-hint" onClick={reveal}/>
+                <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" aria-describedby="card-tap-hint" onClick={reveal}/>
                 <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to question" onClick={speak}><AppIcon name="sound"/></button>
                   <p className={styles.nativeQuestion}>{card.question}</p>
-                  {card.promo && <div className={styles.cardPrompts}><span className={styles.tapPrompt}>Tap to turn over ↻</span><span id="card-swipe-hint" className={styles.swipePrompt}>Swipe right <span aria-hidden="true">→</span><span className={styles.srOnly}> to move on. Or press the right arrow key.</span></span></div>}
+                  <div className={styles.cardPrompts}><span id="card-tap-hint" className={styles.tapPrompt}>Tap to turn over ↻</span></div>
                 </div>
               </>}
               back={<>
@@ -224,7 +221,7 @@ function PhoneDemo() {
 
             </div>
             <div className={styles.helpSlot}>
-              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. Swipe up, down, left or right to move on. Or reveal the answer and choose a rating. Keyboard: use any arrow key. After three cards, you can download FlashLock.')}>Click here for help</button>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. After revealing the answer, swipe right to move on or choose a rating. Keyboard: Enter or Space reveals the front; arrow keys move on after revealing. After three cards, you can download FlashLock.')}>Click here for help</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
 

@@ -152,7 +152,7 @@
 .nativeCard .cardTap:focus-visible{outline:3px solid #4f46e5;outline-offset:-4px}
 .nativeCardTop{display:flex;align-items:center;min-height:44px;padding:8px 10px 0 12px;gap:5px;pointer-events:none;z-index:2}
 .nativeCardTop>span{flex:1;text-align:center;font-size:10px;padding-left:17px}
-.cardTools{display:flex;align-items:center;gap:0}
+.cardTools{display:flex;align-items:center;gap:0;pointer-events:auto}
 .cardTools>span{display:grid;place-items:center;width:32px;height:32px;border:1px solid #111;border-radius:50%}
 .cardTools svg{width:17px;height:17px}
 .cardTools .editTool{background:#fde68a;border-color:#a16207;color:#713f12}

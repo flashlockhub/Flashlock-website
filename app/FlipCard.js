@@ -5,7 +5,7 @@ import { sitePath } from '../lib/site';
 import styles from './flip-card.module.css';
 
 // Zoo-generated geometry, served locally. No account or remote API at runtime.
-export default function FlipCard({ revealed, onRevealChange, front, back, overlay, onSwipe, ...props }) {
+export default function FlipCard({ revealed, front, back, overlay, onSwipe, ...props }) {
   const stage = useRef(null);
   const canvas = useRef(null);
   const angle = useRef(0);
@@ -70,7 +70,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     slideFrame.current = requestAnimationFrame(tick);
   }
   function dismiss(direction, axis = 'x') {
-    if (sliding.current) return;
+    if (!revealed || sliding.current) return;
     suppressClick.current = true;
     const distance = direction * ((axis === 'y' ? stage.current.clientHeight : stage.current.clientWidth) + 120);
     slideTo(axis === 'x' ? distance : 0, axis === 'y' ? distance : 0, onSwipe);
@@ -79,7 +79,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     suppressClick.current = false;
     if (sliding.current || !event.isPrimary || event.button !== 0 || event.target.closest('[data-card-tool]')) return;
     gesture.current = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false, axis: null };
-    stage.current.setPointerCapture(event.pointerId);
+    // Preserve the actual button target until a drag begins.
   }
   function moveDrag(event) {
     const g = gesture.current;
@@ -88,23 +88,26 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     if (!g.dragging) {
       if (Math.max(Math.abs(dx), Math.abs(dy)) < 8) return;
       g.axis = Math.abs(dy) > Math.abs(dx) ? 'y' : 'x';
-      g.dragging = true; stage.current.dataset.dragging = 'true';
+      g.dragging = true; suppressClick.current = true;
+      stage.current.setPointerCapture(event.pointerId);
+      stage.current.dataset.dragging = 'true';
     }
     event.preventDefault();
-    moveCard(g.axis === 'x' ? dx : 0, g.axis === 'y' ? dy : 0);
+    if (revealed) moveCard(g.axis === 'x' ? dx : 0, g.axis === 'y' ? dy : 0);
   }
   function endDrag(event) {
     const g = gesture.current;
     if (!g || event.pointerId !== g.id) return;
-    gesture.current = null; suppressClick.current = true;
+    gesture.current = null; suppressClick.current = g.dragging;
     stage.current.dataset.dragging = 'false';
     if (stage.current.hasPointerCapture(g.id)) stage.current.releasePointerCapture(g.id);
-    if (g.dragging) {
+    if (g.dragging && revealed) {
       const distance = g.axis === 'y' ? slideY.current : slideX.current;
       const size = g.axis === 'y' ? stage.current.clientHeight : stage.current.clientWidth;
       if (Math.abs(distance) >= Math.min(45, size * .18)) dismiss(Math.sign(distance), g.axis);
       else slideTo(0, 0);
-    } else onRevealChange(!revealed);
+    }
+    // Only the front button click (including Enter/Space) reveals.
   }
   function cancelDrag(event) {
     const g = gesture.current;
@@ -206,7 +209,7 @@ export default function FlipCard({ revealed, onRevealChange, front, back, overla
     reduced.addEventListener('change', onMotion);
     return () => { cancelAnimationFrame(slideFrame.current); cancelAnimationFrame(frame.current); reduced.removeEventListener('change', onMotion); };
   }, [paint]);
-  return <div {...props} ref={stage} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={cancelDrag} onLostPointerCapture={cancelDrag}
+  return <div {...props} ref={stage} onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={cancelDrag} onLostPointerCapture={event => { if (event.target === event.currentTarget) cancelDrag(event); }}
     onKeyDown={event => { if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key) && !event.target.closest('[data-card-tool]')) { event.preventDefault(); dismiss(['ArrowLeft', 'ArrowUp'].includes(event.key) ? -1 : 1, ['ArrowUp', 'ArrowDown'].includes(event.key) ? 'y' : 'x'); } }}
     onClickCapture={event => { if (suppressClick.current && event.detail !== 0) { event.preventDefault(); event.stopPropagation(); suppressClick.current = false; } }}
     data-renderer={ready ? 'zoo-webgl' : 'css-fallback'} className={`${props.className || ''} ${styles.stage}`}>
