@@ -347,7 +347,7 @@
 .demoComplete h2>span{display:block;white-space:nowrap}
 
 /* Keep the download CTA plain; use an underline for keyboard focus. */
-.page .demoComplete .openApp:focus-visible{outline:none;text-decoration:underline;text-underline-offset:4px}
+.page .completionCta .openApp:focus-visible{outline:none;text-decoration:underline;text-underline-offset:4px}
 
 /* Mobile compact sizing; original desktop proportions above 680px. */
 @media(max-width:680px){
