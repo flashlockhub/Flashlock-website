@@ -1,6 +1,4 @@
 :HL["/_next/static/chunks/3sq-4jv60a91w.css","style"]
 :HC["/",""]
 :HL["/app/flashlock-icon.svg","image"]
-2:[["children",{"s":"__PAGE__","h":160}]]
-1:[["children",{"s":"privacy","h":96,"c":"$Q2"}]]
-0:{"b":"WZW5lKAXrpqG8eeO_Hbf6","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"privacy","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Ektls3oC4grC64-iWJgqu"}
