@@ -1,0 +1,8 @@
+:HL["/_next/static/chunks/3sq-4jv60a91w.css","style"]
+:HC["/",""]
+:HL["/_next/static/chunks/3cvzg1fkyg6xs.css","style"]
+:HL["/app/flashlock-icon.svg","image"]
+3:[["children",{"s":"__PAGE__","h":160}]]
+2:[["children",{"s":"flashlock-vs-one-sec","h":96,"c":"$Q3"}]]
+1:[["children",{"s":"compare","h":96,"c":"$Q2"}]]
+0:{"b":"k0VCf_q3tLpz0S2e9UcEq","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

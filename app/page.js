@@ -301,6 +301,6 @@ export default function Home() {
       </section>
       <section className={styles.questions} id="questions" aria-labelledby="questions-title"><h2 id="questions-title">Quick questions.</h2><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
     </main>
-    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}>FlashLock<span>✦</span></a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
+    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}>FlashLock<span>✦</span></a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
   </div>;
 }
