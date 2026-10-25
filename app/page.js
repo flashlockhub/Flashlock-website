@@ -59,6 +59,10 @@ function PlayIcon() {
 // Decorative local preview: no login or external Instagram navigation.
 function SocialIcon({ name }) {
  const paths = {
+ add:'M12 3v18M3 12h18',
+ tune:'M3 6h5m4 0h9M3 18h9m4 0h5M8 3v6m4 6v6',
+ repost:'M4 14V7h13m-4-4 4 4-4 4M20 10v7H7m4 4-4-4 4-4',
+ play:'M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3Zm4 5 6 4-6 4V8Z',
  heart:'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
  comment:'M21 11.5a9 9 0 1 1-4.5-7.8A9 9 0 0 1 21 11.5ZM6 19l-3 2 1-5',
  share:'m22 2-7 20-4-9L2 9 22 2ZM11 13 22 2',
@@ -73,15 +77,14 @@ function SocialIcon({ name }) {
 }
 function InstagramReel() {
  return <div className={styles.mockInstagram} data-testid="instagram-celebration" aria-label="Instagram Reels preview, fictional demo account">
-  <div className={styles.instagramHeader}><strong>Instagram</strong><span>PREVIEW</span><SocialIcon name="heart"/></div>
   <div className={styles.celebrationReel}>
-   <div className={styles.reelHeader} aria-hidden="true"><b>Reels <span>⌄</span></b><SocialIcon name="camera"/></div>
+   <div className={styles.reelHeader} aria-hidden="true"><SocialIcon name="add"/><div><b>Reels</b><span>Friends</span><img src={sitePath('/app/flashlock-icon.svg')} alt=""/></div><SocialIcon name="tune"/></div>
    <div className={styles.fireworks} aria-hidden="true">{[0,1,2,3].map(n => <span key={n} className={styles.firework}>{Array.from({length:16},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div>
    <div className={styles.reelMessage}><strong>You just studied before scrolling!</strong></div>
-   <div className={styles.reelActions} aria-hidden="true"><span><SocialIcon name="heart"/><small>1,284</small></span><span><SocialIcon name="comment"/><small>24</small></span><span><SocialIcon name="share"/><small>86</small></span><span><SocialIcon name="save"/></span><b>···</b></div>
-   <div className={styles.reelCaption}><div><img src={sitePath('/demo/avatar.svg')} width="28" height="28" alt=""/><b>flashlock.app</b><span>Follow</span></div><p>One small win before the scroll. ✨</p><small>♫ Original audio · flashlock.app</small></div>
+   <div className={styles.reelActions} aria-hidden="true"><span><SocialIcon name="heart"/><small>1,284</small></span><span><SocialIcon name="comment"/><small>24</small></span><span><SocialIcon name="repost"/><small>86</small></span><span><SocialIcon name="share"/><small>128</small></span><img className={styles.audioCover} src={sitePath('/app/flashlock-icon.svg')} alt=""/></div>
+   <div className={styles.reelCaption}><div><img src={sitePath('/app/flashlock-icon.svg')} width="28" height="28" alt=""/><b>flashlock.app</b><span>Follow</span></div><p>One small win before the scroll. ✨</p><small>♫ Original audio · flashlock.app</small></div>
   </div>
-  <div className={styles.instagramNav} aria-hidden="true"><SocialIcon name="home"/><SocialIcon name="search"/><SocialIcon name="plus"/><SocialIcon name="reels"/><img src={sitePath('/demo/avatar.svg')} width="22" height="22" alt=""/></div>
+  <div className={styles.instagramNav} aria-hidden="true"><SocialIcon name="home"/><span className={styles.selectedReel}><SocialIcon name="play"/></span><SocialIcon name="share"/><SocialIcon name="search"/><img src={sitePath('/app/flashlock-icon.svg')} width="22" height="22" alt=""/></div>
  </div>;
 }
 const demoCards = [
@@ -274,7 +277,7 @@ export default function Home() {
   return <div className={styles.page}>
     <a className={styles.skip} href="#main">Skip to content</a>
     <header className={styles.header}>
-      <a className={styles.brand} href={sitePath("/")} aria-label="FlashLock home"><img src={sitePath("/app/flashlock-icon.svg")} width="35" height="35" alt=""/>FlashLock<span className={styles.beta}>BETA</span></a>
+      <a className={styles.brand} href={sitePath("/")} aria-label="FlashLock home"><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock<span className={styles.beta}>BETA</span></a>
       <nav aria-label="Main navigation"><a href="#demo">Try it</a><a href="#questions">Quick questions <span aria-hidden="true">↗</span></a></nav>
     </header>
     <main id="main">
@@ -301,6 +304,6 @@ export default function Home() {
       </section>
       <section className={styles.questions} id="questions" aria-labelledby="questions-title"><h2 id="questions-title">Quick questions.</h2><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
     </main>
-    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}>FlashLock<span>✦</span></a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
+    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock</a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
   </div>;
 }
