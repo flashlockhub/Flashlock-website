@@ -1,4 +1,4 @@
-.page{--bg:#f8f7fc;--navy:#172047;--indigo:#5145dc;--lavender:#e8e4fb;--quiet:#66677a;--border:#dcdbe7;background:var(--bg);color:var(--navy);min-height:100vh}
+.page{--bg:#fffef5;--navy:#00545b;--indigo:#087f75;--lavender:#d9efdf;--quiet:#526864;--border:#d5dfd5;background:var(--bg);color:var(--navy);min-height:100vh}
 .page a,.page button,.page summary{-webkit-tap-highlight-color:transparent}
 .page :is(a,button,summary):focus-visible{outline:3px solid var(--indigo);outline-offset:5px}
 .page h1,.page h2,.page h3,.page p{margin:0}
@@ -6,7 +6,7 @@
 .header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);gap:24px}
 .brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:700;letter-spacing:-.8px}
 .brand img{border-radius:9px}
-.beta{font-size:9px;letter-spacing:1px;font-weight:700;background:#eae7f7;border:1px solid #d9d4ed;border-radius:4px;padding:4px 6px;margin-left:3px;color:#575476}
+.beta{font-size:9px;letter-spacing:1px;font-weight:700;background:#e3efe3;border:1px solid #c4d9cc;border-radius:4px;padding:4px 6px;margin-left:3px;color:#37665e}
 .header nav{display:flex;gap:36px;align-items:center;font-size:12px;font-weight:700}
 .header nav a{padding-block:16px}
 .header nav a:hover{text-decoration:underline;text-underline-offset:5px}
@@ -20,13 +20,13 @@
 .hero h1{font-size:clamp(52px,5.25vw,76px);line-height:1.055;letter-spacing:-4px;margin:25px 0 26px;font-weight:700}
 .hero h1>span{color:var(--indigo)}
 .subheader{font-size:17px;line-height:1.85;max-width:445px;color:#55596d}
-.cta{display:flex;align-items:center;justify-content:center;gap:14px;width:fit-content;max-width:100%;margin-top:31px;min-height:62px;padding:18px 23px;border-radius:8px;background:var(--indigo);color:#fff;font-size:14px;font-weight:700;box-shadow:0 5px 0 #332b99;transition:background .15s,transform .15s,box-shadow .15s}
-.cta:hover{background:#4337c5;transform:translateY(-2px);box-shadow:0 7px 0 #332b99}
-.cta:active{transform:translateY(3px);box-shadow:0 2px 0 #332b99}
+.cta{display:flex;align-items:center;justify-content:center;gap:14px;width:fit-content;max-width:100%;margin-top:31px;min-height:62px;padding:18px 23px;border-radius:8px;background:var(--indigo);color:#fff;font-size:14px;font-weight:700;box-shadow:0 5px 0 #00545b;transition:background .15s,transform .15s,box-shadow .15s}
+.cta:hover{background:#006b63;transform:translateY(-2px);box-shadow:0 7px 0 #00545b}
+.cta:active{transform:translateY(3px);box-shadow:0 2px 0 #00545b}
 .cta>svg:first-child{width:19px;height:22px}
 .cta>svg:last-child{width:19px;margin-left:6px}
 .ctaNote{font-size:10px;color:var(--quiet);margin-top:18px!important;display:flex;align-items:center;gap:9px}
-.demo{position:relative;background:#eeebf8;border:1px solid #e2ddf0;border-radius:20px;padding:22px 23px 17px;min-width:0;scroll-margin-top:25px}
+.demo{position:relative;background:#e9f2e7;border:1px solid #cfdfd3;border-radius:20px;padding:22px 23px 17px;min-width:0;scroll-margin-top:25px}
 .demoHeading{display:flex;align-items:center;gap:7px;font-size:8px;font-weight:700;letter-spacing:1.5px;color:#646075;justify-content:center}
 .liveDot{width:5px;height:5px;border-radius:50%;background:var(--indigo)}
 .demoSteps{display:flex;gap:8px;justify-content:space-between;margin:17px 0 0;padding:0;list-style:none}
@@ -36,8 +36,8 @@
 .demoSteps .activeStep{color:var(--indigo);font-weight:700}
 .activeStep>span{background:var(--indigo);color:white;border-color:var(--indigo)!important}
 .phoneStage{position:relative;display:flex;justify-content:center;padding:22px 0 15px;isolation:isolate}
-.orbit{position:absolute;width:330px;height:330px;max-width:105%;border-radius:50%;border:1px solid #d4cde7;top:80px;left:50%;transform:translateX(-50%);z-index:-1}
-.orbit:after{content:"";position:absolute;inset:22px;border:1px solid #ddd6ed;border-radius:50%}
+.orbit{position:absolute;width:330px;height:330px;max-width:105%;border-radius:50%;border:1px solid #c5dfce;top:80px;left:50%;transform:translateX(-50%);z-index:-1}
+.orbit:after{content:"";position:absolute;inset:22px;border:1px solid #d6e6d7;border-radius:50%}
 .phone{width:254px;flex-shrink:0;border:5px solid #222541;border-radius:36px;background:#faf9ff;box-shadow:0 18px 26px #2420431f,0 3px 0 1px #484866;position:relative}
 .phoneStatus{height:33px;display:flex;align-items:center;justify-content:space-between;padding:2px 18px 0;font-size:9px;font-weight:700}
 .phoneStatus i{width:63px;height:16px;background:#222541;border-radius:20px;position:absolute;top:6px;left:50%;transform:translateX(-50%)}
@@ -77,9 +77,9 @@
 .control{display:grid;grid-template-columns:1fr 2.35fr;gap:32px;padding:39px 44px 35px;background:var(--navy);border-radius:16px;color:#fff}
 .control .eyebrow{color:#bcb9de;font-size:8px;letter-spacing:1.4px}
 .control h2{font-size:34px;letter-spacing:-1.3px;line-height:1.14;margin-top:11px}
-.control h2 span{color:#c5bdff}
+.control h2 span{color:#a9e2c8}
 .choices{display:grid;grid-template-columns:repeat(3,1fr);gap:29px}
-.choices>div{position:relative;border-left:1px solid #404563;padding-left:23px;min-height:141px}
+.choices>div{position:relative;border-left:1px solid #36767b;padding-left:23px;min-height:141px}
 .choiceNumber{font-size:9px;color:#aaa7c7}
 .choices h3{font-size:15px;letter-spacing:-.4px;margin-top:11px;line-height:1.4}
 .choices p{font-size:9px;color:#c0bfd5;margin-top:5px}
@@ -88,10 +88,10 @@
 .appTiles span:first-child{font-size:12px;background:#615c9d}
 .appTiles span:last-child{background:transparent;border-style:dashed}
 .miniCards{height:48px;position:relative;margin-top:12px}
-.miniCards i{position:absolute;width:58px;height:39px;border-radius:4px;background:#b6aedc;border:1px solid #172047;transform:rotate(-15deg);left:0;top:4px}
-.miniCards i:nth-child(2){background:#dbd4ef;transform:rotate(-5deg);left:17px;top:1px}
+.miniCards i{position:absolute;width:58px;height:39px;border-radius:4px;background:#88cbb4;border:1px solid #00545b;transform:rotate(-15deg);left:0;top:4px}
+.miniCards i:nth-child(2){background:#d6ecd9;transform:rotate(-5deg);left:17px;top:1px}
 .miniCards i:last-child{background:#ffdc7e;transform:rotate(7deg);left:33px;top:1px;font-size:13px;font-weight:700;font-style:normal;color:var(--navy);display:grid;place-items:center}
-.miniTimer{display:flex;align-items:center;gap:9px;margin-top:16px;color:#c5bdff}
+.miniTimer{display:flex;align-items:center;gap:9px;margin-top:16px;color:#a9e2c8}
 .miniTimer svg{width:44px;height:44px}
 .miniTimer>span{font-size:9px;color:#c0bfd5}
 .questions{display:grid;grid-template-columns:1fr 1.6fr;gap:70px;padding:66px 0 60px;scroll-margin-top:35px}
@@ -113,7 +113,7 @@
 @media(min-width:1450px){.hero{gap:88px;padding-block:75px}.demo{padding-inline:34px}.sideNote{left:0}.breakBadge{right:0}}
 @media(max-width:1150px){.header,.hero,.control,.questions,.footer{width:calc(100% - 64px)}.hero{gap:35px;grid-template-columns:1.1fr 1fr}.hero h1{font-size:57px;letter-spacing:-3px}.subheader{font-size:15px}.eyebrow{font-size:8px;letter-spacing:1px}.demo{padding-inline:17px}.sideNote{display:none}.breakBadge{right:-14px;font-size:7px;padding:9px 11px}.control{padding-inline:28px;gap:22px}.choices{gap:15px}.choices>div{padding-left:17px}.choices h3{font-size:13px}.appTiles{gap:4px}.appTiles span{width:25px;height:27px}.control h2{font-size:30px}}
 @media(max-width:860px){.hero{grid-template-columns:1fr 1fr;gap:26px;padding-block:49px;min-height:0}.hero h1{font-size:44px;letter-spacing:-2.5px}.heroText{padding-bottom:0}.subheader{font-size:14px;line-height:1.8}.cta{font-size:11px;padding-inline:14px;gap:8px;min-height:58px}.cta>svg:last-child{display:none}.demo{padding-inline:13px}.demoSteps{gap:4px}.demoSteps li{font-size:7px;gap:4px}.demoSteps li>span{width:17px;height:17px}.phone{width:240px}.breakBadge{right:-6px;bottom:44px}.demoFooter{font-size:6px}.demoFooter button{font-size:8px}.demoFooter button span{display:none}.control{grid-template-columns:1fr;padding:30px}.controlIntro{display:flex;align-items:center;justify-content:space-between;gap:20px}.controlIntro h2{margin:0;font-size:27px}.controlIntro br{display:none}.controlIntro h2 span{margin-left:5px}.choices>div{min-height:126px}.choices h3{font-size:15px}.questions{gap:30px}.questions h2{font-size:25px}}
-@media(max-width:680px){.header,.hero,.control,.questions,.footer{width:calc(100% - 40px)}.header{height:78px;gap:14px}.brand{font-size:20px;gap:8px}.brand img{width:31px;height:31px}.beta{font-size:8px;margin-left:0;padding:3px 5px}.header nav{gap:0;font-size:11px}.header nav a:first-child{display:none}.header nav a span{display:none}.hero{grid-template-columns:1fr;gap:36px;padding-block:43px 39px}.heroText{padding-bottom:0}.eyebrow{font-size:8px;letter-spacing:.9px}.hero h1{font-size:clamp(43px,9.1vw,61px);letter-spacing:-2.5px;line-height:1.07;margin:23px 0 21px}.desktopBreak{display:none}.subheader{max-width:460px;font-size:15px;line-height:1.8}.cta{font-size:13px;gap:12px;padding:17px 19px;margin-top:25px;min-height:59px}.cta>svg:last-child{display:block;width:17px}.ctaNote{font-size:10px;margin-top:17px!important}.demo{width:100%;max-width:460px;justify-self:center;padding:20px 24px 12px;border-radius:16px}.demoHeading{font-size:8px}.demoSteps{gap:8px;margin-top:17px}.demoSteps li{font-size:9px;gap:5px}.demoSteps li>span{width:19px;height:19px}.phoneStage{padding-top:21px;padding-bottom:13px}.phone{width:254px}.breakBadge{font-size:8px;right:-12px;padding:10px 12px}.demoFooter{font-size:7px}.demoFooter button{font-size:9px}.demoFooter button span{display:inline}.control{padding:28px 23px;border-radius:13px;gap:24px}.controlIntro{display:block}.controlIntro h2{font-size:30px;margin-top:10px}.controlIntro .eyebrow{font-size:8px}.choices{grid-template-columns:1fr;gap:0}.choices>div{min-height:78px;border-left:none;border-top:1px solid #404563;padding:20px 112px 18px 27px;display:flex;flex-direction:column;justify-content:center}.choiceNumber{position:absolute;left:0;top:26px}.choices h3{font-size:15px;margin:0}.choices p{font-size:10px}.appTiles{position:absolute;right:0;top:26px;margin:0;gap:4px}.appTiles span{width:23px;height:25px;border-radius:6px;font-size:15px}.miniCards{position:absolute;right:3px;top:19px;width:90px;margin:0}.miniTimer{position:absolute;right:8px;top:18px;margin:0}.miniTimer>span{display:none}.questions{grid-template-columns:1fr;gap:23px;padding-block:42px}.questions h2{font-size:27px;padding:0}.questions summary{font-size:12px;padding-block:19px;min-height:60px}.footer{flex-wrap:wrap;gap:17px 24px;padding:25px 0;min-height:0}.footer .footerBrand{font-size:16px}.footer p{flex:auto;width:calc(100% - 130px);font-size:9px}.footer>a:not(.footerBrand),.footer>span{font-size:9px}.footer>span{margin-left:auto}}
+@media(max-width:680px){.header,.hero,.control,.questions,.footer{width:calc(100% - 40px)}.header{height:78px;gap:14px}.brand{font-size:20px;gap:8px}.brand img{width:31px;height:31px}.beta{font-size:8px;margin-left:0;padding:3px 5px}.header nav{gap:0;font-size:11px}.header nav a:first-child{display:none}.header nav a span{display:none}.hero{grid-template-columns:1fr;gap:36px;padding-block:43px 39px}.heroText{padding-bottom:0}.eyebrow{font-size:8px;letter-spacing:.9px}.hero h1{font-size:clamp(43px,9.1vw,61px);letter-spacing:-2.5px;line-height:1.07;margin:23px 0 21px}.desktopBreak{display:none}.subheader{max-width:460px;font-size:15px;line-height:1.8}.cta{font-size:13px;gap:12px;padding:17px 19px;margin-top:25px;min-height:59px}.cta>svg:last-child{display:block;width:17px}.ctaNote{font-size:10px;margin-top:17px!important}.demo{width:100%;max-width:460px;justify-self:center;padding:20px 24px 12px;border-radius:16px}.demoHeading{font-size:8px}.demoSteps{gap:8px;margin-top:17px}.demoSteps li{font-size:9px;gap:5px}.demoSteps li>span{width:19px;height:19px}.phoneStage{padding-top:21px;padding-bottom:13px}.phone{width:254px}.breakBadge{font-size:8px;right:-12px;padding:10px 12px}.demoFooter{font-size:7px}.demoFooter button{font-size:9px}.demoFooter button span{display:inline}.control{padding:28px 23px;border-radius:13px;gap:24px}.controlIntro{display:block}.controlIntro h2{font-size:30px;margin-top:10px}.controlIntro .eyebrow{font-size:8px}.choices{grid-template-columns:1fr;gap:0}.choices>div{min-height:78px;border-left:none;border-top:1px solid #36767b;padding:20px 112px 18px 27px;display:flex;flex-direction:column;justify-content:center}.choiceNumber{position:absolute;left:0;top:26px}.choices h3{font-size:15px;margin:0}.choices p{font-size:10px}.appTiles{position:absolute;right:0;top:26px;margin:0;gap:4px}.appTiles span{width:23px;height:25px;border-radius:6px;font-size:15px}.miniCards{position:absolute;right:3px;top:19px;width:90px;margin:0}.miniTimer{position:absolute;right:8px;top:18px;margin:0}.miniTimer>span{display:none}.questions{grid-template-columns:1fr;gap:23px;padding-block:42px}.questions h2{font-size:27px;padding:0}.questions summary{font-size:12px;padding-block:19px;min-height:60px}.footer{flex-wrap:wrap;gap:17px 24px;padding:25px 0;min-height:0}.footer .footerBrand{font-size:16px}.footer p{flex:auto;width:calc(100% - 130px);font-size:9px}.footer>a:not(.footerBrand),.footer>span{font-size:9px}.footer>span{margin-left:auto}}
 @media(max-width:359px){.header,.hero,.control,.questions,.footer{width:calc(100% - 32px)}.header nav{font-size:10px}.brand{font-size:18px}.beta{display:none}.hero h1{font-size:41px;letter-spacing:-2.5px}.eyebrow{font-size:7px;letter-spacing:.6px}.cta{gap:9px;padding-inline:14px;font-size:12px}.demo{padding-inline:12px}.demoSteps li{font-size:8px}.phone{width:242px}.breakBadge{right:-7px;font-size:7px}.control{padding-inline:18px}.choices h3{font-size:13px}.choices p{font-size:9px}.choices>div{padding-right:105px}.controlIntro h2{font-size:27px}}
 @media(prefers-reduced-motion:reduce){.page *{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
@@ -126,13 +126,13 @@
 /* Android study-screen replica, based on the app layout and native palette. */
 @font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
 @font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-bold.ttf') format('truetype');font-style:normal;font-weight:500 700;font-display:swap}
-.studyPhone{background:#0d1b4b;color:#fff}
+.studyPhone{background:#073f43;color:#fff}
 .studyPhone .phoneHome{background:#8590b6}
 .phoneStatus{font-family:FlashLockRoboto,Arial,sans-serif}
 .phoneStatus i{width:7px;height:7px;top:10px;background:#11192e;border:1px solid #67718f;border-radius:50%}
 .phoneBody{padding:0}
 .phoneHome{margin:8px auto 9px;height:3px;width:68px}
-.nativeStudy{height:433px;display:flex;flex-direction:column;background:#0d1b4b;color:white;font-family:FlashLockRoboto,Roboto,Arial,sans-serif;font-weight:400;letter-spacing:0;text-align:center}
+.nativeStudy{height:433px;display:flex;flex-direction:column;background:#073f43;color:white;font-family:FlashLockRoboto,Roboto,Arial,sans-serif;font-weight:400;letter-spacing:0;text-align:center}
 .nativeStudy button{font-family:inherit;letter-spacing:0;cursor:pointer}
 .nativeStudy :is(button):focus-visible{outline:2px solid #ffdf70;outline-offset:2px}
 .nativeHeader{min-height:43px;display:flex;align-items:center;padding:2px 12px 6px 7px;gap:4px}
@@ -144,12 +144,12 @@
 .soundButton svg{width:20px;height:20px}
 .soundMuted{background:#39404d;color:#ffdf70}
 .nativeProgress{height:3px;flex-shrink:0;background:#3e496d;overflow:hidden;border-radius:2px}
-.nativeProgress>span{display:block;height:100%;background:#c3c5ff;transition:width .2s}
+.nativeProgress>span{display:block;height:100%;background:#8bd4bd;transition:width .2s}
 .nativeCount{font-size:9px;line-height:15px;min-height:22px;padding-top:4px;color:#fff}
 .nativeCard{position:relative;display:flex;flex:1;flex-direction:column;min-height:155px;margin:7px 10px 8px;background:#fff;color:#000;border-radius:12px;overflow:hidden;box-shadow:0 2px 4px #00000012}
-.nativeCard.nativeAnswer{background:#f3f8ff}
+.nativeCard.nativeAnswer{background:#f2f8ed}
 .cardTap{position:absolute;inset:0;z-index:1;width:100%;height:100%;padding:0;border:0;border-radius:inherit;background:transparent;color:inherit;cursor:pointer}
-.nativeCard .cardTap:focus-visible{outline:3px solid #4f46e5;outline-offset:-4px}
+.nativeCard .cardTap:focus-visible{outline:3px solid #087f75;outline-offset:-4px}
 .nativeCardTop{display:flex;align-items:center;min-height:44px;padding:8px 10px 0 12px;gap:5px;pointer-events:none;z-index:2}
 .nativeCardTop>span{flex:1;text-align:center;font-size:10px;padding-left:17px}
 .cardTools{display:flex;align-items:center;gap:0;pointer-events:auto}
@@ -157,7 +157,7 @@
 .cardTools svg{width:17px;height:17px}
 .cardTools .editTool{background:#fde68a;border-color:#a16207;color:#713f12}
 .nativeContent{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 11px 32px;gap:0;pointer-events:none}
-.cardSpeaker{pointer-events:auto;position:relative;z-index:2;flex-shrink:0;display:grid;place-items:center;width:35px;height:35px;border:1.5px solid white;border-radius:50%;background:#8284f4;color:white;margin-bottom:13px;padding:8px}
+.cardSpeaker{pointer-events:auto;position:relative;z-index:2;flex-shrink:0;display:grid;place-items:center;width:35px;height:35px;border:1.5px solid white;border-radius:50%;background:#0d9488;color:white;margin-bottom:13px;padding:8px}
 .cardSpeaker svg{width:20px;height:20px}
 .page .nativeQuestion{font-family:inherit;font-size:17px;font-weight:400;line-height:1.28;letter-spacing:0;color:#000;margin:0;max-width:100%}
 .answerDivider{width:42px;height:1.5px;background:#111;margin:17px 0 13px;flex-shrink:0}
@@ -198,22 +198,22 @@
 
 /* Larger, bolder homepage typography; keep the app replica independent. */
 .hero h1{font-size:clamp(48px,5vw,72px);font-weight:800;line-height:1.08;letter-spacing:-2px}
-.subheader{font-size:20px;font-weight:700;line-height:1.65;color:#303953;max-width:560px}
+.subheader{font-size:20px;font-weight:700;line-height:1.65;color:#234d48;max-width:560px}
 .cta{font-size:18px;font-weight:800;min-height:68px;padding:20px 24px;gap:12px}
-.ctaNote{font-size:14px;font-weight:700;color:#42495e}
+.ctaNote{font-size:14px;font-weight:700;color:#41645c}
 .header nav{font-size:14px}
 .beta{font-size:11px}
 .control h2{font-size:38px;font-weight:800}
 .choices h3{font-size:19px;font-weight:800;line-height:1.35}
-.choices p,.miniTimer>span{font-size:14px;font-weight:700;line-height:1.5;color:#e4e2f4}
-.choiceNumber{font-size:13px;font-weight:700;color:#d4d0ed}
+.choices p,.miniTimer>span{font-size:14px;font-weight:700;line-height:1.5;color:#e2f1e7}
+.choiceNumber{font-size:13px;font-weight:700;color:#b5dbca}
 .questions h2{font-size:36px;font-weight:800}
 .questions summary{font-size:18px;font-weight:800;line-height:1.5;padding-block:22px}
-.questions details>p{font-size:17px;line-height:1.65;font-weight:600;color:#303953}
-.footer p,.footer>a:not(.footerBrand),.footer>span{font-size:14px;font-weight:600;color:#42495e}
+.questions details>p{font-size:17px;line-height:1.65;font-weight:600;color:#234d48}
+.footer p,.footer>a:not(.footerBrand),.footer>span{font-size:14px;font-weight:600;color:#41645c}
 .demoHeading{font-size:11px;color:#49415d}
-.demoSteps li{font-size:11px;font-weight:700;color:#514866}
-.demoFooter{font-size:11px;font-weight:600;color:#514866;flex-wrap:wrap;gap:4px}
+.demoSteps li{font-size:11px;font-weight:700;color:#42655e}
+.demoFooter{font-size:11px;font-weight:600;color:#42655e;flex-wrap:wrap;gap:4px}
 .demoFooter button{font-size:12px;font-weight:700}
 @media(max-width:1100px){
  .hero{grid-template-columns:1fr;gap:40px}
@@ -275,11 +275,11 @@
 .queuedCard .nativeCardTop>span{padding-left:0}
 .cardStage .nativeRatings{bottom:18px}
 
-.page .demoHeading{font-size:clamp(23px,2.2vw,30px);line-height:1.2;letter-spacing:-.6px;font-weight:800;color:#251b5b;margin:0;text-align:center}
-.page .demoInstructions{font-size:14px;line-height:1.5;font-weight:700;color:#4d4269;text-align:center;margin:10px 0 0}
-.demoLink{display:inline-flex;align-items:center;gap:14px;min-height:46px;margin-top:14px;padding:10px 18px;border:2px solid #6552bc;border-radius:10px;color:#43318a;font-size:17px;font-weight:800;text-decoration:none;background:#f4f0ff}
-.demoLink:hover{background:#e8e0ff}
-.demoLink:focus-visible{outline:3px solid #6552bc;outline-offset:4px}
+.page .demoHeading{font-size:clamp(23px,2.2vw,30px);line-height:1.2;letter-spacing:-.6px;font-weight:800;color:#00545b;margin:0;text-align:center}
+.page .demoInstructions{font-size:14px;line-height:1.5;font-weight:700;color:#42655e;text-align:center;margin:10px 0 0}
+.demoLink{display:inline-flex;align-items:center;gap:14px;min-height:46px;margin-top:14px;padding:10px 18px;border:2px solid #087f75;border-radius:10px;color:#00545b;font-size:17px;font-weight:800;text-decoration:none;background:#f2f7ed}
+.demoLink:hover{background:#d9efdf}
+.demoLink:focus-visible{outline:3px solid #087f75;outline-offset:4px}
 
 /* Phone-first hero: the opening flashcard carries the headline. */
 .hero{grid-template-columns:minmax(0,1fr);justify-items:center;gap:26px;padding-block:24px 48px;min-height:0}
@@ -291,9 +291,9 @@
 .hero .srOnly{margin:0;padding:0}
 .page .demoHeading{font-size:20px}
 .demoSteps{display:none}
-.page .promoCard .nativeQuestion{font-size:32px;line-height:1.12;font-weight:700;color:#172047}
-.page .promoCard .nativeAnswerText{font-size:27px;line-height:1.16;font-weight:700;color:#4337a7}
-.tapPrompt{margin-top:18px;font-size:13px;font-weight:700;color:#5145b5}
+.page .promoCard .nativeQuestion{font-size:32px;line-height:1.12;font-weight:700;color:#00545b}
+.page .promoCard .nativeAnswerText{font-size:27px;line-height:1.16;font-weight:700;color:#087f75}
+.tapPrompt{margin-top:18px;font-size:13px;font-weight:700;color:#087f75}
 @media(max-width:400px){.hero>.demo{padding-inline:0}.heroText .subheader{font-size:18px}}
 
 /* The device screen clips every card/overlay throughout a gesture. */
@@ -372,20 +372,20 @@
 }
 
 /* Simulated launcher: one app, with the same screen geometry as the cards. */
-.homeScreen{height:550px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:24px 16px;background:linear-gradient(155deg,#e9e4ff,#d9e8ff);color:#172047;text-align:center}
+.homeScreen{height:550px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;padding:24px 16px;background:linear-gradient(155deg,#e9e4ff,#d9e8ff);color:#00545b;text-align:center}
 .page .homePrompt{font-size:19px;line-height:1.4;font-weight:700;margin:0}
-.instagramLaunch{display:flex;flex-direction:column;align-items:center;gap:10px;border:0;background:transparent;padding:14px 20px;color:#172047;font-size:15px;font-weight:700;cursor:pointer;border-radius:18px}
+.instagramLaunch{display:flex;flex-direction:column;align-items:center;gap:10px;border:0;background:transparent;padding:14px 20px;color:#00545b;font-size:15px;font-weight:700;cursor:pointer;border-radius:18px}
 .instagramLaunch img{width:64px;height:64px;border-radius:16px}
 .instagramLaunch:hover{background:#ffffff80}
-.instagramLaunch:focus-visible{outline:3px solid #4337a7;outline-offset:4px}
-.page .homeNote{font-size:12px;line-height:1.5;margin:0;color:#4d4269}
+.instagramLaunch:focus-visible{outline:3px solid #087f75;outline-offset:4px}
+.page .homeNote{font-size:12px;line-height:1.5;margin:0;color:#42655e}
 @media(max-width:680px){.homeScreen{height:466px}}
 /* Completion must retain the original desktop screen height too. */
 @media(min-width:681px){.demoComplete{height:550px}}
 
 /* A simulated Instagram reel, never a real account or external navigation. */
 .demoComplete{padding:10px 12px;gap:8px}
-.mockInstagram{width:100%;min-height:0;flex:1;display:flex;flex-direction:column;background:#fff;color:#172047;border-radius:10px;overflow:hidden;text-align:left}
+.mockInstagram{width:100%;min-height:0;flex:1;display:flex;flex-direction:column;background:#fff;color:#00545b;border-radius:10px;overflow:hidden;text-align:left}
 .instagramHeader{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;font-size:14px}
 .instagramHeader>span{font-size:10px;color:#626273}
 .celebrationReel{position:relative;isolation:isolate;flex:1;min-height:100px;display:grid;place-items:center;padding:16px 12px;background:linear-gradient(145deg,#11132f,#33235d);overflow:hidden;text-align:center}
@@ -410,7 +410,7 @@
 .instagramLaunch img{width:54px;height:54px;border-radius:15px;filter:drop-shadow(0 4px 5px #0003)}
 .instagramLaunch:hover{background:#ffffff18}.instagramLaunch:focus-visible{outline:3px solid #fff;outline-offset:1px}
 .launcherPageDot{position:absolute;bottom:32px;left:calc(50% - 2px);height:4px;width:4px;background:white;border-radius:50%}
-.page .previewNote{text-align:center;font-size:11px;line-height:1.5;color:#645d77;margin:4px 0 8px}
+.page .previewNote{text-align:center;font-size:11px;line-height:1.5;color:#526864;margin:4px 0 8px}
 .reelPhone{background:#080808;color:white}.demoComplete{padding:0;display:block;background:#080808}
 .mockInstagram{height:100%;width:100%;border-radius:0;background:#080808;color:white;text-align:left;display:flex;flex-direction:column}
 .instagramHeader{height:45px;flex-shrink:0;gap:8px;padding:0 12px;color:#fff}
@@ -425,7 +425,7 @@
 .instagramNav{height:44px;flex-shrink:0;display:flex;align-items:center;justify-content:space-around;background:#080808;border-top:1px solid #ffffff10}.instagramNav svg{width:21px;height:21px}.instagramNav svg:nth-child(4){fill:#fff;stroke:#080808;background:white;border-radius:4px}
 .firework{top:21%;left:30%;animation-duration:4.8s}.firework:nth-child(2){top:46%;left:83%;color:#ffa7de;animation-delay:-1.6s}.firework:nth-child(3){top:76%;left:23%;color:#81deff;animation-delay:-3.2s}.firework:nth-child(4){top:13%;left:82%;color:#ffe7a1;animation-delay:-2.4s}
 .firework i{width:2px;height:16px;box-shadow:0 0 5px currentColor;transform:rotate(calc(var(--ray)*22.5deg)) translateY(-42px)}
-.completionCta{text-align:center;padding:12px 0 5px;max-width:320px;margin:auto}.page .completionCta h2{font-size:25px;line-height:1.25;letter-spacing:-.5px}.completionCta h2 span{display:block}.page .completionCta p{font-size:14px;margin:10px 0 14px;color:#514866}.completionCta .openApp{margin:0;min-height:48px;font-size:15px}.completionCta .restartDemo{color:#5145b5;font-size:13px;min-height:44px}
+.completionCta{text-align:center;padding:12px 0 5px;max-width:320px;margin:auto}.page .completionCta h2{font-size:25px;line-height:1.25;letter-spacing:-.5px}.completionCta h2 span{display:block}.page .completionCta p{font-size:14px;margin:10px 0 14px;color:#42655e}.completionCta .openApp{margin:0;min-height:48px;font-size:15px}.completionCta .restartDemo{color:#087f75;font-size:13px;min-height:44px}
 @media(max-width:680px){.androidClock{top:78px;font-size:96px}.instagramLaunch{bottom:62px;left:22px}.reelMessage{top:24%;left:18px;right:53px}.reelMessage strong{font-size:32px}.reelActions{gap:12px;bottom:87px}}
 @media(prefers-reduced-motion:reduce){.firework{animation:none;transform:scale(.9);opacity:.65}}
 
@@ -457,3 +457,25 @@
 .reelMessage strong{font-size:30px;line-height:1.1;letter-spacing:-.8px;font-weight:900;color:#fff1ad;text-shadow:0 2px 3px #000}
 .reelMessage:before{inset:-12px -8px;background:linear-gradient(135deg,#080e21f5,#080e21e8);border:1px solid #fff1ad26;border-radius:12px;box-shadow:0 8px 26px #0004}
 @media(max-width:680px){.reelMessage{top:22%}.reelMessage strong{font-size:32px}}
+
+/* Approved folded-card brand: cream, teal green and deep teal. */
+.brand{color:#00545b;font-weight:800}.brand img{width:45px;height:45px;border-radius:0;margin-left:-5px;margin-right:-4px}
+.footer .footerBrand{display:flex;align-items:center;gap:6px}.footerBrand img{width:35px;height:35px}
+.phone{border-color:#163c3b;box-shadow:0 18px 26px #163c3b20,0 3px 0 1px #47706a}
+.nativeStudy .nativeQuestion{color:#00545b}.nativeStudy .nativeAnswerText{color:#087f75}
+.page .completionCta .openApp{background:#087f75}.page .completionCta .openApp:hover{background:#006b63}
+/* Native Reels: no duplicate feed masthead; the media fills the screen. */
+.mockInstagram{font-family:FlashLockRoboto,Arial,sans-serif}
+.reelHeader{top:12px;left:14px;right:14px;z-index:2}.reelHeader b{font-size:18px;font-weight:700;letter-spacing:0}
+.celebrationReel:after{inset:0;background:linear-gradient(#0005,transparent 20%,transparent 60%,#000c);z-index:0}
+.reelMessage{z-index:1}.reelCaption{z-index:2;left:12px;right:44px;bottom:17px}.reelCaption>div{gap:6px;font-size:11px;white-space:nowrap}.reelCaption>div>span{padding:4px 7px;font-size:10px}.reelCaption img{width:26px;height:26px}.page .reelCaption p{font-size:10px;line-height:1.5;margin:9px 0 7px}.reelCaption small{font-size:9px;white-space:nowrap;display:block;overflow:hidden;text-overflow:ellipsis}
+.reelActions{right:10px;bottom:16px;gap:17px}.reelActions svg{width:25px;height:25px;stroke-width:1.8}.reelActions small{font-size:10px;font-weight:500}.reelActions .audioCover{width:24px;height:24px;border-radius:5px;border:2px solid white;padding:2px;margin-top:2px}
+.instagramNav{height:43px;border-top:0}.instagramNav svg{width:23px;height:23px}.instagramNav svg:nth-child(4){fill:none;stroke:white;background:transparent;border-radius:0;stroke-width:2.5}
+@media(max-width:680px){.reelActions{gap:14px}.reelCaption{bottom:17px}.reelHeader{top:12px}}
+
+/* Current Instagram App Store Reels reference (inspected 26 October 2026). */
+.mockInstagram{position:relative}.reelHeader>div{display:flex;align-items:center;gap:8px}.reelHeader>div>span{font-size:15px;font-weight:700;opacity:.65;margin:0}.reelHeader>div>img{width:20px;height:20px;border-radius:50%;margin-left:-3px}.reelHeader>svg{width:20px;height:20px}.reelHeader b{font-size:16px}
+.instagramNav{position:absolute;z-index:3;bottom:7px;left:10px;right:10px;height:42px;border:1px solid #ffffff26;border-radius:24px;background:#25282cdb;backdrop-filter:blur(12px)}
+.instagramNav svg:nth-child(4){stroke-width:1.8}.selectedReel{display:grid;place-items:center;border-radius:22px;background:#ffffff20;width:43px;height:38px}.selectedReel svg{fill:white;stroke:#ddd;stroke-width:1.2}.selectedReel svg path{fill-rule:evenodd}
+.reelCaption{bottom:66px}.reelActions{bottom:64px;gap:17px}.celebrationReel:before{content:'';position:absolute;z-index:3;bottom:57px;left:12px;right:12px;height:1px;background:#ffffff50}.mockInstagram:after{content:'';position:absolute;z-index:3;bottom:57px;left:12px;width:24%;height:1px;background:white}
+@media(max-width:680px){.reelActions{gap:14px;bottom:64px}.reelCaption{bottom:66px}}
