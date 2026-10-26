@@ -1,1 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" role="img" aria-label="FlashLock folded card with eyes"><g transform="rotate(-10 54 54)"><path d="M32 19h34l18 20v42q0 10-10 10H32q-10 0-10-10V29q0-10 10-10Z" fill="#0D9488"/><path d="M66 19v14q0 8 8 8h10L66 19Z" fill="#00545B"/><path d="M66 19v17q0 9 9 9h9v-5H75q-9 0-9-21Z" fill="#FFFEF2"/><ellipse cx="42" cy="56" rx="10" ry="13" fill="#FFFEF2" /><ellipse cx="66" cy="55" rx="10" ry="13" fill="#FFFEF2" /><ellipse cx="46" cy="53" rx="6" ry="8" fill="#00545B"/><ellipse cx="70" cy="52" rx="6" ry="8" fill="#00545B"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 108" role="img" aria-label="FlashLock folded card with eyes">
+<style>
+.eye { transform-box: fill-box; transform-origin: center; animation: blink 5s ease-in-out infinite; }
+@keyframes blink { 0%, 94%, 97.2%, 100% { transform: scaleY(1); } 95.6% { transform: scaleY(0.04); } }
+@media (prefers-reduced-motion: reduce) { .eye { animation: none; } }
+</style>
+<g transform="rotate(-10 54 54)"><path d="M32 19h34l18 20v42q0 10-10 10H32q-10 0-10-10V29q0-10 10-10Z" fill="#0D9488"/><path d="M66 19v14q0 8 8 8h10L66 19Z" fill="#00545B"/><path d="M66 19v17q0 9 9 9h9v-5H75q-9 0-9-21Z" fill="#FFFEF2"/><g class="eye"><ellipse cx="42" cy="56" rx="10" ry="13" fill="#FFFEF2"/><ellipse cx="46" cy="53" rx="6" ry="8" fill="#00545B"/></g><g class="eye"><ellipse cx="66" cy="55" rx="10" ry="13" fill="#FFFEF2"/><ellipse cx="70" cy="52" rx="6" ry="8" fill="#00545B"/></g></g></svg>
