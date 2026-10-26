@@ -1,0 +1,6 @@
+# Freedom comparison research — 26 October 2026
+Official source https://freedom.to/ fetched successfully (200); full HTML and readable text archived here.
+Verified in official feature text (not testimonials): cross-device synced blocking sessions; app and website blocklists; session length and frequency; advance and recurring schedules; MacOS, Windows, iOS, Android, Chromebook, Linux platform list. Platform parity is not claimed. No pricing, privacy, offline, learning-absence or proven grade-improvement claims.
+FlashLock features and Android testing URL taken from current main homepage source app/page.js. URL reused exactly: https://play.google.com/apps/testing/com.flashlock.app . Sign-in/beta eligibility not independently tested.
+Repository route inventory: app/compare contained AppBlock and one sec only; added Freedom. All three now have precisely two download CTAs, above table and in bottom conversion block. Secondary demo links remain text links to /#demo. Existing competitor research dates retained; Freedom dated today. Team disclosure retained.
+Built after rebase on 0e3c53b (merged mascot blink PR #24). public and docs mascot SVG identical to main; CNAME remains flashlock.app.

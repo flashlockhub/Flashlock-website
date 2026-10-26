@@ -1,0 +1,41 @@
+FlashLock vs AppBlock
+
+Compare study tools, app limits and device support.
+
+Download FlashLock for Android
+↗
+
+Android beta · Google Play testing access
+
+At a glance
+Two ways to pause your apps
+Feature	FlashLock	AppBlock
+Main approach	Review cards	Block apps
+Study breaks	Flashcards before apps	Timed focus periods
+Your setup	Own cards or Anki imports	Apps, times and limits
+Build a habit	App-opening review prompts	Blocking schedules
+App access	Return after review	Access follows rules
+Strict blocking	Not listed*	Strict Mode
+Phones	Android beta	Android and iOS
+
+*No dedicated strict mode listed in FlashLock’s reviewed site docs. AppBlock features vary by platform.
+
+Make your next scroll a study break.
+
+Got a test coming up? Make cards from your notes or import Anki cards. Pick the apps that trigger a break and how many cards to review. Practise a little before you scroll, instead of waiting for one big study session.
+
+Want timed blocking rather than flashcards? AppBlock is built for that.
+
+Want better grades?
+
+Start with a few cards.
+
+Download FlashLock for Android
+↗
+Try the demo first
+
+Android beta. Google sign-in required; check access on Google Play.
+
+By the FlashLock team. Official docs checked 23 October 2026. Not hands-on app tests.
+
+Sources: FlashLock · AppBlock guide · AppBlock iOS

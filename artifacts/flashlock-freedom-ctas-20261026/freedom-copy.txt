@@ -1,0 +1,41 @@
+FlashLock vs Freedom
+
+Compare flashcard breaks, focus sessions and device support.
+
+Download FlashLock for Android
+↗
+
+Android beta · Google Play testing access
+
+At a glance
+Study breaks or distraction-free sessions
+Feature	FlashLock	Freedom
+Main approach	Review cards	Block distractions
+Before apps	Flashcards first	Focus sessions
+Your setup	Own cards or Anki imports	App and website blocklists
+Build a habit	App-opening review prompts	Recurring schedules
+Session settings	Apps and card count	Length and frequency
+Across devices	Android study breaks	Synced blocking sessions
+Platforms	Android beta	iOS, Android, Mac, Windows + more*
+
+*Freedom also lists Chromebook and Linux. Blocking capabilities vary by platform; check its official guides.
+
+Make room for what you’re learning.
+
+Got a test coming up? Turn your notes into FlashLock cards or import Anki cards. Choose your apps and how many cards to review. Practise a little before you scroll, using the moments you already reach for your phone.
+
+Want uninterrupted time across your phone and computer? Freedom syncs blocking sessions across devices, with advance and recurring schedules. FlashLock puts your study cards into app-opening breaks instead.
+
+Want better grades?
+
+Start with a few cards.
+
+Download FlashLock for Android
+↗
+Try the demo first
+
+Android beta. Google sign-in required; check access on Google Play.
+
+By the FlashLock team. Official docs checked 26 October 2026. Not hands-on app tests.
+
+Sources: FlashLock · Freedom features and platforms
