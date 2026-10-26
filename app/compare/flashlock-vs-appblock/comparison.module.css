@@ -5,3 +5,5 @@
 .intro :global(.button),.cta :global(.button){max-width:100%;min-height:48px;white-space:normal;text-align:center;line-height:1.4}.intro .beta{font-size:13px;color:var(--muted);margin:12px 0 0}.page a:focus-visible{outline:3px solid var(--primary);outline-offset:5px}@media(max-width:600px){.intro :global(.button),.cta :global(.button){font-size:14px;padding:14px 12px;width:100%}}
 
 :global(body:has(.page)){background:#fffef5}.page{--paper:#fffef5;--ink:#00545b;--muted:#526864;--line:#d5dfd5;--white:#fffef5;--primary:#087f75;--primary-pressed:#006b63;--primary-container:#d9efdf;--secondary-container:#e3efe3;color:var(--ink)}
+
+.page{background:#fffef5;box-shadow:0 0 0 100vmax #fffef5;clip-path:inset(0 -100vmax)}
