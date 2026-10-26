@@ -59,6 +59,7 @@ function PlayIcon() {
 // Decorative local preview: no login or external Instagram navigation.
 function SocialIcon({ name }) {
  const paths = {
+ messenger:'M21 11a9 9 0 1 0-16 5.7V21l4-2a9 9 0 0 0 12-8ZM6 14l5-6 3 3 4-3-5 7-3-3-4 2Z',
  add:'M12 3v18M3 12h18',
  tune:'M3 6h5m4 0h9M3 18h9m4 0h5M8 3v6m4 6v6',
  repost:'M4 14V7h13m-4-4 4 4-4 4M20 10v7H7m4 4-4-4 4-4',
@@ -76,15 +77,14 @@ function SocialIcon({ name }) {
  return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={paths[name]}/></svg>;
 }
 function InstagramReel() {
- return <div className={styles.mockInstagram} data-testid="instagram-celebration" aria-label="Instagram Reels preview, fictional demo account">
-  <div className={styles.celebrationReel}>
-   <div className={styles.reelHeader} aria-hidden="true"><SocialIcon name="add"/><div><b>Reels</b><span>Friends</span><img src={sitePath('/app/flashlock-icon.svg')} alt=""/></div><SocialIcon name="tune"/></div>
-   <div className={styles.fireworks} aria-hidden="true">{[0,1,2,3].map(n => <span key={n} className={styles.firework}>{Array.from({length:16},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div>
-   <div className={styles.reelMessage}><strong>You just studied before scrolling!</strong></div>
-   <div className={styles.reelActions} aria-hidden="true"><span><SocialIcon name="heart"/><small>1,284</small></span><span><SocialIcon name="comment"/><small>24</small></span><span><SocialIcon name="repost"/><small>86</small></span><span><SocialIcon name="share"/><small>128</small></span><img className={styles.audioCover} src={sitePath('/app/flashlock-icon.svg')} alt=""/></div>
-   <div className={styles.reelCaption}><div><img src={sitePath('/app/flashlock-icon.svg')} width="28" height="28" alt=""/><b>flashlock.app</b><span>Follow</span></div><p>One small win before the scroll. ✨</p><small>♫ Original audio · flashlock.app</small></div>
-  </div>
-  <div className={styles.instagramNav} aria-hidden="true"><SocialIcon name="home"/><span className={styles.selectedReel}><SocialIcon name="play"/></span><SocialIcon name="share"/><SocialIcon name="search"/><img src={sitePath('/app/flashlock-icon.svg')} width="22" height="22" alt=""/></div>
+ return <div className={styles.nativeFeed} data-testid="instagram-celebration" aria-label="Instagram home feed preview, fictional demo accounts">
+ <div className={styles.feedHeader}><img src={sitePath('/demo/instagram-wordmark.png')} alt="Instagram"/><SocialIcon name="plus"/><SocialIcon name="heart"/><SocialIcon name="messenger"/></div>
+ <div className={styles.feedStories}>{['Your story','little.wins','outside.today','daily.pause'].map((name,n)=><div key={name}><span className={styles.storyRing}><img src={sitePath(n===0?'/app/flashlock-icon.svg':'/demo/story-'+n+'.svg')} alt=""/>{n===0&&<i>+</i>}</span><small>{name}</small></div>)}</div>
+ <div className={styles.feedAccount}><img src={sitePath('/app/flashlock-icon.svg')} alt=""/><b>flashlock.app</b><span>•••</span></div>
+ <div className={styles.feedCreative}><div className={styles.feedFireworks} aria-hidden="true">{[0,1,2].map(n=><span key={n} className={styles.firework}>{Array.from({length:12},(_,i)=><i key={i} style={{'--ray':i}}/>)}</span>)}</div><img src={sitePath('/app/flashlock-card.svg')} alt=""/><strong>You just studied<br/>before scrolling!</strong></div>
+ <div className={styles.feedActions} aria-hidden="true"><SocialIcon name="heart"/><SocialIcon name="comment"/><SocialIcon name="share"/><SocialIcon name="save"/></div>
+ <div className={styles.feedCaption}><b>1,284 likes</b><p><b>flashlock.app</b> One small win before the scroll. ✨</p><span>View all 24 comments</span><small>2 hours ago</small></div>
+ <div className={styles.feedNav} aria-hidden="true"><SocialIcon name="home"/><SocialIcon name="search"/><SocialIcon name="reels"/><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M5 7h14l1 14H4L5 7ZM9 9V5a3 3 0 0 1 6 0v4"/></svg><img src={sitePath('/app/flashlock-icon.svg')} alt=""/></div>
  </div>;
 }
 const demoCards = [
