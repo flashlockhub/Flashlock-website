@@ -1,0 +1,194 @@
+[
+  {
+    "name": "appblock",
+    "width": 320,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "one-sec",
+    "width": 320,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "freedom",
+    "width": 320,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "appblock",
+    "width": 390,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "one-sec",
+    "width": 390,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "freedom",
+    "width": 390,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "appblock",
+    "width": 430,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "one-sec",
+    "width": 430,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "freedom",
+    "width": 430,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "appblock",
+    "width": 768,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "one-sec",
+    "width": 768,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "freedom",
+    "width": 768,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "appblock",
+    "width": 1024,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "one-sec",
+    "width": 1024,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "freedom",
+    "width": 1024,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "appblock",
+    "width": 1440,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "one-sec",
+    "width": 1440,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "name": "freedom",
+    "width": 1440,
+    "status": 200,
+    "ctas": 2,
+    "rows": 7,
+    "overflow": false,
+    "focus": true
+  },
+  {
+    "home": 320,
+    "demo": "complete and replay",
+    "overflow": false
+  },
+  {
+    "home": 390,
+    "demo": "complete and replay",
+    "overflow": false
+  },
+  {
+    "home": 430,
+    "demo": "complete and replay",
+    "overflow": false
+  },
+  {
+    "home": 768,
+    "demo": "complete and replay",
+    "overflow": false
+  },
+  {
+    "home": 1024,
+    "demo": "complete and replay",
+    "overflow": false
+  },
+  {
+    "home": 1440,
+    "demo": "complete and replay",
+    "overflow": false
+  }
+]

@@ -1,0 +1,41 @@
+FlashLock vs one sec
+
+Compare study cards, mindful pauses and language practice.
+
+Download FlashLock for Android
+↗
+
+Android beta · Google Play testing access
+
+What fills your pause?
+Two ways to interrupt a scroll
+Feature	FlashLock	one sec
+Main approach	Flashcard review	Pause and reflect
+Before apps	Practise study cards	Breathing or reflection
+Study content	Your own cards	LENGO vocabulary*
+Imports	Anki cards	LENGO word lists*
+Break settings	Apps and card count	Timing and pause type
+Learning route	Review, then return	Vocabulary, then apps*
+Phones	Android beta	iOS and Android*
+
+*LENGO integration is documented for iOS. Do not assume Android has the same features.
+
+Your notes. Your next break.
+
+A biology test? A history quiz? Turn your notes into FlashLock cards or import Anki cards. Choose how many to review when you open selected apps. Your break becomes practice for what you are studying.
+
+Prefer a breath before scrolling? Consider one sec. Want language practice? Its LENGO integration offers vocabulary exercises before social media on iOS.
+
+Want better grades?
+
+Put your notes to work.
+
+Download FlashLock for Android
+↗
+Try the demo first
+
+Android beta. Google sign-in required; check access on Google Play.
+
+By the FlashLock team. Official docs checked 23 October 2026. Not hands-on app tests.
+
+Sources: FlashLock · one sec · LENGO integration · iOS guide
