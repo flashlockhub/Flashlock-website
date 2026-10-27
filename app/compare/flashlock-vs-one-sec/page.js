@@ -1,6 +1,6 @@
 import { absoluteSiteUrl, sitePath } from "../../../lib/site";
 import styles from "../flashlock-vs-appblock/comparison.module.css";
-const title = "FlashLock vs one sec";
+const title = "FlashLock vs one sec: Flashcards or Mindful Pauses?";
 const description = "Compare FlashLock’s own study cards and Anki imports with one sec’s breathing pauses and LENGO language learning. See platform limits and try the Android beta.";
 const url = absoluteSiteUrl("/compare/flashlock-vs-one-sec/");
 export const metadata = { title, description, alternates: { canonical: url }, openGraph: { title, description, type: "website", url } };
@@ -23,5 +23,6 @@ export default function Comparison() { return <div className={styles.page}>
 <p className={styles.fit}>Prefer a breath before scrolling? Consider one sec. Want language practice? Its LENGO integration offers vocabulary exercises before social media on iOS.</p>
 <section className={styles.cta}><h2>Want better grades?</h2><p className={styles.ctaLead}>Put your notes to work.</p><a className="button dark" href="https://play.google.com/apps/testing/com.flashlock.app">Download FlashLock for Android <span aria-hidden="true">↗</span></a><a className={styles.demo} href={sitePath("/#demo")}>Try the demo first</a><p>Android beta · Google Play eligibility applies</p></section>
 <p className={styles.note}>By the FlashLock team. Official docs checked 23 October 2026. Not hands-on app tests.</p>
+<p className={styles.sources}><a href={sitePath("/guides/import-anki-decks/")}>How Anki import works</a></p>
 <p className={styles.sources}>Sources: <a href={sitePath("/")}>FlashLock</a> · <a href="https://one-sec.app/">one sec</a> · <a href="https://one-sec.app/integrations/lengo/">LENGO integration</a> · <a href="https://tutorials.one-sec.app/en/articles/3035074">iOS guide</a></p>
 </article></main><footer className={styles.footer}><a href={sitePath("/compare/")}>All comparisons</a><a href={sitePath("/compare/flashlock-vs-freedom/")}>FlashLock vs Freedom</a><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/privacy/")}>Privacy</a></footer></div>; }

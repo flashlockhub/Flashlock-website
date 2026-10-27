@@ -1,6 +1,6 @@
 import { absoluteSiteUrl, sitePath } from "../../../lib/site";
 import styles from "./comparison.module.css";
-const title = "FlashLock vs AppBlock";
+const title = "FlashLock vs AppBlock: Flashcards or App Limits?";
 const description = "Compare FlashLock and AppBlock: study tools, app limits and device support. Try flashcards before apps with FlashLock’s Android beta.";
 export const metadata = { title, description, alternates: { canonical: absoluteSiteUrl("/compare/flashlock-vs-appblock/") }, openGraph: { title, description, type: "website", url: absoluteSiteUrl("/compare/flashlock-vs-appblock/") } };
 export default function Comparison() { return <div className={styles.page}>
@@ -21,5 +21,6 @@ export default function Comparison() { return <div className={styles.page}>
 <p className={styles.fit}>Want timed blocking rather than flashcards? AppBlock is built for that.</p>
 <section className={styles.cta}><h2>Want better grades?</h2><p className={styles.ctaLead}>Start with a few cards.</p><a className="button dark" href="https://play.google.com/apps/testing/com.flashlock.app">Download FlashLock for Android <span aria-hidden="true">↗</span></a><a className={styles.demo} href={sitePath("/#demo")}>Try the demo first</a><p>Android beta · Google Play eligibility applies</p></section>
 <p className={styles.note}>By the FlashLock team. Official docs checked 23 October 2026. Not hands-on app tests.</p>
+<p className={styles.sources}><a href={sitePath("/guides/study-before-scrolling/")}>Set up flashcards before apps</a></p>
 <p className={styles.sources}>Sources: <a href={sitePath("/")}>FlashLock</a> · <a href="https://appblock.app/help/android/">AppBlock guide</a> · <a href="https://appblock.app/ios/">AppBlock iOS</a></p>
 </article></main><footer className={styles.footer}><a href={sitePath("/compare/")}>All comparisons</a><a href={sitePath("/compare/flashlock-vs-freedom/")}>FlashLock vs Freedom</a><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a></footer></div>; }
