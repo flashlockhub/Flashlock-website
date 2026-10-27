@@ -1,0 +1,3 @@
+import {sitePath} from "../../lib/site";
+import styles from "./guides.module.css";
+export default function GuideLayout({children}){return <div className={styles.page}><a className="skipLink" href="#main">Skip to guide</a><header className={styles.header}><a className="brand" href={sitePath("/")}>FlashLock</a><nav aria-label="Main navigation"><a href={sitePath("/guides/")}>All guides</a></nav></header><main id="main">{children}</main><footer className={styles.footer}><a href={sitePath("/")}>FlashLock home</a><a href={sitePath("/guides/")}>Guides</a><a href={sitePath("/compare/")}>Compare</a><a href={sitePath("/privacy/")}>Privacy</a></footer></div>}

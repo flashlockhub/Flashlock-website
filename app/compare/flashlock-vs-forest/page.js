@@ -1,6 +1,6 @@
 import { absoluteSiteUrl, sitePath } from "../../../lib/site";
 import styles from "../flashlock-vs-appblock/comparison.module.css";
-const title = "FlashLock vs Forest";
+const title = "FlashLock vs Forest: Flashcards or Focus Timers?";
 const description = 'Compare flashcard breaks with tree-growing focus sessions.';
 export const metadata = { title, description, alternates: { canonical: absoluteSiteUrl("/compare/flashlock-vs-forest/") }, openGraph: { title, description, type: "website", url: absoluteSiteUrl("/compare/flashlock-vs-forest/") } };
 export default function Comparison() { return <div className={styles.page}>
@@ -20,5 +20,6 @@ export default function Comparison() { return <div className={styles.page}>
 <section className={styles.study}><h2>Put a little revision before your scroll.</h2><p>FlashLock puts your own cards into the moments you reach for selected apps. Create cards from your notes or import Anki cards, then choose how many to review before continuing.</p></section><p className={styles.fit}>Prefer a longer stretch away from your phone? Forest grows virtual trees during timed sessions. Its Android listing also includes an app allowlist, scheduled Time Guard blocks and Plant Together sessions. Choose it for visual motivation around uninterrupted time; choose FlashLock for short reviews tied to app openings.</p>
 <section className={styles.cta}><h2>Try a few cards.</h2><p className={styles.ctaLead}>Review, then carry on.</p><a className="button dark" href="https://play.google.com/apps/testing/com.flashlock.app">Download FlashLock for Android <span aria-hidden="true">↗</span></a><a className={styles.demo} href={sitePath("/#demo")}>Try the demo first</a><p>Android beta · Google Play eligibility applies</p></section>
 <p className={styles.note}>By the FlashLock team. Official docs checked 27 October 2026. Not hands-on app tests.</p>
+<p className={styles.sources}><a href={sitePath("/guides/study-before-scrolling/")}>Set up flashcards before apps</a></p>
 <p className={styles.sources}>Sources: <a href={sitePath("/")}>FlashLock</a> · <a href="https://www.forestapp.cc/">Forest official site</a> · <a href="https://play.google.com/store/apps/details?id=cc.forestapp&hl=en&gl=AU">Forest Android listing</a></p>
 </article></main><footer className={styles.footer}><a href={sitePath("/compare/")}>All comparisons</a><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a></footer></div>; }

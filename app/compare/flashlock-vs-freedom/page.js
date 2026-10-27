@@ -1,6 +1,6 @@
 import { absoluteSiteUrl, sitePath } from "../../../lib/site";
 import styles from "../flashlock-vs-appblock/comparison.module.css";
-const title = "FlashLock vs Freedom";
+const title = "FlashLock vs Freedom: Study Breaks or Cross-Device Blocking?";
 const description = "Compare FlashLock’s study breaks with Freedom’s cross-device blocking, focus sessions and schedules. Download FlashLock for Android (beta).";
 export const metadata = { title, description, alternates: { canonical: absoluteSiteUrl("/compare/flashlock-vs-freedom/") }, openGraph: { title, description, type: "website", url: absoluteSiteUrl("/compare/flashlock-vs-freedom/") } };
 export default function Comparison() { return <div className={styles.page}>
@@ -21,5 +21,6 @@ export default function Comparison() { return <div className={styles.page}>
 <p className={styles.fit}>Want uninterrupted time across your phone and computer? Freedom syncs blocking sessions across devices, with advance and recurring schedules. FlashLock puts your study cards into app-opening breaks instead.</p>
 <section className={styles.cta}><h2>Want better grades?</h2><p className={styles.ctaLead}>Start with a few cards.</p><a className="button dark" href="https://play.google.com/apps/testing/com.flashlock.app">Download FlashLock for Android <span aria-hidden="true">↗</span></a><a className={styles.demo} href={sitePath("/#demo")}>Try the demo first</a><p>Android beta · Google Play eligibility applies</p></section>
 <p className={styles.note}>By the FlashLock team. Official docs checked 26 October 2026. Not hands-on app tests.</p>
+<p className={styles.sources}><a href={sitePath("/guides/study-before-scrolling/")}>Set up flashcards before apps</a></p>
 <p className={styles.sources}>Sources: <a href={sitePath("/")}>FlashLock</a> · <a href="https://freedom.to/">Freedom features and platforms</a></p>
 </article></main><footer className={styles.footer}><a href={sitePath("/compare/")}>All comparisons</a><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a></footer></div>; }
