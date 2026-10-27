@@ -304,6 +304,6 @@ export default function Home() {
       </section>
       <section className={styles.questions} id="questions" aria-labelledby="questions-title"><h2 id="questions-title">Quick questions.</h2><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
     </main>
-    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock</a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><a href={sitePath("/compare/flashlock-vs-freedom/")}>FlashLock vs Freedom</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
+    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock</a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><a href={sitePath("/compare/flashlock-vs-freedom/")}>FlashLock vs Freedom</a><a href={sitePath("/compare/")}>Compare</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
   </div>;
 }
