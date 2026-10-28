@@ -1,5 +1,6 @@
 "use client";
 
+import { ANDROID_BETA_URL } from "../../lib/download";
 import { useState } from "react";
 import { sitePath } from "../../lib/site";
 import styles from "./medical.module.css";
@@ -31,7 +32,6 @@ const cards = [
   }
 ];
 
-const PLAY_TESTING_URL = "https://play.google.com/apps/testing/com.flashlock.app";
 
 const medicalFaqs = [
   ["Why not just use Anki?", "Anki is free and its spacing is great — but it’s the best flashcard app most students never open. FlashLock doesn’t ask you to visit a new app out of habit. It comes to you, inside the apps you’re already opening."],
@@ -182,7 +182,7 @@ export default function MedicalLandingPage() {
         <section className={styles.download} id="medical-download">
           <p className={styles.eyebrow}>FLASHLOCK FOR ANDROID</p>
           <h2>Make every spare scroll<br/><span>part of becoming a doctor.</span></h2>
-          <a href={PLAY_TESTING_URL}>Get the beta on Google Play <Arrow /></a>
+          <a href={ANDROID_BETA_URL}>Get the beta on Google Play <Arrow /></a>
           <p>Free for the first 500 students · Your cards stay on your device</p>
           <div className={styles.waitlist}>
             <p><strong>iPhone version coming soon.</strong><span>iOS build is in progress — grab a spot in line.</span></p>
