@@ -1,4 +1,4 @@
-import { ANDROID_BETA_URL } from "../../../lib/download";
+import { androidBetaUrl } from "../../../lib/download";
 import { absoluteSiteUrl, sitePath } from "../../../lib/site";
 import styles from "../flashlock-vs-appblock/comparison.module.css";
 const title = "FlashLock vs Freedom: Study Breaks or Cross-Device Blocking?";
@@ -8,7 +8,7 @@ export default function Comparison() { return <div className={styles.page}>
 <a className="skipLink" href="#main">Skip to comparison</a>
 <header className={styles.header}><a className="brand" href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="32" height="32" alt=""/>FlashLock</a><nav aria-label="Main navigation"><a href={sitePath("/#demo")}>Try the demo</a><a href={sitePath("/privacy/")}>Privacy</a></nav></header>
 <main id="main"><article>
-<header className={styles.intro}><h1>FlashLock vs Freedom</h1><p className={styles.lead}>Compare flashcard breaks, focus sessions and device support.</p><a className="button dark" href={ANDROID_BETA_URL}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><p className={styles.beta}>Android beta · Google Play eligibility applies</p></header>
+<header className={styles.intro}><h1>FlashLock vs Freedom</h1><p className={styles.lead}>Compare flashcard breaks, focus sessions and device support.</p><a className="button dark" href={androidBetaUrl("flashlock-vs-freedom")}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><p className={styles.beta}>Android beta · Google Play eligibility applies</p></header>
 <section aria-labelledby="glance"><h2 id="glance">At a glance</h2><div className={styles.tableScroll}><table><caption>Study breaks or distraction-free sessions</caption><thead><tr><th scope="col">Feature</th><th scope="col">FlashLock</th><th scope="col">Freedom</th></tr></thead><tbody>
 <tr><th scope="row">Main approach</th><td>Review cards</td><td>Block distractions</td></tr>
 <tr><th scope="row">Before apps</th><td>Flashcards first</td><td>Focus sessions</td></tr>
@@ -20,7 +20,7 @@ export default function Comparison() { return <div className={styles.page}>
 </tbody></table></div><p className={styles.note}>*Freedom also lists Chromebook and Linux. Blocking capabilities vary by platform; check its official guides.</p></section>
 <section className={styles.study}><h2>Make room for what you’re learning.</h2><p>Got a test coming up? Turn your notes into FlashLock cards or import Anki cards. Choose your apps and how many cards to review. Practise a little before you scroll, using the moments you already reach for your phone.</p></section>
 <p className={styles.fit}>Want uninterrupted time across your phone and computer? Freedom syncs blocking sessions across devices, with advance and recurring schedules. FlashLock puts your study cards into app-opening breaks instead.</p>
-<section className={styles.cta}><h2>Want better grades?</h2><p className={styles.ctaLead}>Start with a few cards.</p><a className="button dark" href={ANDROID_BETA_URL}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><a className={styles.demo} href={sitePath("/#demo")}>Try the demo first</a><p>Android beta · Google Play eligibility applies</p></section>
+<section className={styles.cta}><h2>Want better grades?</h2><p className={styles.ctaLead}>Start with a few cards.</p><a className="button dark" href={androidBetaUrl("flashlock-vs-freedom")}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><a className={styles.demo} href={sitePath("/#demo")}>Try the demo first</a><p>Android beta · Google Play eligibility applies</p></section>
 <p className={styles.note}>By the FlashLock team. Official docs checked 26 October 2026. Not hands-on app tests.</p>
 <p className={styles.sources}><a href={sitePath("/guides/study-before-scrolling/")}>Set up flashcards before apps</a></p>
 <p className={styles.sources}>Sources: <a href={sitePath("/")}>FlashLock</a> · <a href="https://freedom.to/">Freedom features and platforms</a></p>

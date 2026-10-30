@@ -1,6 +1,6 @@
 "use client";
 
-import { ANDROID_BETA_URL } from "../../lib/download";
+import { androidBetaUrl } from "../../lib/download";
 import { useState } from "react";
 import { sitePath } from "../../lib/site";
 import styles from "./medical.module.css";
@@ -182,7 +182,7 @@ export default function MedicalLandingPage() {
         <section className={styles.download} id="medical-download">
           <p className={styles.eyebrow}>FLASHLOCK FOR ANDROID</p>
           <h2>Make every spare scroll<br/><span>part of becoming a doctor.</span></h2>
-          <a href={ANDROID_BETA_URL}>Get the beta on Google Play <Arrow /></a>
+          <a href={androidBetaUrl("medical")}>Get the beta on Google Play <Arrow /></a>
           <p>Free for the first 500 students · Your cards stay on your device</p>
           <div className={styles.waitlist}>
             <p><strong>iPhone version coming soon.</strong><span>iOS build is in progress — grab a spot in line.</span></p>
