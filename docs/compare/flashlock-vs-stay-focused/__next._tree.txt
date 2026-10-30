@@ -1,8 +1,8 @@
-:HL["/_next/static/chunks/3sq-4jv60a91w.css","style"]
+:HL["/_next/static/chunks/3krgz4l29btt-.css","style"]
 :HC["/",""]
-:HL["/_next/static/chunks/0y_nfrhwidwnc.css","style"]
+:HL["/_next/static/chunks/2z-6hyidwo7g6.css","style"]
 :HL["/app/flashlock-icon.svg","image"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":"flashlock-vs-stay-focused","h":96,"c":"$Q3"}]]
 1:[["children",{"s":"compare","h":96,"c":"$Q2"}]]
-0:{"b":"HVxdokou_Q0YaWBC_6Soj","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"DgOFE-S5Pn6xy8QTnPY56","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

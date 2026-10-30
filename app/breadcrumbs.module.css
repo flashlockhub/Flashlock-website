@@ -1,0 +1,6 @@
+.breadcrumbs{margin:0 0 24px;font-size:.85rem;color:#466159}
+.breadcrumbs ol{display:flex;flex-wrap:wrap;gap:6px 10px;list-style:none;padding:0;margin:0}
+.breadcrumbs li{display:flex;align-items:baseline;gap:10px;font-size:inherit;line-height:1.5;margin:0}
+.breadcrumbs li+li:before{content:"/";color:#658078}
+.breadcrumbs a{color:inherit;text-underline-offset:3px}
+.breadcrumbs a:focus-visible{outline:3px solid #176b58;outline-offset:4px}

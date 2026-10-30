@@ -1,13 +1,11 @@
 import "./styles.css";
 import { absoluteSiteUrl, sitePath } from "../lib/site";
+import { pageMetadata } from "../lib/seo";
 const siteUrl = absoluteSiteUrl();
 export const metadata = {
  metadataBase: new URL(siteUrl),
- title: "FlashLock — Flashcards Before Apps on Android",
- description: "FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app. Try the Android beta.",
+ ...pageMetadata("/", "FlashLock — Flashcards Before Apps on Android", "Use your own flashcards before opening everyday apps. Build a study habit with FlashLock’s Android beta."),
  icons: { icon: sitePath("/app/flashlock-icon.svg") },
- alternates: { canonical: siteUrl },
- openGraph: { title: "FlashLock — Flashcards Before Apps on Android", description: "Short flashcard breaks for the apps you love. Do a few cards, then get back to your app.", type: "website", url: siteUrl, siteName: "FlashLock" },
  robots: { index: true, follow: true }
 };
 export default function RootLayout({children}) { return <html lang="en"><body>{children}</body></html>; }

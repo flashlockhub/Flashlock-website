@@ -149,3 +149,12 @@ Official references checked 30 October 2026:
 No Android-app analytics or Install Referrer SDK changes are included here, and
 delivery of these labels into a live Play Console report still needs a real
 referral and the relevant account access. Do not fabricate visits to populate it.
+
+## SEO content and sharing (30 October 2026)
+
+- Keep the 13 existing routes and short homepage. Medical content, import/setup guides and comparisons link to their sources; a local AAB delivery is not proof that a feature is available on Google Play.
+- Use `pageMetadata(path, title, description)` from `lib/seo.js` for canonical, Open Graph and Twitter metadata. `public/app/flashlock-share.svg` is the editable, code-native source for the 1200×630 PNG used in previews. Render with the existing Sharp dependency; no external image service is used.
+- `Breadcrumbs` derives visible navigation and BreadcrumbList JSON-LD from the same items. Homepage identity markup contains only public organization/site facts, with no fabricated ratings or pricing. Rich results are not guaranteed.
+- The four WOFF2 assets are full-glyph conversions of the retained TTFs. Source licenses remain in `public/fonts/`. fontTools 4.68.0 `woff2.compress(source, destination, transform_tables=set())` was used; glyph order, cmap, outlines and layout metrics match the originals. Styles request WOFF2 only; no third-party font calls.
+- Sitemap `lastmod` dates reflect actual page changes, not build time. Add new canonical routes deliberately; exclude the custom noindex 404. Keep both deployment-target builds working.
+- Search Console indexing and real-user Core Web Vitals require account/field data. Local/mobile lab checks are not evidence of a ranking or field-vitals pass.

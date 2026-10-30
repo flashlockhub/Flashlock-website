@@ -4,6 +4,7 @@ import { androidBetaUrl } from "../../lib/download";
 import { useState } from "react";
 import { sitePath } from "../../lib/site";
 import styles from "./medical.module.css";
+import Breadcrumbs from "../Breadcrumbs";
 
 const medicineDecks = [
   "Anatomy", "Physiology", "Biochemistry", "Cell biology & histology",
@@ -34,11 +35,11 @@ const cards = [
 
 
 const medicalFaqs = [
-  ["Why not just use Anki?", "Anki is free and its spacing is great — but it’s the best flashcard app most students never open. FlashLock doesn’t ask you to visit a new app out of habit. It comes to you, inside the apps you’re already opening."],
-  ["Is it really free?", "Free during the beta — and the first 500 students keep it free forever. The 1,000-card first-year library is included with every account."],
-  ["Can I import my own Anki decks?", "Yes. Import an Anki deck from your device, preview the cards and add it as a local FlashLock deck. You can edit it without changing the original file."],
-  ["Where do my cards live?", "Your card text, decks and progress stay on your device. Optional usage analytics are off by default and never include card text or deck names."],
-  ["Is there an iPhone version?", "In progress. Join the iPhone waitlist at the bottom of this page and we’ll email you the moment it ships."]
+  ["How is this different from studying in Anki?", "FlashLock adds a short review before selected Android apps. Importing an Anki file creates a separate FlashLock deck; that file-import route does not sync your Anki reviews."],
+  ["Which medical deck should I use?", "Start with material you are studying now. Create cards or import a deck, then check its answers against your course resources. The examples on this page are not a complete medical curriculum."],
+  ["Does signing in back up my study progress?", "Progress is saved on your phone. Community sign-in is not a FlashLock cloud-backup service. Keep a separate copy of important study material."],
+  ["How much does it cost?", "Check Google Play for current availability and pricing."],
+  ["Is there an iPhone version?", "FlashLock is currently available for Android. There is no iPhone release or open email signup yet."]
 ];
 
 function Arrow() {
@@ -74,7 +75,7 @@ export default function MedicalLandingPage() {
   return (
     <div className={styles.medPage}>
       <a className={styles.skipLink} href="#medical-main">Skip to content</a>
-      <div className={styles.announcement}>ANDROID BETA · FREE FOR THE FIRST 500 STUDENTS · 1,000 MED CARDS INCLUDED</div>
+      <div className={styles.announcement}>ANDROID BETA · STUDY YOUR COURSE CARDS BEFORE APPS</div>
       <header className={styles.header}>
         <a className={styles.brand} href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="38" height="38" alt="" />FlashLock</a>
         <span className={styles.forMedicine}>FOR MEDICAL STUDENTS</span>
@@ -82,18 +83,19 @@ export default function MedicalLandingPage() {
       </header>
 
       <main id="medical-main">
+        <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Medical students", path: "/medical/" }]} />
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>FLASHCARDS FOR THE APPS YOU ALREADY OPEN</p>
-            <h1>You don’t need more<br/>{" "}<span>flashcards.</span></h1>
-            <p className={styles.subhead}>You need to do the ones you have. FlashLock pops up where you’re already scrolling — 3 cards, 45 seconds, then you’re back. Anki is the best flashcard app you never open. FlashLock comes to you.</p>
-            <a className={styles.mainCta} href="#medical-download">Get the beta — free <Arrow /></a>
+            <h1>Medical study<br/>{" "}<span>flashcards.</span></h1>
+            <p className={styles.subhead}>Bring the deck you’re studying. Review a few cards before your everyday Android apps, then carry on.</p>
+            <a className={styles.mainCta} href="#medical-download">Get the Android beta <Arrow /></a>
             <div className={styles.heroProof}>
-              <span><Check /> 1,000 med cards included</span>
+              <span><Check /> Use your course material</span>
               <span><Check /> Import your Anki decks</span>
-              <span><Check /> Free for the first 500 students</span>
+              <span><Check /> Choose your study break</span>
             </div>
-            <blockquote className={styles.testimonial}><p>“Genuinely the best app blocker I’ve tried.”</p><cite>— early beta tester</cite></blockquote>
+
           </div>
 
           <div className={styles.demo} id="medical-demo">
@@ -115,52 +117,52 @@ export default function MedicalLandingPage() {
               </div>
               <span className={styles.cardButton} aria-hidden="true">{revealed ? "Next card" : "Tap to reveal"} <Arrow /></span>
             </article>
-            <p className={styles.demoCaption}>Try one. Feel the difference. <span>↗</span></p>
+            <p className={styles.demoCaption}>Interactive example — tap to reveal. <span>↗</span></p>
           </div>
         </section>
 
         <section className={styles.outcomeStrip} aria-label="Benefits">
-          <div><strong>Recall it on exam day.</strong><span>Short reviews keep important concepts in reach.</span></div>
-          <div><strong>Find gaps sooner.</strong><span>Know what needs another pass before the stakes rise.</span></div>
-          <div><strong>Keep your momentum.</strong><span>Study in the small windows a full timetable leaves behind.</span></div>
+          <div><strong>Your course.</strong><span>Choose cards that match this week’s learning.</span></div>
+          <div><strong>Your apps.</strong><span>Pair revision with an app you open daily.</span></div>
+          <div><strong>Your pace.</strong><span>Start with a short break and adjust the card count.</span></div>
         </section>
 
         <section className={styles.mechanism}>
           <div className={styles.mechanismIntro}>
             <p className={styles.eyebrow}>REVISION THAT FITS THE DAY YOU ACTUALLY HAVE</p>
-            <h2>Every scroll can move you forward.</h2>
+            <h2>A simple course-to-phone routine.</h2>
           </div>
           <ol>
-            <li><span>1</span><div><strong>Open the app you were going to open anyway.</strong><p>FlashLock appears on the apps and websites you choose.</p></div></li>
-            <li><span>2</span><div><strong>Retrieve a few medical concepts.</strong><p>Use the included foundations or bring your own Anki decks.</p></div></li>
-            <li><span>3</span><div><strong>Carry on—with one less thing to forget.</strong><p>Finish the short session and return to your app.</p></div></li>
+            <li><span>1</span><div><strong>Add this week’s material.</strong><p>Create a small deck or <a href={sitePath("/guides/import-anki-decks/")}>import an Anki deck</a>. Check answers against your course resources.</p></div></li>
+            <li><span>2</span><div><strong>Pair it with one daily app.</strong><p><a href={sitePath("/guides/study-before-scrolling/")}>Set up a short study break</a> before Instagram or another app you choose.</p></div></li>
+            <li><span>3</span><div><strong>Recall, reveal, then carry on.</strong><p>Review the answer, finish the break and return to your app.</p></div></li>
           </ol>
         </section>
 
         <section className={styles.library}>
           <div className={styles.libraryCopy}>
-            <p className={styles.eyebrow}>START WITH THE FOUNDATIONS</p>
-            <h2>First year.<br/>Already organised.</h2>
-            <p>Ten first-year decks — part of the full 136-deck library — cover the language and core sciences that recur across early medical curricula.</p>
-            <div className={styles.libraryTotal}><strong>1,000</strong><span>medical flashcards<br/>ready to preview</span></div>
+            <p className={styles.eyebrow}>CHOOSE MATERIAL THAT FITS YOUR COURSE</p>
+            <h2>Your topics.<br/>Your cards.</h2>
+            <p>Use these as ideas for organising your own decks. Match the content to your lectures and learning objectives; these are example topics, not an included-library inventory.</p>
+            <p><a href={sitePath("/guides/import-anki-decks/")}>Bring an existing deck →</a></p>
           </div>
           <div className={styles.deckGrid}>
-            {medicineDecks.map((deck, index) => <article key={deck}><span>{["🫀","🫁","⚗️","🔬","🧬","🛡️","🦠","💊","🩺","📋"][index]}</span><strong>{deck}</strong><small>100 cards</small></article>)}
+            {medicineDecks.map((deck, index) => <article key={deck}><span>{["🫀","🫁","⚗️","🔬","🧬","🛡️","🦠","💊","🩺","📋"][index]}</span><strong>{deck}</strong><small>Example study topic</small></article>)}
           </div>
         </section>
 
         <section className={styles.control}>
-          <div className={styles.phone}><img src={sitePath("/app/study.png")} width="720" height="1280" alt="FlashLock study screen" loading="lazy" /></div>
+          <div className={styles.phone}><img src={sitePath("/app/study.png")} width="720" height="1280" alt="Example FlashLock flashcard review screen" loading="lazy" /><p>Study-screen example; appearance varies by version.</p></div>
           <div>
             <p className={styles.eyebrow}>YOUR MATERIAL. YOUR PACE.</p>
-            <h2>Build recall around your course.</h2>
+            <h2>Fit reviews around your course.</h2>
             <ul>
               <li><Check /><span>Import your existing Anki decks.</span></li>
               <li><Check /><span>Choose session length, timing and study decks.</span></li>
-              <li><Check /><span>Edit cards and track reviews, accuracy and mastery.</span></li>
+              <li><Check /><span>Check and edit imported questions and answers.</span></li>
               <li><Check /><span>Keep cards and progress on your phone.</span></li>
             </ul>
-            <a className={styles.secondaryCta} href="#medical-download">Get the beta — free <Arrow /></a>
+            <a className={styles.secondaryCta} href="#medical-download">Get the Android beta <Arrow /></a>
           </div>
         </section>
 
@@ -181,19 +183,19 @@ export default function MedicalLandingPage() {
 
         <section className={styles.download} id="medical-download">
           <p className={styles.eyebrow}>FLASHLOCK FOR ANDROID</p>
-          <h2>Make every spare scroll<br/><span>part of becoming a doctor.</span></h2>
+          <h2>Your study deck.<br/><span>Your daily apps.</span></h2>
           <a href={androidBetaUrl("medical")}>Get the beta on Google Play <Arrow /></a>
-          <p>Free for the first 500 students · Your cards stay on your device</p>
+          <p>Android beta · Choose your own study material</p>
           <div className={styles.waitlist}>
-            <p><strong>iPhone version coming soon.</strong><span>iOS build is in progress — grab a spot in line.</span></p>
-            <a className={styles.waitlistCta} href={sitePath("/#ios-signup")}>Join the iPhone waitlist <Arrow /></a>
+            <p><strong>On iPhone?</strong><span>There is no iPhone release or open signup form yet.</span></p>
+            <a className={styles.waitlistCta} href={sitePath("/guides/")}>Read the Android guides <Arrow /></a>
           </div>
         </section>
       </main>
 
       <footer className={styles.footer}>
         <a className={styles.brand} href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="30" height="30" alt="" />FlashLock</a>
-        <p>Make scrolling productive.</p>
+        <p><a href={sitePath("/guides/")}>Setup and import guides</a></p>
         <span>Educational recall only—not clinical guidance.</span>
         <a href={sitePath("/privacy/")}>Privacy</a>
       </footer>
