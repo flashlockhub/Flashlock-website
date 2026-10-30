@@ -1,5 +1,5 @@
-@font-face{font-family:Manrope;src:url('../public/fonts/manrope-regular.ttf') format('truetype');font-weight:400 500;font-display:swap}
-@font-face{font-family:Manrope;src:url('../public/fonts/manrope-bold.ttf') format('truetype');font-weight:600 800;font-display:swap}
+@font-face{font-family:Manrope;src:url('../public/fonts/manrope-regular.woff2') format('woff2');font-weight:400 500;font-display:swap}
+@font-face{font-family:Manrope;src:url('../public/fonts/manrope-bold.woff2') format('woff2');font-weight:600 800;font-display:swap}
 :root{--paper:#f6f4fc;--paper-2:#f0edf8;--ink:#202039;--muted:#514d68;--yellow:#ffd978;--deep:#0d1b4b;--line:#d5cfdf;--white:#fbfaff;--primary:#4f46e5;--primary-pressed:#4238c8;--primary-container:#e5e2ff;--secondary-container:#dce5ff;--dark-surface:#12214b;--dark-container:#1a2a58;--dark-text:#f0effa;--dark-muted:#c9c6df}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:95px}

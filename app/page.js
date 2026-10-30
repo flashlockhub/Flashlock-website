@@ -2,10 +2,17 @@
 
 import { androidBetaUrl } from "../lib/download";
 import { useEffect, useRef, useState } from "react";
-import { sitePath } from "../lib/site";
+import { absoluteSiteUrl, sitePath } from "../lib/site";
 import styles from "./home.module.css";
 import FlipCard from "./FlipCard";
 
+const siteIdentity = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": absoluteSiteUrl("/#organization"), name: "FlashLock", url: absoluteSiteUrl(), logo: absoluteSiteUrl("/app/flashlock-icon.svg"), sameAs: ["https://github.com/flashlockhub/Flashlock-website", "https://play.google.com/store/apps/details?id=com.flashlock.app"] },
+    { "@type": "WebSite", "@id": absoluteSiteUrl("/#website"), name: "FlashLock", url: absoluteSiteUrl(), publisher: { "@id": absoluteSiteUrl("/#organization") } }
+  ]
+};
 const SIGNUPS_ENABLED = false; // Enable after public HTTPS signup verification.
 function IosWaitlist() {
   const [state, setState] = useState('idle');
@@ -36,7 +43,7 @@ function IosWaitlist() {
       {state === 'saved' ? <p role="status">You’re on the list. We’ll email you when FlashLock is ready for iOS.</p> : <>
         <label htmlFor="ios-email">Email address</label>
         <div className={styles.emailRow}>
-          <input id="ios-email" type="email" name="email" required maxLength={254} autoComplete="email" inputMode="email" placeholder="you@example.com" aria-describedby="ios-signup-note" disabled={state === 'saving'} />
+          <input id="ios-email" type="email" name="email" required maxLength={254} autoComplete="email" inputMode="email" placeholder="you@example.com" aria-describedby="ios-signup-note" disabled={!SIGNUPS_ENABLED || state === 'saving'} />
           <button type="submit" disabled={!SIGNUPS_ENABLED || state === 'saving'}>{state === 'saving' ? 'Saving…' : 'Notify me'}</button>
         </div>
         <div className={styles.signupTrap} aria-hidden="true"><label>Leave this empty<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
@@ -88,9 +95,9 @@ function InstagramReel() {
  </div>;
 }
 const demoCards = [
-  { category: 'FlashLock', question: 'Get better grades.', answer: 'Without giving up your favourite apps.', repeatQuestion: false, promo: true },
-  { category: 'Spanish', question: 'Learn Spanish.', answer: 'While scrolling Instagram.', repeatQuestion: false, promo: true },
-  { category: 'Everyday life', question: 'Memorise Mum’s birthday.', answer: 'So you never forget it again.', repeatQuestion: false, promo: true },
+  { category: 'FlashLock', question: 'Practise for exams.', answer: 'Before your favourite apps.', repeatQuestion: false, promo: true },
+  { category: 'Spanish', question: 'Learn Spanish.', answer: 'Before opening Instagram.', repeatQuestion: false, promo: true },
+  { category: 'Everyday life', question: 'Memorise Mum’s birthday.', answer: 'Give important dates a regular review.', repeatQuestion: false, promo: true },
 ];
 const ratings = [
   { label: 'Again', direction: 'left', color: '#c62828' },
@@ -275,6 +282,7 @@ const faqs = [
 ];
 export default function Home() {
   return <div className={styles.page}>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(siteIdentity).replace(/</g, "\\u003c")}}/>
     <a className={styles.skip} href="#main">Skip to content</a>
     <header className={styles.header}>
       <a className={styles.brand} href={sitePath("/")} aria-label="FlashLock home"><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock<span className={styles.beta}>BETA</span></a>
@@ -284,11 +292,11 @@ export default function Home() {
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.heroIntro}>
           <h1 id="hero-title">A learning break before you scroll</h1>
-          <a className={styles.cta} href={androidBetaUrl("home")}><PlayIcon/><span>Get Flashlock for Android</span><Arrow/></a>
+          <a className={styles.cta} href={androidBetaUrl("home")}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
         </div>
         <PhoneDemo/>
         <div className={styles.heroText}>
-          <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
+          <p className={styles.subheader}>Use your own flashcards before opening everyday apps. Do a few cards, then carry on.</p>
           <a className={styles.cta} href={androidBetaUrl("home")}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
           <IosWaitlist/>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
@@ -304,6 +312,6 @@ export default function Home() {
       </section>
       <section className={styles.questions} id="questions" aria-labelledby="questions-title"><h2 id="questions-title">Quick questions.</h2><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}{question === "Can I use my own cards?" && <> <a href={sitePath("/guides/import-anki-decks/")}>Read the Anki import guide.</a></>}</p></details>)}</div></section>
     </main>
-    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock</a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><a href={sitePath("/compare/flashlock-vs-freedom/")}>FlashLock vs Freedom</a><a href={sitePath("/compare/")}>Compare</a><a href={sitePath("/guides/")}>Guides</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
+    <footer className={styles.footer}><a className={styles.footerBrand} href={sitePath("/")}><img src={sitePath("/app/flashlock-card.svg")} width="35" height="35" alt=""/>FlashLock</a><p>A few cards. Then carry on.</p><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a><a href={sitePath("/compare/flashlock-vs-one-sec/")}>FlashLock vs one sec</a><a href={sitePath("/compare/flashlock-vs-freedom/")}>FlashLock vs Freedom</a><a href={sitePath("/compare/")}>Compare</a><a href={sitePath("/guides/")}>Guides</a><a href={sitePath("/medical/")}>For medical students</a><span>© {new Date().getFullYear()} FlashLock</span></footer>
   </div>;
 }

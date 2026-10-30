@@ -124,8 +124,8 @@
 @media(prefers-reduced-motion:reduce){:global(html){scroll-behavior:auto!important}}
 
 /* Android study-screen replica, based on the app layout and native palette. */
-@font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
-@font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-bold.ttf') format('truetype');font-style:normal;font-weight:500 700;font-display:swap}
+@font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:FlashLockRoboto;src:url('../public/fonts/roboto-bold.woff2') format('woff2');font-style:normal;font-weight:500 700;font-display:swap}
 .studyPhone{background:#073f43;color:#fff}
 .studyPhone .phoneHome{background:#8590b6}
 .phoneStatus{font-family:FlashLockRoboto,Arial,sans-serif}

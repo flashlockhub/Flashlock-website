@@ -46,3 +46,5 @@
 .waitlistCta svg{width:17px}
 @media(max-width:900px){.faq{gap:45px;padding:88px 0 30px}.testimonial{max-width:none}}
 @media(max-width:600px){.faq{width:calc(100% - 40px);grid-template-columns:1fr;gap:35px}.waitlist{padding:22px}.waitlistCta{width:100%}}
+
+.medPage nav[aria-label="Breadcrumb"]{width:min(1300px,calc(100% - 48px));margin:18px auto 0}
