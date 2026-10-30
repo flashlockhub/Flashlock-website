@@ -1,6 +1,6 @@
 "use client";
 
-import { ANDROID_BETA_URL } from "../lib/download";
+import { androidBetaUrl } from "../lib/download";
 import { useEffect, useRef, useState } from "react";
 import { sitePath } from "../lib/site";
 import styles from "./home.module.css";
@@ -260,7 +260,7 @@ function PhoneDemo() {
     {scene === 'complete' && <div className={styles.completionCta}>
       <h2><span>Stay consistent</span><span>without even trying</span></h2>
       <p>Make your next scroll count</p>
-      <a ref={actionRef} className={styles.openApp} href={ANDROID_BETA_URL}>Download for android</a>
+      <a ref={actionRef} className={styles.openApp} href={androidBetaUrl("home-demo")}>Download for android</a>
       <button className={styles.restartDemo} onClick={() => changeScene('app')}>Try the cards again</button>
     </div>}
     <p id="demo-home-note" className={styles.previewNote}>Interactive preview · not connected to Instagram</p>
@@ -284,12 +284,12 @@ export default function Home() {
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={styles.heroIntro}>
           <h1 id="hero-title">A learning break before you scroll</h1>
-          <a className={styles.cta} href={ANDROID_BETA_URL}><PlayIcon/><span>Get Flashlock for Android</span><Arrow/></a>
+          <a className={styles.cta} href={androidBetaUrl("home")}><PlayIcon/><span>Get Flashlock for Android</span><Arrow/></a>
         </div>
         <PhoneDemo/>
         <div className={styles.heroText}>
           <p className={styles.subheader}>FlashLock adds short flashcard breaks to the apps you love. Do a few cards, then get back to your app.</p>
-          <a className={styles.cta} href={ANDROID_BETA_URL}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
+          <a className={styles.cta} href={androidBetaUrl("home")}><PlayIcon/><span>Get FlashLock for Android</span><Arrow/></a>
           <IosWaitlist/>
           <p className={styles.ctaNote}>Android beta <span>·</span> Google Play</p>
         </div>

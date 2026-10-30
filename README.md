@@ -106,3 +106,46 @@ No idle animation runs. Model-loading/WebGL failures preserve a CSS flip, and
 reduced-motion mode reveals immediately. WebGL resources are disposed on unmount.
 The native demo's ratings, speech and Open app action remain in `app/page.js`.
 Model provenance and editable CAD source are under `public/models/`.
+
+## Google Play referral labels
+
+Android download links use `androidBetaUrl(campaign)` in `lib/download.js`.
+The package and Google Play destination stay the same. Links carry fixed
+`utm_source=flashlock.app`, `utm_medium=website` and `utm_campaign` values, both as
+query parameters and as a URL-encoded Play `referrer`. There are no visitor IDs,
+inbound-query forwarding, cookies, storage, analytics scripts or click beacons.
+The website itself does not count clicks. The attribution values are sent to
+Google when a visitor follows the link, not in a background request.
+
+| Origin | Campaign |
+| --- | --- |
+| Homepage download links | `home` |
+| Completed homepage demo | `home-demo` |
+| Medical page | `medical` |
+| Each comparison | Its route slug, e.g. `flashlock-vs-ankiblock` |
+| Each guide | `guide-` plus its route slug, e.g. `guide-import-anki-decks` |
+
+These label the page hosting the clicked CTA, not necessarily the visitor's first
+landing page or their original search source. Keep them stable when editing copy.
+New download CTAs should use the shared helper and an explicit static campaign.
+All links on one guide/comparison share a campaign; `home-demo` distinguishes the
+demo-completion CTA without collecting its card answers or other interaction data.
+
+In Play Console's store listing reports, filter **Ads and referrals** and
+**UTM source = flashlock.app**, then break down by UTM campaign. Keep store-listing
+visitors and **Install clicks** separate from successful user acquisitions:
+the 2026 listing reports measure intent, not completed installs. Confirm acquired
+users in Grow users/Statistics/exports, retaining only the attribution dimensions
+actually available in that report. Small campaigns may be grouped under Other;
+missing data is not a measured zero. These labels alone do not establish
+search-to-install attribution or an end-to-end conversion rate.
+
+Official references checked 30 October 2026:
+
+- [Play Console report definitions and UTM dimensions](https://support.google.com/googleplay/android-developer/answer/9859173?hl=en)
+- [Google Play store-listing URL format](https://developer.android.com/distribute/marketing-tools/linking-to-google-play)
+- [URL-encoded Play referrer example](https://developer.android.com/games/playgames/user-acquisition?hl=en)
+
+No Android-app analytics or Install Referrer SDK changes are included here, and
+delivery of these labels into a live Play Console report still needs a real
+referral and the relevant account access. Do not fabricate visits to populate it.
