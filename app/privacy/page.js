@@ -5,7 +5,7 @@ import Breadcrumbs from "../Breadcrumbs";
 export const metadata = pageMetadata(
   "/privacy/",
   "FlashLock Privacy: Study Data, Permissions and Website",
-  "A short guide to FlashLock study data, community sharing and website referrals, with links to the full app privacy policy and deletion process."
+  "A short guide to FlashLock study data, community sharing, student offers and website referrals, with links to the full app privacy policy and deletion process."
 );
 
 export default function Privacy() {
@@ -14,7 +14,7 @@ export default function Privacy() {
     <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Privacy", path: "/privacy/" }]} />
     <p className="eyebrow">YOUR LEARNING IS PERSONAL</p>
     <h1>Privacy in FlashLock</h1>
-    <p>Summary reviewed 30 October 2026.</p>
+    <p>Summary reviewed 5 November 2026.</p>
     <p className="policyNote">This is a short overview, not a replacement for the <a href="https://flashlockhub.github.io/flashlock-privacy/">full app privacy policy linked from Google Play</a>.</p>
     <h2>Study data and community features</h2>
     <p>Study data is stored locally. Choosing to submit a community deck, send feedback or use an account also sends information to FlashLock’s services. Local storage does not mean every feature stays offline.</p>
@@ -27,6 +27,8 @@ export default function Privacy() {
     <p>Google Play links include a fixed page or demo label. When you follow one, that label goes to Google to help measure referrals. The labels contain no personal identifiers, and this site does not send a separate tracking request.</p>
     <h2>iOS email signups</h2>
     <p>Signups are currently closed: the homepage does not accept an email submission. If you previously joined and want your details removed, contact <a href="mailto:hello@flashlock.app">hello@flashlock.app</a>.</p>
+    <h2>Student offers</h2>
+    <p>If you claim a student offer by email, we use your message, email address, claim time, device choice and any student-status information you provide to verify eligibility, confirm the claim and deliver the offer. We do not sell this information. We keep the claim record until the offer has been fulfilled and for a reasonable period afterwards to resolve account or eligibility questions. Contact <a href="mailto:hello@flashlock.app">hello@flashlock.app</a> to request access, correction or deletion.</p>
     <p><a href={sitePath("/")}>← Back to FlashLock</a></p>
   </main>;
 }
