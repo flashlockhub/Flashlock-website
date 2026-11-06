@@ -42,9 +42,10 @@ export default function Guide() {
       <li><strong>Check background restrictions:</strong> use your phone’s app/battery settings and FlashLock’s setup help. No single manufacturer menu fits every Android phone.</li>
     </ul>
     <h2>Keep the routine useful</h2>
+    <p>Need help making room for study? Start with the <a href={sitePath("/guides/too-addicted-to-phone-to-study/")}>phone distraction plan</a>, a focused <a href={sitePath("/guides/instagram-addiction-study/")}>Instagram routine</a> or <a href={sitePath("/guides/how-to-stick-with-study-habits/")}>study habits that survive busy days</a>.</p>
     <p>Start with one app and a small, relevant deck. For medicine, <a href={sitePath("/medical/")}>build the cards around your course</a>. To compare a study break with a full blocker, see <a href={sitePath("/compare/flashlock-vs-appblock/")}>FlashLock vs AppBlock</a>.</p>
     <p><a href={sitePath("/privacy/")}>Read how FlashLock handles permissions and study data</a>.</p>
-    <p>By the FlashLock team · Reviewed 30 October 2026. Setup labels can vary by installed version.</p>
+    <p>By the FlashLock team · Reviewed 6 November 2026. Setup labels can vary by installed version.</p>
     <GuideCTA campaign="guide-study-before-scrolling" />
   </article></GuideLayout>;
 }
