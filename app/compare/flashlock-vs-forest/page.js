@@ -27,4 +27,4 @@ export default function Comparison() { return <div className={styles.page}>
 <p className={styles.note}>By the FlashLock team. Official sources checked 30 October 2026. Not hands-on app tests.</p>
 <p className={styles.sources}><a href={sitePath("/guides/study-before-scrolling/")}>Set up flashcards before apps</a></p>
 <p className={styles.sources}>Sources: <a href="https://play.google.com/store/apps/details?id=com.flashlock.app">FlashLock Google Play listing</a> · <a href="https://www.forestapp.cc/">Forest official site</a> · <a href="https://play.google.com/store/apps/details?id=cc.forestapp">Forest Android listing</a></p>
-</article></main><footer className={styles.footer}><a href={sitePath("/compare/")}>All comparisons</a><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a></footer></div>; }
+</article></main><footer className={styles.footer}><a href={sitePath("/compare/")}>All comparisons</a><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/terms/")}>Terms</a><a href={sitePath("/cookies/")}>Cookies</a></footer></div>; }
