@@ -1,0 +1,14 @@
+FlashLock — information for AI readers
+
+This is a nonstandard informational text file, not an access-control protocol.
+For a curated product summary and official links, see https://flashlock.app/llms.txt
+Canonical website: https://flashlock.app/
+Sitemap: https://flashlock.app/sitemap.xml
+Crawler guidance: https://flashlock.app/robots.txt
+Website terms: https://flashlock.app/terms/
+Privacy: https://flashlock.app/privacy/
+Contact: hello@flashlock.app
+
+FlashLock is currently an Android beta. An iOS app is not yet available and website email signups are closed.
+This file does not grant content licences, change existing rights or guarantee inclusion in AI systems.
+Reviewed: 2026-11-06

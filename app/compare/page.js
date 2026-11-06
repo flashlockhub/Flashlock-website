@@ -26,6 +26,6 @@ export default function Compare() {
       <p>Already choosing flashcards? Start with <a href={sitePath("/guides/study-before-scrolling/")}>study before scrolling</a> or the <a href={sitePath("/guides/import-anki-decks/")}>Anki import guide</a>.</p>
       <p className={styles.note}>Written by the FlashLock team, not an independent review. Official sources checked 30 October 2026; each comparison links its evidence and platform limits. These are workflow comparisons, not hands-on app tests or ranked recommendations.</p>
     </main>
-    <footer className={styles.footer}><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a></footer>
+    <footer className={styles.footer}><a href={sitePath("/")}>← Back to FlashLock</a><a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/terms/")}>Terms</a><a href={sitePath("/cookies/")}>Cookies</a></footer>
   </div>;
 }

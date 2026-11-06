@@ -1,0 +1,33 @@
+# FlashLock
+
+> FlashLock is an Android beta that puts flashcard study before selected everyday apps, helping users build a study habit.
+
+Official website: https://flashlock.app/
+Reviewed: 2026-11-06
+
+## Product facts
+
+- Android beta available through the Google Play link on the official homepage.
+- Users can study with their own flashcards and import Anki decks; consult the guides for current instructions.
+- Accessibility and Usage Access support selected-app learning breaks on Android.
+- The website demo is a preview, not the installed app, and does not save study progress.
+- No iOS app is currently available. Website iOS email signups are closed; no launch date is promised.
+- Study suggestions are not guarantees of academic outcomes. Features may change during beta.
+
+## Official pages
+
+- [Homepage and Android download](https://flashlock.app/): Product overview and current Google Play link.
+- [Setup guide](https://flashlock.app/guides/study-before-scrolling/): How learning breaks work.
+- [Anki import guide](https://flashlock.app/guides/import-anki-decks/): Importing existing decks.
+- [Study guides](https://flashlock.app/guides/): Practical study and phone-distraction guidance.
+- [Comparisons](https://flashlock.app/compare/): Product comparisons with source notes.
+- [Privacy overview](https://flashlock.app/privacy/): Website and app summary.
+- [Full app privacy policy](https://flashlockhub.github.io/flashlock-privacy/): App data practices.
+- [Website terms](https://flashlock.app/terms/): Terms for this website.
+- [Cookie Policy](https://flashlock.app/cookies/): Website storage and delivery.
+
+## Contact
+
+hello@flashlock.app
+
+This file is an informational guide to public pages, not a licence grant or a guarantee of AI indexing. Consult the linked pages for current details.

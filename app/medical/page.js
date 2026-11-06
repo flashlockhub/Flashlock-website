@@ -197,7 +197,7 @@ export default function MedicalLandingPage() {
         <a className={styles.brand} href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="30" height="30" alt="" />FlashLock</a>
         <p><a href={sitePath("/guides/")}>Setup and import guides</a></p>
         <span>Educational recall only—not clinical guidance.</span>
-        <a href={sitePath("/privacy/")}>Privacy</a>
+        <a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/terms/")}>Terms</a><a href={sitePath("/cookies/")}>Cookies</a>
       </footer>
     </div>
   );

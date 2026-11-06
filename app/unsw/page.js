@@ -113,7 +113,7 @@ export default function UnswOfferPage() {
       <footer className={styles.footer}>
         <a className={styles.brand} href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="30" height="30" alt="" />FlashLock</a>
         <p>Make scrolling productive.</p>
-        <a href={sitePath("/privacy/")}>Privacy</a>
+        <a href={sitePath("/privacy/")}>Privacy</a><a href={sitePath("/terms/")}>Terms</a><a href={sitePath("/cookies/")}>Cookies</a>
       </footer>
     </div>
   );
