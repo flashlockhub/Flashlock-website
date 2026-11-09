@@ -31,3 +31,7 @@ fs.cpSync("dist", "docs", { recursive: true });
 fs.writeFileSync("docs/.nojekyll", "");
 if (target.domain) fs.writeFileSync("docs/CNAME", `${target.domain}\n`);
 console.log(`GitHub Pages files ready in docs/ for ${target.siteUrl} (main branch, /docs source).`);
+
+// Regenerate review hashes with every export; never reuse another build's CSP.
+const policy = spawnSync(process.execPath, ["scripts/export-edge-policy.mjs"], { stdio: "inherit" });
+if (policy.status !== 0) process.exit(policy.status || 1);
