@@ -1,0 +1,12 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+let code=fs.readFileSync('security/csp/worker.mjs','utf8').replace("import manifest from './manifest.json';",'const manifest = '+fs.readFileSync('security/csp/manifest.json','utf8')+';');
+const {default:worker}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+let body=fs.readFileSync('docs/index.html'),calls=0;globalThis.fetch=async(req,opts)=>{calls++;assert.equal(new URL(req.url).hostname,'flashlock.app');assert.equal(opts.redirect,'manual');assert.equal(req.headers.get('cookie'),null);return new Response(body,{headers:{'content-type':'text/html'}})};
+let r=await worker.fetch(new Request('https://flashlock.app/',{headers:{Cookie:'private=1'}}),{MODE:'enforce'});assert.equal(r.status,200);assert.equal(await r.text(),body.toString());assert.match(r.headers.get('Content-Security-Policy'),/sha256-/);
+body=Buffer.concat([body,Buffer.from('<script>globalThis.pwned=true</script>')]);r=await worker.fetch(new Request('https://flashlock.app/'),{MODE:'enforce'});assert.equal(r.status,503);assert.match(r.headers.get('Content-Security-Policy'),/script-src 'none'/);assert.ok(!(await r.text()).includes('pwned'));
+body=Buffer.alloc(131073,65);r=await worker.fetch(new Request('https://flashlock.app/'),{});assert.equal(r.status,503);
+const before=calls;r=await worker.fetch(new Request('https://evil.example/'),{});assert.equal(r.status,404);assert.equal(calls,before);r=await worker.fetch(new Request('https://flashlock.app/',{method:'POST'}),{});assert.equal(r.status,405);assert.equal(calls,before);
+console.log('PASS: trusted atomic response, injected inline rejected, bound enforced, no proxy, no cookie forwarding, POST rejected');
+
+body=Buffer.from(fs.readFileSync('docs/privacy/index.html','utf8').replaceAll('hello@flashlock.app','hello@flashlock.app').replaceAll('>hello@flashlock.app</a>','><span class="__cf_email__" data-cfemail="375f525b5b5877515b56445f5b58545c19564747">[email&#160;protected]</span></a>'));r=await worker.fetch(new Request('https://flashlock.app/privacy/'),{MODE:'enforce'});assert.equal(r.status,200);assert.equal(await r.text(),body.toString());
+body=Buffer.concat([body,Buffer.from('<script>globalThis.injected=true</script>')]);r=await worker.fetch(new Request('https://flashlock.app/privacy/'),{MODE:'enforce'});assert.equal(r.status,503);console.log('PASS: email-obfuscated document authenticates; unexpected inline injection still rejected');

@@ -27,6 +27,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run security:audit
+      - name: Verify asset-only Workers build (no deployment)
+        run: npx wrangler deploy --dry-run
+        env:
+          WRANGLER_SEND_METRICS: 'false'
+      - name: Verify trusted-document CSP adapter
+        run: node security/csp/test.mjs
       - name: Verify project-path static export
         run: npm run build:pages
       - name: Verify custom-domain static export

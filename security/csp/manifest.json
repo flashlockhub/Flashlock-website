@@ -1,0 +1,85 @@
+{
+  "release": "76988225e2fe73b3c037e733e5e5705666d27013",
+  "documents": {
+    "e069d506de66af10b862304e590b0a788a9763d90d3a1f41c08b54c2743eb3a8": {
+      "file": "docs/_not-found/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-OB1g9VrkfgqfK7dUjVekhrB7oF8yTN/mEbWSYSxfcnI='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "43e545dd97a9b115c30bcfe623c469f1d146f83cae381be62635b1583026fcc9": {
+      "file": "docs/compare/flashlock-vs-ankiblock/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-UtTtrclFLieZ6MBanq6NKuBhYkMYNfG2Gt/IyaBZWJ0=' 'sha256-6UfocIDt7wk9Oz556l1ECOMSWpiNDcae8pJEtCknBAc=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-3UuPNIhSr8x7QpsntlqnmrA2Id7zsuOV7Hd7NFj3ZYg='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "82e1a36ad0fc508cbfe5445a5601009f303a43c3ed653185e65f72c12e90a915": {
+      "file": "docs/compare/flashlock-vs-appblock/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-vs+fjleG5O2ZH81F6XvzOoc8w7FXMBASo88bRlXpXCQ=' 'sha256-5pvs8p5lDEAsrHsB+aIfVnG84yePOY9JHP3y/j2gECU=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-vZgr/eWJqoIEWF0inycq3GxcYzG5FVPbNN1uoE60md0='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "fc41082e5979875f8735407efc8030811c6b4341db2a32fac4c185656caec569": {
+      "file": "docs/compare/flashlock-vs-forest/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-OV2ePoE/LPRzy1y2GV31+d0XKlPkB0SVHZNXf/O9cjA=' 'sha256-GlAbUHO5drUsR3uq0l0ZCuEehW+KzQC53GYZrf85ZJU=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-KXyI3tsbPiwggFsu4pSP9ymDkZcfhp+3ESAOy6fYvQc='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "59ac9b7441d16442615bd2ec9efb0112f5294df0241dfabdbf3ab551a69e064d": {
+      "file": "docs/compare/flashlock-vs-freedom/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-8X9ksHBlyT/2UDVmDEiyRSpNeqDg5tqGS/77IX76r5g=' 'sha256-q29c6UsuzZK7+NF05aB+f0FvSrPjgBvdPota0oMvAjo=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-I2GmDvw8OwC8/gK97iAoPLumyFm8MlLPhrT5biM4Lho='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "a2e83e870df3d29a947e7a5ec9b16bac5a058479d0ab0caf1d5732a973b07349": {
+      "file": "docs/compare/flashlock-vs-one-sec/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-yn9nUZjOLep268L93mSa7yA5ObuNt2yflabM6vn86ag=' 'sha256-9s7/wJLx3AiZ0OKtQgdv0GBOIB9QZx4H8PrSpWKsWIY=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-gHrKvo4CBGGIMpBP1tyeh842+ToGG5TUP/7S63k882o='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "a389bd1897f0ac0622c89f901e093a81809db3dba7229b658c2e9fe44bb07d95": {
+      "file": "docs/compare/flashlock-vs-stay-focused/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-YUOB9XBHqmPC/mlHItthwvvW6JAecenKHCGMXPTG++I=' 'sha256-c7IbnG7jxxbNjWB5/+Tfv+HIA2MSEaXFiRKsobwoWpY=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-+KaxMP1Q5qb4yTJCQ9JF8ypFXqKBOKB+16nrdIAhpG0='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "0b04f195af94fd4c1d24fff8654890e88a323d45f26ad3b84973cf5ecabcb392": {
+      "file": "docs/compare/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-l30IrKq28rdxTJtlumQLVOaXpvWaf+vi7OZiM0uBWH4=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-EKsuI3rs7TX70U/tmpkkIDAzeWBM3Yqkvp7noiUc1y0='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "89b414faea2ace8db8a0fe088aa46e0a297a450c97fb345da77b1aaaefff417a": {
+      "file": "docs/cookies/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-Jg+91RlJ8CzcGhiWOLPOgKL8QN4OdDUtJDy46Ca5t3Q=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-NN8JvBnsOuCAYD27qGOjkOfTyp8+w2rmj5aIn7zvgSo='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "9a26e723007871c2d952fc9355abcb96b8b3f1198d1be7c7b2daf7d11cf1123e": {
+      "file": "docs/guides/how-to-stick-with-study-habits/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-QfAiga4XVZ+PyZkQvaL02gil+bD0MJWif2dglbOUjMk=' 'sha256-XurpV38bxG+46CkU2DpbzN5bFA/DqR3Vyrb4d0+wkvY=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-GmTi9zeKp5tPds7ca9zzyQF5suo8jSyKVoUPShsan2Y='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "810850ee7b448b77006b8b7aa815413b2cd70c63dadb14469d83b0565e89b20b": {
+      "file": "docs/guides/import-anki-decks/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-y50aNUN79zd+SBNWezzqQnZf0qbD67r2e1Bvuh1RvgQ=' 'sha256-GvG4HiPq7Mt8d7aFyalJeExFSkro1rmM/rqNHj3hZBk=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-rB8d4kbkqFp3Iu65D9YXliq3n1HHIEkPWwx1rGagiZ8='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "514284f060dc99e915a917a231bf3c30fd85602511849aa63604e8b19f51029c": {
+      "file": "docs/guides/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-o9A46devZ/uMwP429efd1taLIY+68vJfdOT6j+/e3Nk=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-erID9VkFKE1M+736G0HOchK5vBwrruyNr66rMElFLbE='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "96c76349a29937d72717ae2dae48a7d39f83f5315d75f9b11c0f54499679afb6": {
+      "file": "docs/guides/instagram-addiction-study/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-phcBXt8Nk1cu98Heo8lltfcCJuttsNfLwY3+OaAn0Z4=' 'sha256-L8E/uqHC5DqlCVJJQxbW6pwyrCE2ihL6V+0VnmOigrs=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-CIAcPrcPG3MVzZF7JqO1WOU3ileyc2txitRRc+l0fws='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "99d6014715c636a3ffd5ec3fb37cefed6bc6c25cbfe4f883aebfe6fc0975bf39": {
+      "file": "docs/guides/study-before-scrolling/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-iBlN6oAFa7c9plscsDKRRJyLR0UeRw+usjZM2Iupcgw=' 'sha256-2ikXgu2MRXwWKvBZHHWdlo/ZyPluZkCORLgyJ0tQUaw=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-O1HlXjwYTZu8lej3pIY/S9LLDokNP7g5ndB49Q/Nck4='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "5144b4f29e4551b5ddfab683342cc296c96a3e9b63360ce560f3c19d338436e5": {
+      "file": "docs/guides/too-addicted-to-phone-to-study/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-FFiDjvadWkuS8TW17lPNTYMMeOLmP7XyrY599yQY35M=' 'sha256-T2Ke40+aihpLdIBEWw4fhM+XNl4nQOAGoajDLnaQhrc=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-PPF9MAeevfLeoHahSEewrRFIIc6qqRv+fIYwQUlUlkc='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "145e3c3f9155757c2cc4359cc692dac222aef88baff74adbfb670ed84193d934": {
+      "file": "docs/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-/JdK56AA9jUp3M4s5BtI7Fa7ia7THY6BFAO2OVwXgHY=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-L3LRh6Jo935P3YJbuKjrxJxWell+UcTTa9amxEZNsOo='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "26da55b429977c55c2908ef533e347e5e620ae8ab6b57ea7ce585cb2aa24bb47": {
+      "file": "docs/medical/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-mbxAr1XNTNinppnqyVWR/Krn0ONFVwjBLusE/+sCSpw=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-V+YIZcZ9Oe5YOKahQjTdsdJhTRmUyVvWLAVk787kbjE='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "fd24764a14a1aebc89822fb47ce16c9cf681f8a9997f58d52ed4a77c8e2e0d03": {
+      "file": "docs/privacy/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-c8UUd8K2F+2dP6xTZufMEUTY1/b/kHTzqcwfQQv4vq0=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-CB9j7jqJzDd26Evm5ffn0MqQ+UQuVKtxm6TwX1YQ4FQ='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "da641d5ad3b8c3c43b9abdea72887d5e418f9a183d24a28d7d94ef6a4d310caf": {
+      "file": "docs/terms/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-7stmTn1VFIs/RhNGBoWhXGvmPGaTOO+D808YnjtQhgY=' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-ZPIrXCXM0hzRtxfhUpoOo1zoFfFu07UqJK1gKrlAtAY='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    },
+    "2336cbe4e216f4984510971c07808f726a60009a03555c9bb736e570699e2844": {
+      "file": "docs/unsw/index.html",
+      "policy": "default-src 'none'; script-src 'self' 'sha256-31zoACf5e67Gox3amlR/yauR9t1y8qAGOHxtCsfRGwc=' 'sha256-OBTN3RiyCV4Bq7dFqZ5a2pAXjnCcCYeTJMO2I/LYKeo=' 'sha256-svS4TkstF/3I3bpYpGiIbQ46l3s3BfWfMli1ugKRCU0='; script-src-attr 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    }
+  }
+}
