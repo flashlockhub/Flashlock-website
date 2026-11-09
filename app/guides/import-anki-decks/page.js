@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
 import GuideCTA from "../GuideCTA";
@@ -10,7 +11,7 @@ export const metadata = pageMetadata(
 );
 
 export default function Guide() {
-  return <GuideLayout breadcrumbs={[{ name: "Home", path: "/" }, { name: "Guides", path: "/guides/" }, { name: "Import Anki decks", path: "/guides/import-anki-decks/" }]}><article>
+  return <GuideLayout breadcrumbs={[{ name: "Home", path: "/" }, { name: "Guides", path: "/guides/" }, { name: "Import Anki decks", path: "/guides/import-anki-decks/" }]}><article><ArticleSchema path="/guides/import-anki-decks/" headline="Import Anki decks into FlashLock" description={metadata.description} />
     <h1>Import Anki decks into FlashLock</h1>
     <p><strong>File import makes a separate FlashLock copy.</strong> It does not sync edits, review history or scheduling back to Anki. Use it to bring familiar cards into <a href={sitePath("/guides/study-before-scrolling/")}>short study breaks before Android apps</a>.</p>
     <GuideCTA campaign="guide-import-anki-decks" />

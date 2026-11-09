@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { androidBetaUrl } from "../../../lib/download";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
@@ -9,7 +10,7 @@ export const metadata = pageMetadata("/compare/flashlock-vs-appblock/", title, d
 export default function Comparison() { return <div className={styles.page}>
 <a className="skipLink" href="#main">Skip to comparison</a>
 <header className={styles.header}><a className="brand" href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="32" height="32" alt=""/>FlashLock</a><nav aria-label="Main navigation"><a href={sitePath("/#demo")}>Try the demo</a><a href={sitePath("/privacy/")}>Privacy</a></nav></header>
-<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs AppBlock", path: "/compare/flashlock-vs-appblock/" }]} /><article>
+<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs AppBlock", path: "/compare/flashlock-vs-appblock/" }]} /><article><ArticleSchema path="/compare/flashlock-vs-appblock/" headline="FlashLock vs AppBlock" description={metadata.description} />
 <header className={styles.intro}><h1>FlashLock vs AppBlock</h1><p className={styles.lead}>Put revision before an app, or keep distractions blocked on a schedule.</p><a className="button dark" href={androidBetaUrl("flashlock-vs-appblock")}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><p className={styles.beta}>Android beta · Google Play eligibility applies</p></header>
 <section aria-labelledby="glance"><h2 id="glance">At a glance</h2><div className={styles.tableScroll}><table><caption>Two ways to pause your apps</caption><thead><tr><th scope="col">Feature</th><th scope="col">FlashLock</th><th scope="col">AppBlock</th></tr></thead><tbody>
 <tr><th scope="row">Main approach</th><td>Review cards</td><td>Block apps</td></tr>

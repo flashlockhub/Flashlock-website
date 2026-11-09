@@ -494,3 +494,12 @@
 @media(min-width:681px){.feedHeader{gap:11px}.feedHeader>img{width:88px}.feedStories{gap:5px}.feedStories>div{width:51px}.storyRing{width:49px;height:49px}.feedStories{height:80px}.feedCreative{max-height:none}.feedCreative>strong{font-size:21px}}
 
 @media(max-width:680px){.feedCreative{min-height:140px}.feedHeader{height:40px}.feedStories{height:80px}.storyRing{width:53px;height:53px}.feedCaption{padding-bottom:5px}.feedCaption small{display:none}}
+
+/* Standalone controls meet the 44px product target; inline prose links are exempt. */
+.header .brand,.header nav a,.footer>a{min-width:44px;min-height:44px;display:inline-flex;align-items:center}
+.soundButton{width:44px;height:44px}
+.cardSpeaker{width:45px;height:45px}
+.nativeHome,.nativeHelp{min-height:44px}
+.demoFooter button{min-width:44px}
+
+@media(min-width:681px) and (max-width:860px){.cardStage .nativeRatings{left:6px;right:6px}}

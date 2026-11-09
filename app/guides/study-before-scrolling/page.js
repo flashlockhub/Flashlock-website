@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
 import GuideCTA from "../GuideCTA";
@@ -11,7 +12,7 @@ export const metadata = pageMetadata(
 );
 
 export default function Guide() {
-  return <GuideLayout breadcrumbs={[{ name: "Home", path: "/" }, { name: "Guides", path: "/guides/" }, { name: "Study before scrolling", path: "/guides/study-before-scrolling/" }]}><article>
+  return <GuideLayout breadcrumbs={[{ name: "Home", path: "/" }, { name: "Guides", path: "/guides/" }, { name: "Study before scrolling", path: "/guides/study-before-scrolling/" }]}><article><ArticleSchema path="/guides/study-before-scrolling/" headline="Study before scrolling on Android" description={metadata.description} />
     <h1>Study before scrolling on Android</h1>
     <p>Pair a deck you are studying with an app you open every day. FlashLock puts a few cards before that app, so your usual phone routine becomes a prompt to review.</p>
     <GuideCTA campaign="guide-study-before-scrolling" />

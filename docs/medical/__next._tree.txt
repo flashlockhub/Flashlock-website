@@ -1,7 +1,7 @@
 :HL["/_next/static/chunks/3krgz4l29btt-.css","style"]
 :HC["/",""]
-:HL["/_next/static/chunks/1lcc9lc_54hxm.css","style"]
+:HL["/_next/static/chunks/23diyub9kgein.css","style"]
 :HL["/_next/static/chunks/2z-6hyidwo7g6.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"medical","h":96,"c":"$Q2"}]]
-0:{"b":"0d_8DFHVEuGw3up_NPQ4F","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"j6QMLUUIB5OY6IZwgnPQ1","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
