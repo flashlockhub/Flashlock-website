@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { androidBetaUrl } from "../../../lib/download";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
@@ -9,7 +10,7 @@ export const metadata = pageMetadata("/compare/flashlock-vs-one-sec/", title, de
 export default function Comparison() { return <div className={styles.page}>
 <a className="skipLink" href="#main">Skip to comparison</a>
 <header className={styles.header}><a className="brand" href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="32" height="32" alt=""/>FlashLock</a><nav aria-label="Main navigation"><a href={sitePath("/#demo")}>Try the demo</a><a href={sitePath("/privacy/")}>Privacy</a></nav></header>
-<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs one sec", path: "/compare/flashlock-vs-one-sec/" }]} /><article>
+<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs one sec", path: "/compare/flashlock-vs-one-sec/" }]} /><article><ArticleSchema path="/compare/flashlock-vs-one-sec/" headline="FlashLock vs one sec" description={metadata.description} />
 <header className={styles.intro}><h1>FlashLock vs one sec</h1><p className={styles.lead}>Use the pause to practise your material—or reconsider opening the app.</p><a className="button dark" href={androidBetaUrl("flashlock-vs-one-sec")}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><p className={styles.beta}>Android beta · Google Play eligibility applies</p></header>
 <section aria-labelledby="glance"><h2 id="glance">What fills your pause?</h2><div className={styles.tableScroll}><table><caption>Two ways to interrupt a scroll</caption><thead><tr><th scope="col">Feature</th><th scope="col">FlashLock</th><th scope="col">one sec</th></tr></thead><tbody>
 <tr><th scope="row">Main approach</th><td>Flashcard review</td><td>Pause and reflect</td></tr>

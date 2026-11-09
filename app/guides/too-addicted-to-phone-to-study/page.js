@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
 import GuideCTA from "../GuideCTA";
@@ -5,7 +6,7 @@ import GuideLayout from "../GuideLayout";
 
 export const metadata = pageMetadata("/guides/too-addicted-to-phone-to-study/", "Too Addicted to Your Phone to Study? A Practical Plan | FlashLock", "Struggling to study without checking your phone? Try a small study block, reduce phone cues and choose support that fits your situation.");
 
-export default function Guide() { return <GuideLayout breadcrumbs={[{name:"Home",path:"/"},{name:"Guides",path:"/guides/"},{name:"Too addicted to your phone to study? Start here",path:"/guides/too-addicted-to-phone-to-study/"}]}><article>
+export default function Guide() { return <GuideLayout breadcrumbs={[{name:"Home",path:"/"},{name:"Guides",path:"/guides/"},{name:"Too addicted to your phone to study? Start here",path:"/guides/too-addicted-to-phone-to-study/"}]}><article><ArticleSchema path="/guides/too-addicted-to-phone-to-study/" headline="Too addicted to your phone to study? Start here" description={metadata.description} />
 <h1>Too addicted to your phone to study? Start here</h1>
 <p>If you feel too addicted to your phone to study, start by changing the next ten minutes, not your whole life. Put the phone out of reach, choose one specific task and work until a short timer ends. You do not need to feel motivated before beginning.</p>
 <p>People often call this “phone addiction”, but that phrase alone is not a diagnosis. This guide is about managing distracting habits while studying, not treating a medical condition.</p>

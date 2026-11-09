@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { androidBetaUrl } from "../../../lib/download";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
@@ -9,7 +10,7 @@ export const metadata = pageMetadata("/compare/flashlock-vs-forest/", title, des
 export default function Comparison() { return <div className={styles.page}>
 <a className="skipLink" href="#main">Skip to comparison</a>
 <header className={styles.header}><a className="brand" href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="32" height="32" alt=""/>FlashLock</a><nav aria-label="Main navigation"><a href={sitePath("/#demo")}>Try the demo</a><a href={sitePath("/privacy/")}>Privacy</a></nav></header>
-<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs Forest", path: "/compare/flashlock-vs-forest/" }]} /><article>
+<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs Forest", path: "/compare/flashlock-vs-forest/" }]} /><article><ArticleSchema path="/compare/flashlock-vs-forest/" headline="FlashLock vs Forest" description={metadata.description} />
 <header className={styles.intro}><h1>FlashLock vs Forest</h1><p className={styles.lead}>Compare flashcard breaks with tree-growing focus sessions.</p><a className="button dark" href={androidBetaUrl("flashlock-vs-forest")}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><p className={styles.beta}>Android beta · Google Play eligibility applies</p></header>
 <section aria-labelledby="glance"><h2 id="glance">At a glance</h2><div className={styles.tableScroll}><table><caption>Two approaches at a glance</caption><thead><tr><th scope="col">Feature</th><th scope="col">FlashLock</th><th scope="col">Forest</th></tr></thead><tbody>
 <tr><th scope="row">Focus loop</th><td>Review, then open apps</td><td>Grow trees while focusing</td></tr>

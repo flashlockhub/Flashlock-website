@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { androidBetaUrl } from "../../../lib/download";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
@@ -9,7 +10,7 @@ export const metadata = pageMetadata("/compare/flashlock-vs-ankiblock/", title, 
 export default function Comparison() { return <div className={styles.page}>
 <a className="skipLink" href="#main">Skip to comparison</a>
 <header className={styles.header}><a className="brand" href={sitePath("/")}><img src={sitePath("/app/flashlock-icon.svg")} width="32" height="32" alt=""/>FlashLock</a><nav aria-label="Main navigation"><a href={sitePath("/#demo")}>Try the demo</a><a href={sitePath("/privacy/")}>Privacy</a></nav></header>
-<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs AnkiBlock", path: "/compare/flashlock-vs-ankiblock/" }]} /><article>
+<main id="main"><Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Compare", path: "/compare/" }, { name: "FlashLock vs AnkiBlock", path: "/compare/flashlock-vs-ankiblock/" }]} /><article><ArticleSchema path="/compare/flashlock-vs-ankiblock/" headline="FlashLock vs AnkiBlock" description={metadata.description} />
 <header className={styles.intro}><h1>FlashLock vs AnkiBlock</h1><p className={styles.lead}>Both put studying before apps. The key difference is where you review.</p><a className="button dark" href={androidBetaUrl("flashlock-vs-ankiblock")}>Download FlashLock for Android <span aria-hidden="true">↗</span></a><p className={styles.beta}>Android beta · Google Play eligibility applies</p></header>
 <section aria-labelledby="glance"><h2 id="glance">At a glance</h2><div className={styles.tableScroll}><table><caption>Two approaches at a glance</caption><thead><tr><th scope="col">Feature</th><th scope="col">FlashLock</th><th scope="col">AnkiBlock</th></tr></thead><tbody>
 <tr><th scope="row">Shared idea</th><td>Study before app access</td><td>Study before app access</td></tr>

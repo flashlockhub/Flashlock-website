@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
 import GuideCTA from "../GuideCTA";
@@ -5,7 +6,7 @@ import GuideLayout from "../GuideLayout";
 
 export const metadata = pageMetadata("/guides/how-to-stick-with-study-habits/", "How to Stick With Study Habits: A Repeatable Routine | FlashLock", "Build a study routine with a reliable cue, a small minimum, useful practice and a plan for missed days. Practical examples without perfect streaks.");
 
-export default function Guide() { return <GuideLayout breadcrumbs={[{name:"Home",path:"/"},{name:"Guides",path:"/guides/"},{name:"How to stick with study habits when motivation fades",path:"/guides/how-to-stick-with-study-habits/"}]}><article>
+export default function Guide() { return <GuideLayout breadcrumbs={[{name:"Home",path:"/"},{name:"Guides",path:"/guides/"},{name:"How to stick with study habits when motivation fades",path:"/guides/how-to-stick-with-study-habits/"}]}><article><ArticleSchema path="/guides/how-to-stick-with-study-habits/" headline="How to stick with study habits when motivation fades" description={metadata.description} />
 <h1>How to stick with study habits when motivation fades</h1>
 <p>To stick with study habits, decide when you will start, make the first action small and prepare a fallback for busy days. A routine that survives an ordinary difficult day is more useful than a perfect timetable you can only follow once.</p>
 <h2>Attach study to something that already happens</h2>

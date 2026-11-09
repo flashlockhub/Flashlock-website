@@ -48,3 +48,6 @@
 @media(max-width:600px){.faq{width:calc(100% - 40px);grid-template-columns:1fr;gap:35px}.waitlist{padding:22px}.waitlistCta{width:100%}}
 
 .medPage nav[aria-label="Breadcrumb"]{width:min(1300px,calc(100% - 48px));margin:18px auto 0}
+
+/* Caption sits on the dark phone frame, not the light page. */
+.phone p{color:#f0effa;font-size:12px;line-height:1.6;margin:12px 4px 4px}

@@ -1,3 +1,4 @@
+import ArticleSchema from "../../ArticleSchema";
 import { sitePath } from "../../../lib/site";
 import { pageMetadata } from "../../../lib/seo";
 import GuideCTA from "../GuideCTA";
@@ -5,7 +6,7 @@ import GuideLayout from "../GuideLayout";
 
 export const metadata = pageMetadata("/guides/instagram-addiction-study/", "Instagram Distraction While Studying: A Practical Plan | FlashLock", "Reduce Instagram interruptions during study with notification changes, planned check-ins and a realistic return-to-work routine.");
 
-export default function Guide() { return <GuideLayout breadcrumbs={[{name:"Home",path:"/"},{name:"Guides",path:"/guides/"},{name:"Instagram keeps interrupting your study? Make a specific plan",path:"/guides/instagram-addiction-study/"}]}><article>
+export default function Guide() { return <GuideLayout breadcrumbs={[{name:"Home",path:"/"},{name:"Guides",path:"/guides/"},{name:"Instagram keeps interrupting your study? Make a specific plan",path:"/guides/instagram-addiction-study/"}]}><article><ArticleSchema path="/guides/instagram-addiction-study/" headline="Instagram keeps interrupting your study? Make a specific plan" description={metadata.description} />
 <h1>Instagram keeps interrupting your study? Make a specific plan</h1>
 <p>If Instagram keeps taking over your study time, separate necessary messages from open-ended browsing. Silence non-essential notifications, choose when you will check messages and put the app out of reach during one clearly defined study task.</p>
 <p>Searching for “Instagram addiction study” can mean looking for research or for help studying without the app. This is a practical study guide, not a research review or a diagnosis of addiction.</p>
