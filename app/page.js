@@ -117,6 +117,8 @@ function AppIcon({ name }) {
 }
 function PhoneDemo() {
   const [scene, setScene] = useState('app');
+  const [interactive, setInteractive] = useState(false);
+  useEffect(() => { setInteractive(true); }, []);
   const [revealed, setRevealed] = useState(false);
   const [reviewed, setReviewed] = useState(0);
   const [cardIndex, setCardIndex] = useState(0);
@@ -253,7 +255,7 @@ function PhoneDemo() {
           </div> : <div className={styles.homeScreen} data-testid="demo-home">
             <div className={styles.androidDate}>Monday, 19 Oct <span>☀ 22°</span></div>
             <div className={styles.androidClock} aria-label="9:41"><span>09</span><span>41</span></div>
-            <button ref={actionRef} className={styles.instagramLaunch} aria-label="Open Instagram demo" aria-describedby="demo-home-note" onClick={() => changeScene('study')}>
+            <button ref={actionRef} className={styles.instagramLaunch} aria-label="Open Instagram demo" aria-describedby="demo-home-note" disabled={!interactive} onClick={() => changeScene('study')}>
               <img src={sitePath('/demo/instagram-app.svg')} alt="" width="58" height="58"/>
               <span>Instagram</span>
               <span className={styles.tryArrow} aria-hidden="true"><span>Try it out</span><svg viewBox="0 0 110 65" fill="none"><path d="M101 9C68 3 67 47 10 47M23 35 9 47l16 9"/></svg></span>
@@ -272,7 +274,15 @@ function PhoneDemo() {
     </div>}
     <p id="demo-home-note" className={styles.previewNote}>Interactive preview · not connected to Instagram</p>
     <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
-    <noscript><p>Open an app → do a few cards → back to your app. Turn on JavaScript to try the demo.</p></noscript>
+    {!interactive && <div className={styles.demoFallback} data-testid="demo-fallback">
+      <p>The animated preview needs JavaScript. If it hasn’t started, <a href={sitePath('/?demo-retry=1#demo')}>reload the preview</a>, or try these sample cards now.</p>
+      <p>Open an app → review three cards → back to your app.</p>
+      {demoCards.map((sample, index) => <details key={sample.category}>
+        <summary>Card {index + 1}: {sample.question} <span>Reveal answer</span></summary>
+        <p>{sample.answer}</p>
+      </details>)}
+      <p>After three cards, your learning break is complete.</p>
+    </div>}
   </div>;
 }
 const faqs = [
