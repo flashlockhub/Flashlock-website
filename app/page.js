@@ -275,7 +275,7 @@ function PhoneDemo() {
     <p id="demo-home-note" className={styles.previewNote}>Interactive preview · not connected to Instagram</p>
     <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
     {!interactive && <div className={styles.demoFallback} data-testid="demo-fallback">
-      <p>The animated preview needs JavaScript. If it hasn’t started, <a href={sitePath('/#demo')}>reload the preview</a>, or try these sample cards now.</p>
+      <p>The animated preview needs JavaScript. If it hasn’t started, <a href={sitePath('/?demo-retry=1#demo')}>reload the preview</a>, or try these sample cards now.</p>
       <p>Open an app → review three cards → back to your app.</p>
       {demoCards.map((sample, index) => <details key={sample.category}>
         <summary>Card {index + 1}: {sample.question} <span>Reveal answer</span></summary>
