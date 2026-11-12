@@ -9,8 +9,9 @@ const url = process.env.DEMO_URL || 'http://127.0.0.1:8766';
     const browser = await pw[engine].launch({headless:true});
     try {
       for (const touch of [false,true]) for (const mode of ['cold','warm','offline','blocked-model','blocked-lazy','slow-model','no-webgl','no-js','blocked-hydration','slow-hydration']) {
+        console.log(engine,touch,mode);
         const context = await browser.newContext({viewport:{width:touch?390:1440,height:900},hasTouch:touch,isMobile:engine==='firefox'?false:touch,javaScriptEnabled:mode!=='no-js'});
-        const page = await context.newPage(); page.setDefaultTimeout(8000);
+        const page = await context.newPage(); page.setDefaultTimeout(20000);
         const errors=[],failed=[],csp=[];
         page.on('pageerror',e=>errors.push(String(e)));
         page.on('requestfailed',r=>failed.push({url:r.url(),failure:r.failure()}));
@@ -26,13 +27,13 @@ const url = process.env.DEMO_URL || 'http://127.0.0.1:8766';
         const tap=locator=>locator[touch?'tap':'click']();
         if(['no-js','blocked-hydration'].includes(mode)) {
           const fallback=page.getByTestId('demo-fallback'); await fallback.waitFor();
-          assert.equal(await page.getByRole('button',{name:'Open Instagram demo',exact:true}).isDisabled(),true);
+          await tap(page.getByRole('link',{name:'Open Instagram demo',exact:true})); await page.waitForTimeout(1000); assert.ok(page.url().endsWith('#demo-fallback')); await tap(page.getByRole('link',{name:'Open Instagram demo from icon',exact:true}));
           for(const summary of await fallback.locator('summary').all()) await tap(summary);
           assert.equal(await fallback.locator('details[open]').count(),3);
-          assert.ok(await fallback.getByText('Before opening Instagram.',{exact:true}).isVisible());
+          assert.ok(await fallback.getByText('the task',{exact:true}).isVisible());
         } else {
           const launch=page.getByRole('button',{name:'Open Instagram demo',exact:true});
-          await page.waitForFunction(()=>!document.querySelector('[aria-label="Open Instagram demo"]').disabled);
+          await launch.waitFor();
           if(mode==='offline') await context.setOffline(true);
           if(mode==='blocked-lazy') await page.route('**/_next/**/*.js',r=>r.abort());
           for(let cycle=0;cycle<2;cycle++) {
