@@ -95,15 +95,16 @@ function InstagramReel() {
  </div>;
 }
 const demoCards = [
-  { category: 'FlashLock', question: 'Practise for exams.', answer: 'Before your favourite apps.', repeatQuestion: false, promo: true },
-  { category: 'Spanish', question: 'Learn Spanish.', answer: 'Before opening Instagram.', repeatQuestion: false, promo: true },
-  { category: 'Everyday life', question: 'Memorise Mum’s birthday.', answer: 'Give important dates a regular review.', repeatQuestion: false, promo: true },
+  { category: 'German', question: 'die Aufgabe', answer: 'the task', questionLang: 'de-DE' },
+  { category: 'German', question: 'der Schlüssel', answer: 'the key', questionLang: 'de-DE' },
+  { category: 'German', question: 'das Fenster', answer: 'the window', questionLang: 'de-DE' },
 ];
+// This short preview advances every rating; it does not run a review scheduler.
 const ratings = [
-  { label: 'Again', direction: 'left', color: '#c62828' },
-  { label: 'Hard', direction: 'down', color: '#9a3b00' },
-  { label: 'Correct', direction: 'right', color: '#1b5e20' },
-  { label: 'Easy', direction: 'up', color: '#1565c0' },
+  { label: 'Again', meaning: 'Forgot it', color: '#c62828' },
+  { label: 'Hard', meaning: 'With effort', color: '#9a3b00' },
+  { label: 'Correct', meaning: 'Got it', color: '#1b5e20' },
+  { label: 'Easy', meaning: 'Knew it instantly', color: '#1565c0' },
 ];
 function AppIcon({ name }) {
   const paths = {
@@ -184,17 +185,11 @@ function PhoneDemo() {
     }
     window.speechSynthesis.cancel();
     const speech = new SpeechSynthesisUtterance(revealed ? card.answer : card.question);
-    speech.lang = revealed ? card.answerLang || 'en-AU' : 'en-AU';
+    speech.lang = revealed ? 'en-AU' : card.questionLang;
     speech.rate = .85;
     speech.onerror = event => { if (!['canceled', 'interrupted'].includes(event.error)) setNote('Read aloud is not available in this browser.'); };
     setNote('');
     window.speechSynthesis.speak(speech);
-  }
-  function skipCard() {
-    if (!revealed) return;
-    window.speechSynthesis?.cancel();
-    setNote(''); shouldFocus.current = true;
-    advanceCard();
   }
   function advanceCard() {
     if (!revealed) return;
@@ -205,8 +200,9 @@ function PhoneDemo() {
     } else setCardIndex(value => value + 1);
   }
   return <div className={styles.demo} id="demo" role="group" aria-label="Interactive example of a FlashLock study break" data-demo-stage={scene === 'study' ? revealed ? 'answer' : unlocked ? 'ready' : 'card' : scene}>
-    <h2 className={styles.demoHeading}>{scene === 'app' ? 'Try a learning break.' : scene === 'complete' ? 'Now enjoy your scroll.' : 'Tap the card. Try FlashLock.'}</h2>
-    <p className={styles.demoInstructions}>{scene === 'app' ? 'Tap Instagram to try it' : scene === 'complete' ? 'Your learning break is complete.' : revealed ? 'Swipe right to move on →' : 'Tap to turn over'}</p>
+    <h2 className={styles.demoHeading}>{scene === 'app' ? 'Try a learning break.' : scene === 'complete' ? 'Now enjoy your scroll.' : 'What does this German word mean?'}</h2>
+    <p className={styles.demoInstructions}>{scene === 'app' ? 'Tap to start · recall 3 German words' : scene === 'complete' ? 'Your learning break is complete.' : revealed ? 'Choose a rating to continue.' : 'Think of the English meaning, then tap to reveal.'}</p>
+    {scene === 'app' && <a className={styles.demoStart} href="#demo-fallback" role={interactive ? 'button' : undefined} onClick={event => { if (interactive) { event.preventDefault(); changeScene('study'); } }} onKeyDown={event => { if (interactive && event.key === ' ') { event.preventDefault(); changeScene('study'); } }}>Open Instagram demo</a>}
     <ol className={styles.demoSteps} aria-label="Demo progress">{labels.map((label, index) => <li key={label} aria-current={step === index ? 'step' : undefined} className={step === index ? styles.activeStep : ''}><span>{index < step ? <Check/> : index + 1}</span>{label}</li>)}</ol>
     <div className={styles.phoneStage}>
       <div className={styles.orbit} aria-hidden="true"/>
@@ -226,28 +222,28 @@ function PhoneDemo() {
             <div className={styles.nativeProgress} role="progressbar" aria-label="Demo cards completed" aria-valuemin={0} aria-valuemax={demoCards.length} aria-valuenow={cardIndex}><span style={{ width: `${cardIndex / demoCards.length * 100}%` }}/></div>
             <div className={styles.nativeCount} aria-live="polite">Card {Math.min(cardIndex + 1, demoCards.length)} of {demoCards.length}</div>
             <div className={styles.cardStage}>
-            <FlipCard key={cardIndex} onSwipe={skipCard} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} onClick={rate}>{rating.label}</button><span className={styles[`arrow${rating.direction}`]} aria-hidden="true"><Arrow/></span></div>)}</div>} revealed={revealed} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
+            <FlipCard key={cardIndex} onSwipe={rate} overlay={<div className={styles.nativeRatings} data-card-tool="true" aria-label="Rate your answer" data-disabled={!revealed}>{ratings.map((rating, index) => <div key={rating.label}><button ref={index === 0 ? ratingRef : null} style={{ backgroundColor: revealed ? rating.color : undefined }} disabled={!revealed} aria-label={rating.label} aria-describedby="demo-rating-note" onClick={rate}>{rating.label}<small>{rating.meaning}</small></button></div>)}</div>} revealed={revealed} className={`${styles.nativeCard} ${revealed ? styles.nativeAnswer : ''} ${card.promo ? styles.promoCard : ''}`} data-testid="study-card"
               front={<>
                 <button ref={cardRef} className={styles.cardTap} aria-label="Reveal answer" aria-describedby="card-tap-hint" onClick={reveal}/>
                 <div className={styles.nativeCardTop}><span>Question</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to question" onClick={speak}><AppIcon name="sound"/></button>
-                  <p className={styles.nativeQuestion}>{card.question}</p>
-                  <div className={styles.cardPrompts}><span id="card-tap-hint" className={styles.tapPrompt}>Tap to turn over ↻</span></div>
+                  <p className={styles.nativeQuestion} lang="de">{card.question}</p>
+                  <div className={styles.cardPrompts}><span id="card-tap-hint" className={styles.tapPrompt}>Tap to reveal answer</span></div>
                 </div>
               </>}
               back={<>
                 <div className={styles.nativeCardTop}><span>Answer</span><div className={styles.cardTools} data-card-tool="true" aria-hidden="true"><span className={styles.editTool}><AppIcon name="edit"/></span><span><AppIcon name="delete"/></span></div></div>
                 <div className={styles.nativeContent}>
                   <button className={styles.cardSpeaker} data-card-tool="true" aria-label="Listen to answer" onClick={speak}><AppIcon name="sound"/></button>
-                  <>{card.repeatQuestion !== false && <><p className={styles.nativeQuestion}>{card.question}</p><span className={styles.answerDivider}/></>}</><h2 className={styles.nativeAnswerText}>{card.answer}</h2>
+                  <>{card.repeatQuestion !== false && <><p className={styles.nativeQuestion} lang="de">{card.question}</p><span className={styles.answerDivider}/></>}</><h2 className={styles.nativeAnswerText}>{card.answer}</h2>
                 </div>
               </>}
             />
 
             </div>
             <div className={styles.helpSlot}>
-              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Tap to turn the card over. After revealing the answer, swipe right to move on or choose a rating. Keyboard: Enter or Space reveals the front; arrow keys move on after revealing. After three cards, you can download FlashLock.')}>Click here for help</button>
+              <button className={styles.nativeHelp} aria-expanded={Boolean(note)} aria-controls="demo-help" onClick={() => setNote(note ? '' : 'Think of the English meaning. Tap to reveal, then choose a rating. Every rating advances one card in this preview; no reviews are scheduled.' + (cardIndex > 0 ? ' Optional: after revealing, swipe in any direction to move on. Arrow keys do the same when focus is on the card, not a rating button.' : ''))}>How to try it</button>
               {note && <p id="demo-help" className={styles.helpPanel} role="status">{note}</p>}
             </div>
 
@@ -255,11 +251,11 @@ function PhoneDemo() {
           </div> : <div className={styles.homeScreen} data-testid="demo-home">
             <div className={styles.androidDate}>Monday, 19 Oct <span>☀ 22°</span></div>
             <div className={styles.androidClock} aria-label="9:41"><span>09</span><span>41</span></div>
-            <button ref={actionRef} className={styles.instagramLaunch} aria-label="Open Instagram demo" aria-describedby="demo-home-note" disabled={!interactive} onClick={() => changeScene('study')}>
+            <a ref={actionRef} href="#demo-fallback" role={interactive ? 'button' : undefined} className={styles.instagramLaunch} aria-label="Open Instagram demo from icon" aria-describedby="demo-home-note" onClick={event => { if (interactive) { event.preventDefault(); changeScene('study'); } }} onKeyDown={event => { if (interactive && event.key === ' ') { event.preventDefault(); changeScene('study'); } }}>
               <img src={sitePath('/demo/instagram-app.svg')} alt="" width="58" height="58"/>
               <span>Instagram</span>
               <span className={styles.tryArrow} aria-hidden="true"><span>Try it out</span><svg viewBox="0 0 110 65" fill="none"><path d="M101 9C68 3 67 47 10 47M23 35 9 47l16 9"/></svg></span>
-            </button>
+            </a>
             <span className={styles.launcherPageDot} aria-hidden="true"/>
           </div>}
           <span className={styles.phoneHome} aria-hidden="true"/>
@@ -272,16 +268,17 @@ function PhoneDemo() {
       <a ref={actionRef} className={styles.openApp} href={androidBetaUrl("home-demo")}>Download for android</a>
       <button className={styles.restartDemo} onClick={() => changeScene('app')}>Try the cards again</button>
     </div>}
+    {scene === 'study' && <p id="demo-rating-note" className={styles.ratingNote}>Again: forgot it · Hard: with effort · Correct: got it · Easy: knew it instantly.<br/>In this demo, every rating moves to the next card. No reviews are scheduled.</p>}
     <p id="demo-home-note" className={styles.previewNote}>Interactive preview · not connected to Instagram</p>
-    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
-    {!interactive && <div className={styles.demoFallback} data-testid="demo-fallback">
-      <p>The animated preview needs JavaScript. If it hasn’t started, <a href={sitePath('/?demo-retry=1#demo')}>reload the preview</a>, or try these sample cards now.</p>
+    <div className={styles.demoFooter}><span>Interactive preview · {demoCards.length} cards</span><button disabled={!interactive} onClick={() => changeScene('app')} aria-label="Start the demo over">↻ <span>Start over</span></button></div>
+    {!interactive && <div id="demo-fallback" className={styles.demoFallback} data-testid="demo-fallback" tabIndex={-1}>
+      <p>Try these cards now: think of the English meaning, then tap “Reveal answer”. The animated preview is still loading or JavaScript is unavailable. You can <a href={sitePath('/?demo-retry=1#demo')}>reload the preview</a>.</p>
       <p>Open an app → review three cards → back to your app.</p>
-      {demoCards.map((sample, index) => <details key={sample.category}>
-        <summary>Card {index + 1}: {sample.question} <span>Reveal answer</span></summary>
+      {demoCards.map((sample, index) => <details key={sample.question}>
+        <summary>Card {index + 1}: <span lang="de">{sample.question}</span> <span>Reveal answer</span></summary>
         <p>{sample.answer}</p>
       </details>)}
-      <p>After three cards, your learning break is complete.</p>
+      <p>After three cards, your learning break is complete. This sample has no ratings or scheduling.</p>
     </div>}
   </div>;
 }
