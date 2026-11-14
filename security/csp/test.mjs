@@ -1,8 +1,10 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';
 let code=fs.readFileSync('security/csp/worker.mjs','utf8').replace("import manifest from './manifest.json';",'const manifest = '+fs.readFileSync('security/csp/manifest.json','utf8')+';');
-const {default:worker}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const {default:worker,canonicalPath}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
 let body=fs.readFileSync('docs/index.html'),calls=0;globalThis.fetch=async(req,opts)=>{calls++;assert.equal(new URL(req.url).hostname,'flashlock.app');assert.equal(opts.redirect,'manual');assert.equal(req.headers.get('cookie'),null);return new Response(body,{headers:{'content-type':'text/html'}})};
 let r=await worker.fetch(new Request('https://flashlock.app/',{headers:{Cookie:'private=1'}}),{MODE:'enforce'});assert.equal(r.status,200);assert.equal(await r.text(),body.toString());assert.match(r.headers.get('Content-Security-Policy'),/sha256-/);
+assert.equal(canonicalPath('/privacy'),'/privacy/');assert.equal(canonicalPath('/guides/import-anki-decks'),'/guides/import-anki-decks/');assert.equal(canonicalPath('/edge-audit-nonexistent'),null);assert.equal(canonicalPath('/_not-found'),null);
+const beforeRedirect=calls;r=await worker.fetch(new Request('https://flashlock.app/privacy?source=old-link'),{MODE:'enforce'});assert.equal(r.status,308);assert.equal(r.headers.get('Location'),'https://flashlock.app/privacy/?source=old-link');assert.equal(calls,beforeRedirect);
 body=Buffer.concat([body,Buffer.from('<script>globalThis.pwned=true</script>')]);r=await worker.fetch(new Request('https://flashlock.app/'),{MODE:'enforce'});assert.equal(r.status,503);assert.match(r.headers.get('Content-Security-Policy'),/script-src 'none'/);assert.ok(!(await r.text()).includes('pwned'));
 body=Buffer.alloc(131073,65);r=await worker.fetch(new Request('https://flashlock.app/'),{});assert.equal(r.status,503);
 const before=calls;r=await worker.fetch(new Request('https://evil.example/'),{});assert.equal(r.status,404);assert.equal(calls,before);r=await worker.fetch(new Request('https://flashlock.app/',{method:'POST'}),{});assert.equal(r.status,405);assert.equal(calls,before);
