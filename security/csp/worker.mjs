@@ -1,6 +1,11 @@
 import manifest from './manifest.json';
 export const DENY="default-src 'none'; script-src 'none'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'";
 const LIMIT=131072;
+const DIRECTORY_ROUTES=new Set(Object.values(manifest.documents)
+ .map(entry=>entry.file)
+ .filter(file=>file.startsWith('docs/')&&file.endsWith('/index.html')&&file!=='docs/_not-found/index.html')
+ .map(file=>'/'+file.slice('docs/'.length,-'/index.html'.length)));
+export function canonicalPath(pathname){return !pathname.endsWith('/')&&DIRECTORY_ROUTES.has(pathname)?pathname+'/':null}
 export async function bounded(response){const r=response.body.getReader();let n=0,parts=[];try{for(;;){const {done,value}=await r.read();if(done)break;n+=value.length;if(n>LIMIT)throw Error('oversize');parts.push(value)}}finally{await r.cancel()}const out=new Uint8Array(n);let p=0;for(const v of parts){out.set(v,p);p+=v.length}return out}
 export async function digest(bytes){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('')}
 function fail(){return new Response('Publication verification failed. Please retry later.',{status:503,headers:{'Content-Type':'text/plain; charset=utf-8','Cache-Control':'no-store','Content-Security-Policy':DENY,'X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','X-FlashLock-CSP-Release':manifest.release}})}
@@ -15,6 +20,7 @@ export default {async fetch(request,env){
  if(!['flashlock.app','www.flashlock.app'].includes(u.hostname))return new Response('Not found',{status:404,headers:{'Content-Security-Policy':DENY}});
  if(u.protocol!=='https:'||u.hostname==='www.flashlock.app'){u.protocol='https:';u.hostname='flashlock.app';return Response.redirect(u.href,301)}
  if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD','Content-Security-Policy':DENY}});
+ const canonical=canonicalPath(u.pathname);if(canonical){u.pathname=canonical;return Response.redirect(u.href,308)}
  // Same-zone routed Worker fetch goes to existing origin. Never follow redirects.
  // Drop request cookies, validators, range and other untrusted forwarding headers.
  const upstream=await fetch(new Request(u.href,{method:'GET',headers:{Accept:'*/*','User-Agent':'FlashLock-CSP-Adapter/1'}}),{redirect:'manual',cf:{cacheTtl:0}});
