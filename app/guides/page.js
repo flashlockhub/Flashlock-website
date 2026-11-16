@@ -13,6 +13,7 @@ export default function Guides() {
     <h1>FlashLock guides</h1>
     <p>Start with your own study material. Add a deck, pair it with an everyday Android app and keep the first break short.</p>
     <ul>
+      <li><a href={sitePath("/guides/krebs-cycle/")}>Krebs cycle: eight steps, energy yield and recall questions</a><p>Follow the enzymes and carbon counts, separate cycle yields from pyruvate oxidation, and test your recall.</p></li>
       <li><a href={sitePath("/guides/top-android-study-focus-apps/")}> Top Android apps for study and focus: five useful choices</a><p>Choose an Android study or focus app by the job you need: flashcard breaks, scheduled review, focus timers, app-opening pauses or blocking.</p></li>
       <li><a href={sitePath("/guides/anatomy-active-recall/")}> How to study anatomy with active recall</a><p>Build anatomy recall around structures, spatial relationships and checked explanations, with a practical session plan and better flashcard prompts.</p></li>
       <li><a href={sitePath("/guides/physics-formula-flashcards/")}> How to learn physics formulas with flashcards and problems</a><p>Learn what a physics formula means, when it applies and how to check units; then practise choosing and using it in worked problems.</p></li>
