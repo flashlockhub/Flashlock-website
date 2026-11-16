@@ -26,6 +26,12 @@ Reviewed: 2026-11-06
 - [Website terms](https://flashlock.app/terms/): Terms for this website.
 - [Cookie Policy](https://flashlock.app/cookies/): Website storage and delivery.
 
+## New study articles (published 16 November 2026)
+
+- [Top Android apps for study and focus: five useful choices](https://flashlock.app/guides/top-android-study-focus-apps/): Choose an Android study or focus app by the job you need: flashcard breaks, scheduled review, focus timers, app-opening pauses or blocking.
+- [How to study anatomy with active recall](https://flashlock.app/guides/anatomy-active-recall/): Build anatomy recall around structures, spatial relationships and checked explanations, with a practical session plan and better flashcard prompts.
+- [How to learn physics formulas with flashcards and problems](https://flashlock.app/guides/physics-formula-flashcards/): Learn what a physics formula means, when it applies and how to check units; then practise choosing and using it in worked problems.
+
 ## Contact
 
 hello@flashlock.app

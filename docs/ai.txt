@@ -3,6 +3,7 @@ FlashLock — information for AI readers
 This is a nonstandard informational text file, not an access-control protocol.
 For a curated product summary and official links, see https://flashlock.app/llms.txt
 Canonical website: https://flashlock.app/
+Study articles: https://flashlock.app/guides/
 Sitemap: https://flashlock.app/sitemap.xml
 Crawler guidance: https://flashlock.app/robots.txt
 Website terms: https://flashlock.app/terms/
